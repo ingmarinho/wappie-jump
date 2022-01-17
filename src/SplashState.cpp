@@ -17,6 +17,7 @@ namespace Sonar
 		this->_data->assets.LoadTexture("Splash State Background", SPLASH_SCENE_BACKGROUND_FILEPATH);
 
 		_background.setTexture(this->_data->assets.GetTexture("Splash State Background"));
+		_background.setPosition((SCREEN_WIDTH / 2) - (_background.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_background.getGlobalBounds().height / 2));
 	}
 
 	void SplashState::HandleInput()
@@ -43,7 +44,7 @@ namespace Sonar
 
 	void SplashState::Draw(float dt)
 	{
-		this->_data->window.clear(sf::Color::Red);
+		this->_data->window.clear(sf::Color::White);
 
 		this->_data->window.draw( this->_background );
 
