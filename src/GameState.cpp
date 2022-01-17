@@ -13,20 +13,26 @@ namespace Sonar
 
 	void GameState::Init()
 	{
-		this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
+		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
+		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 
-		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
+		_background.setTexture(_data->assets.GetTexture("Game Background"));
 	}
 
 	void GameState::HandleInput()
 	{
 		sf::Event event;
 
-		while (this->_data->window.pollEvent(event))
+		while (_data->window.pollEvent(event))
 		{
 			if (sf::Event::Closed == event.type)
 			{
-				this->_data->window.close();
+				_data->window.close();
+			}
+
+			if (_data->input.IsSpriteClicked(_background, sf::Mouse::Left, _data->window))
+			{
+				
 			}
 		}
 	}
@@ -38,10 +44,10 @@ namespace Sonar
 
 	void GameState::Draw(float dt)
 	{
-		this->_data->window.clear(sf::Color::Red);
+		_data->window.clear(sf::Color::Red);
 
-		this->_data->window.draw(this->_background);
+		_data->window.draw(_background);
 
-		this->_data->window.display();
+		_data->window.display();
 	}
 }

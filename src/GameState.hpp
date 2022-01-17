@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
+#include "Platform.hpp"
 
 namespace Sonar
 {
@@ -21,5 +22,9 @@ namespace Sonar
 		GameDataRef _data;
 
 		sf::Sprite _background;
+
+		Platform *platform;
+
+		sf::Clock clock;
 	};
 }

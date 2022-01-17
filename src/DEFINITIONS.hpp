@@ -13,3 +13,9 @@
 #define GAME_TITLE_FILEPATH "Resources/res/title.png"
 #define PLAY_BUTTON_FILEPATH "Resources/res/play.png"
 #define PLAY_BUTTON_DOWN_FILEPATH "Resources/res/play_down.png"
+
+#define PLATFORM_FILEPATH "Resources/res/platform.png"
+
+#define PLATFORM_MOVEMENT_SPEED 200.0f      // for moving platforms
+#define PLATFORM_SPAWN_FREQUENCY 1.5f       
+
