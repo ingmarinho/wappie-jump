@@ -9,10 +9,10 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := Assets.cpp Doodler.cpp Engine.cpp EventLoop.cpp GameState.cpp IEntity.h IState.h KeyboardState.cpp Menu.cpp Overlay.cpp Platform.cpp Sprite.cpp States.cpp View.cpp
+SOURCES := AssetManager.cpp Game.cpp GameOverState.cpp GameState.cpp InputManager.cpp MainMenuState.cpp SplashState.cpp StateMachine.cpp
 
 # header files in this project
-HEADERS := Assets.h consts.h Doodler.h Engine.h enums.h EventLoop.h GameState.h IPhysicsObject.h KeyboardState.h Menu.h Overlay.h Platform.h Sprite.h States.h View.h
+HEADERS := AssetManager.hpp DEFINITIONS.hpp Game.hpp GameOverState.hpp GameState.hpp InputManager.hpp MainMenuState.hpp SplashState.hpp State.hpp StateMachine.cpp
 
 # other places to look for files for this project
 SEARCH  := 

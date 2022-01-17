@@ -1,24 +1,24 @@
 #include <sstream>
 #include "DEFINITIONS.hpp"
-#include "GameState.hpp"
+#include "GameOverState.hpp"
 
 #include <iostream>
 
 namespace Sonar
 {
-	GameState::GameState(GameDataRef data) : _data(data)
+	GameOverState::GameOverState(GameDataRef data) : _data(data)
 	{
 
 	}
 
-	void GameState::Init()
+	void GameOverState::Init()
 	{
-		this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
+		this->_data->assets.LoadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
 
-		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
+		_background.setTexture(this->_data->assets.GetTexture("Game Over Background"));
 	}
 
-	void GameState::HandleInput()
+	void GameOverState::HandleInput()
 	{
 		sf::Event event;
 
@@ -31,12 +31,12 @@ namespace Sonar
 		}
 	}
 
-	void GameState::Update(float dt)
+	void GameOverState::Update(float dt)
 	{
 		
 	}
 
-	void GameState::Draw(float dt)
+	void GameOverState::Draw(float dt)
 	{
 		this->_data->window.clear(sf::Color::Red);
 
