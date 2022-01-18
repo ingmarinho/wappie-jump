@@ -1,9 +1,16 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <sstream>
+
 #include "State.hpp"
 #include "Game.hpp"
 #include "Platform.hpp"
+#include "Player.hpp"
+
+#include "DEFINITIONS.hpp"
+
 
 namespace Sonar
 {
@@ -24,7 +31,7 @@ namespace Sonar
 		sf::Sprite _background;
 
 		Platform *platform;
-		Player 	*player; 
+		Player *player; 
 
 		sf::Clock clock;
 	};

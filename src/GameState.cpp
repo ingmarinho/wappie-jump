@@ -1,9 +1,4 @@
-#include <sstream>
-#include "DEFINITIONS.hpp"
 #include "GameState.hpp"
-#include "Player.hpp"
-
-#include <iostream>
 
 namespace Sonar
 {
@@ -44,12 +39,15 @@ namespace Sonar
 				// 	platform->SpawnPlatform();
 				// }
 			}
+
 		}
 	}
 
 	void GameState::Update(float dt)
 	{
 		if (platform->GetPlatformAmount() < 18) platform->SpawnPlatform();
+
+		platform->MovePlatforms(dt);
 	}
 
 	void GameState::Draw(float dt)

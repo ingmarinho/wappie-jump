@@ -27,7 +27,9 @@ namespace Sonar
 
 		_platformWidth = platformSprite.getGlobalBounds().width;
 
-		platformSprite.setPosition(_maxWidth, _data->window.getSize().y - platformSprite.getGlobalBounds().height);
+		int randomWidth = rand() % _maxWidth + _data->window.getSize().x * 0.005f;
+
+		platformSprite.setPosition(randomWidth, _data->window.getSize().y - platformSprite.getGlobalBounds().height);
 		platforms.push_back(platform(platformSprite, DEFAULT));
 	}
 
@@ -35,12 +37,12 @@ namespace Sonar
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		int _randomWidth = rand() % _maxWidth + _data->window.getSize().x * 0.005f;
+		int randomWidth = rand() % _maxWidth + _data->window.getSize().x * 0.005f;
 
 		platform previousPlatform = platforms.back();
 		int previousPlatformTop = previousPlatform.platformSprite.getGlobalBounds().top;
 
-		platformSprite.setPosition(_maxWidth, previousPlatformTop - platformSprite.getGlobalBounds().height * 1.2); // random hoogtes
+		platformSprite.setPosition(randomWidth, previousPlatformTop - platformSprite.getGlobalBounds().height * 1.2); // random hoogtes
 
 		platforms.push_back(platform(platformSprite, DEFAULT));
 	}
@@ -66,18 +68,18 @@ namespace Sonar
 
 	void Platform::MovePlatforms(float dt)
 	{
-		for ( int i = 0; i < platforms.size(); i++)
+		for ( unsigned int i = 0; i < platforms.size(); i++)
 		{
-			if (platforms.at(i).platformSprite.getPosition().y < _data->window.getPosition().y - platforms.at(i).platformSprite.getGlobalBounds().height)
+			if (platforms.at(i).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(i).platformSprite.getGlobalBounds().height)
 			{
 				platforms.erase( platforms.begin( ) + i );
 			}
 			else
 			{
 				sf::Vector2f position = platforms.at(i).platformSprite.getPosition();
-				float movement = PLATFORM_MOVEMENT_SPEED * dt;
+				float movement = 200.0f * dt;
 
-				platforms.at(i).platformSprite.move(-movement, 0);
+				platforms.at(i).platformSprite.move(0, movement);
 			}
 		}
 	}

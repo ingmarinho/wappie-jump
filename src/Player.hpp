@@ -1,11 +1,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Game.hpp"
+#include <vector>
 
 #include "DEFINITIONS.hpp"
-#include "Game.hpp"
 
-#include <vector>
 
 namespace Sonar
 {
@@ -13,7 +13,6 @@ namespace Sonar
     {
     public:
         Player(GameDataRef data);
-        ~Player();
 
         void Draw();
 
@@ -28,6 +27,7 @@ namespace Sonar
 
         sf::Sprite _playerSprite;
         sf::Sprite _playerSpriteMirrored;
+        sf::Sprite _playerCurrent;
         int _playerState;
     };
 }

@@ -4,8 +4,7 @@ namespace Sonar
 {
     Player::Player(GameDataRef data) : _data(data)
     {
-        sf::Sprite _playerSprite(_data->assets.GetTexture("Player"));
-		sf::Sprite _playerSpriteMirrored(_data->assets.GetTexture("Player Mirrored"));
+
     }
 
     void Player::Draw()
@@ -16,7 +15,7 @@ namespace Sonar
 
     void Player::Animate(float dt)
     {
-        
+        _playerCurrent = _playerSpriteMirrored;
     }
 
     void Player::Update(float dt)
