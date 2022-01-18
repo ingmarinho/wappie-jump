@@ -4,7 +4,7 @@ namespace Sonar
 {
     Player::Player(GameDataRef data) : _data(data)
     {
-
+        
     }
 
     void Player::Draw()
