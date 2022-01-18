@@ -9,7 +9,8 @@ namespace Sonar
 	enum category
 	{
 		DEFAULT,
-		BOOSTER
+		BOOSTER,
+		INVISBLE
 	};
 
 	struct platform
@@ -27,6 +28,7 @@ namespace Sonar
 	public:
 		Platform(GameDataRef data);
 
+		int getPlatformAmount();
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void SpawnMovingPlatform();
@@ -37,7 +39,7 @@ namespace Sonar
 
 	private:
 		GameDataRef _data;
-		std::vector<platform> platformSprites;
+		std::vector<platform> platforms;
 		std::vector<platform> platformsToDelete;
 
 

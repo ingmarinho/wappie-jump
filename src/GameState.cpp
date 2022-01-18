@@ -34,7 +34,7 @@ namespace Sonar
 
 			if (_data->input.IsSpriteClicked(_background, sf::Mouse::Left, _data->window))
 			{
-				platform->SpawnPlatform();
+				// platform->SpawnPlatform();
 				// for (unsigned int i = 0; i < 1000; i++)
 				// {
 				// 	platform->SpawnPlatform();
@@ -45,7 +45,7 @@ namespace Sonar
 
 	void GameState::Update(float dt)
 	{
-		
+		if (platform->getPlatformAmount() < 18) platform->SpawnPlatform();
 	}
 
 	void GameState::Draw(float dt)

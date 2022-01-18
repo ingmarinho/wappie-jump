@@ -8,7 +8,11 @@ namespace Sonar
 	Platform::Platform(GameDataRef data) : _data(data)
 	{
 		SpawnFirstPlatform();
-		_platformSpawnYOffset = _data->window.getSize().y;
+	}
+
+	int Platform::getPlatformAmount()
+	{
+		return platforms.size();
 	}
 
 	void Platform::SpawnFirstPlatform()
@@ -18,28 +22,23 @@ namespace Sonar
 		int width = _data->window.getSize().x * 0.99f - sprite.getGlobalBounds().width;
 		int maxWidth = rand() % width + _data->window.getSize().x * 0.005f;
 
-		sprite.setPosition(maxWidth, _platformSpawnYOffset - sprite.getGlobalBounds().height);
-		platformSprites.push_back(platform(sprite, DEFAULT));
+		sprite.setPosition(maxWidth, _data->window.getSize().y - sprite.getGlobalBounds().height);
+		platforms.push_back(platform(sprite, DEFAULT));
 	}
 
 	void Platform::SpawnPlatform()
 	{
 		sf::Sprite sprite(_data->assets.GetTexture("Platform"));
 
-		// sprite.setScale(sprite.getLocalBounds().width / 4, sprite.getLocalBounds().width / 4);
-
 		int width = _data->window.getSize().x * 0.99f - sprite.getGlobalBounds().width;
 		int maxWidth = rand() % width + _data->window.getSize().x * 0.005f;
 
-		// int spawnHeight = (_data->window.getSize().y * 2) - sprite.getGlobalBounds().height;
-		// int maxSpawnHeight = spawnHeight + _data->window.getSize().y * 2;
-		platform lastPlatform = platformSprites.back();
-		int height = lastPlatform.platformSprite.getGlobalBounds().height * 1.1;
+		platform previousPlatform = platforms.back();
+		int previousPlatformTop = previousPlatform.platformSprite.getGlobalBounds().top;
 
-		sprite.setPosition(maxWidth, sprite.getGlobalBounds().height + _platformSpawnYOffset);
-		_platformSpawnYOffset -= sprite.getGlobalBounds().height * 1.1;
+		sprite.setPosition(maxWidth, previousPlatformTop - sprite.getGlobalBounds().height * 1.2);
 
-		platformSprites.push_back(platform(sprite, DEFAULT));
+		platforms.push_back(platform(sprite, DEFAULT));
 	}
 
 	// void Platform::SpawnMovingPlatform()
@@ -81,9 +80,9 @@ namespace Sonar
 
 	void Platform::DrawPlatforms()
 	{
-		for (unsigned short int i = 0; i < platformSprites.size(); i++)
+		for (unsigned short int i = 0; i < platforms.size(); i++)
 		{
-			_data->window.draw(platformSprites.at(i).platformSprite);
+			_data->window.draw(platforms.at(i).platformSprite);
 		}
 	}
 
