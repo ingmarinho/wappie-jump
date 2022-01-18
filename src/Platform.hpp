@@ -28,7 +28,8 @@ namespace Sonar
 	public:
 		Platform(GameDataRef data);
 
-		int getPlatformAmount();
+		int GetPlatformAmount();
+		void CalculateMaxWidth();
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void SpawnMovingPlatform();
@@ -42,8 +43,8 @@ namespace Sonar
 		std::vector<platform> platforms;
 		std::vector<platform> platformsToDelete;
 
-
-		int maxWidth;
+		int _platformWidth;
+		int _maxWidth;
 		int _platformSpawnYOffset;
 	};
 }

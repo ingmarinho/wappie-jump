@@ -16,6 +16,22 @@
 
 #define PLATFORM_FILEPATH "Resources/res/platform.png"
 
-#define PLATFORM_MOVEMENT_SPEED 200.0f      // for moving platforms
-#define PLATFORM_SPAWN_FREQUENCY 1.5f       
+#define CHAR1_FILEPATH "Resources/res/char1.png"
+#define CHAR1MIR_FILEPATH "Resources/res/char1mir.png"
+#define CHAR2_FILEPATH "Resources/res/char2.png"
+#define CHAR2MIR_FILEPATH "Resources/res/char2mir.png"
+#define CHAR3_FILEPATH "Resources/res/char3.png"
+#define CHAR3MIR_FILEPATH "Resources/res/char3mir.png"
+#define CHAR4_FILEPATH "Resources/res/char4.png"
+#define CHAR4MIR_FILEPATH "Resources/res/char4mir.png"
+#define CHAR5_FILEPATH "Resources/res/char5.png"
+#define CHAR5MIR_FILEPATH "Resources/res/char5mir.png"
+#define CHAR6_FILEPATH "Resources/res/char6.png"
+#define CHAR6MIR_FILEPATH "Resources/res/char6mir.png"
+#define CHAR7_FILEPATH "Resources/res/char7.png"
+#define CHAR7MIR_FILEPATH "Resources/res/char7mir.png"
+#define CHAR8_FILEPATH "Resources/res/char8.png"
+#define CHAR8MIR_FILEPATH "Resources/res/char8mir.png"
+
+#define PLATFORM_MOVEMENT_SPEED 200.0f      // for moving platforms 
 

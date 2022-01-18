@@ -24,6 +24,7 @@ namespace Sonar
 		sf::Sprite _background;
 
 		Platform *platform;
+		Player 	*player; 
 
 		sf::Clock clock;
 	};

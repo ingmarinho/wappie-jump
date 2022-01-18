@@ -8,37 +8,41 @@ namespace Sonar
 	Platform::Platform(GameDataRef data) : _data(data)
 	{
 		SpawnFirstPlatform();
+		CalculateMaxWidth();
 	}
 
-	int Platform::getPlatformAmount()
+	void Platform::CalculateMaxWidth()
+	{
+		_maxWidth = _data->window.getSize().x * 0.99f - _platformWidth;
+	}
+
+	int Platform::GetPlatformAmount()
 	{
 		return platforms.size();
 	}
 
 	void Platform::SpawnFirstPlatform()
 	{
-		sf::Sprite sprite(_data->assets.GetTexture("Platform"));
+		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		int width = _data->window.getSize().x * 0.99f - sprite.getGlobalBounds().width;
-		int maxWidth = rand() % width + _data->window.getSize().x * 0.005f;
+		_platformWidth = platformSprite.getGlobalBounds().width;
 
-		sprite.setPosition(maxWidth, _data->window.getSize().y - sprite.getGlobalBounds().height);
-		platforms.push_back(platform(sprite, DEFAULT));
+		platformSprite.setPosition(_maxWidth, _data->window.getSize().y - platformSprite.getGlobalBounds().height);
+		platforms.push_back(platform(platformSprite, DEFAULT));
 	}
 
 	void Platform::SpawnPlatform()
 	{
-		sf::Sprite sprite(_data->assets.GetTexture("Platform"));
+		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		int width = _data->window.getSize().x * 0.99f - sprite.getGlobalBounds().width;
-		int maxWidth = rand() % width + _data->window.getSize().x * 0.005f;
+		int _randomWidth = rand() % _maxWidth + _data->window.getSize().x * 0.005f;
 
 		platform previousPlatform = platforms.back();
 		int previousPlatformTop = previousPlatform.platformSprite.getGlobalBounds().top;
 
-		sprite.setPosition(maxWidth, previousPlatformTop - sprite.getGlobalBounds().height * 1.2);
+		platformSprite.setPosition(_maxWidth, previousPlatformTop - platformSprite.getGlobalBounds().height * 1.2); // random hoogtes
 
-		platforms.push_back(platform(sprite, DEFAULT));
+		platforms.push_back(platform(platformSprite, DEFAULT));
 	}
 
 	// void Platform::SpawnMovingPlatform()
@@ -60,23 +64,23 @@ namespace Sonar
 	// 	platformSprites.push_back(sprite);
 	// }
 
-	// void Platform::MovePlatforms(float dt)
-	// {
-	// 	for ( int i = 0; i < platformSprites.size(); i++)
-	// 	{
-	// 		if (platformSprites.at(i).getPosition().y < 0 - platformSprites.at(i).getLocalBounds().height)
-	// 		{
-	// 			platformSprites.erase( platformSprites.begin( ) + i );
-	// 		}
-	// 		else
-	// 		{
-	// 			sf::Vector2f position = platformSprites.at(i).getPosition();
-	// 			float movement = PIPE_MOVEMENT_SPEED * dt;
+	void Platform::MovePlatforms(float dt)
+	{
+		for ( int i = 0; i < platforms.size(); i++)
+		{
+			if (platforms.at(i).platformSprite.getPosition().y < _data->window.getPosition().y - platforms.at(i).platformSprite.getGlobalBounds().height)
+			{
+				platforms.erase( platforms.begin( ) + i );
+			}
+			else
+			{
+				sf::Vector2f position = platforms.at(i).platformSprite.getPosition();
+				float movement = PLATFORM_MOVEMENT_SPEED * dt;
 
-	// 			platformSprites.at(i).move(-movement, 0);
-	// 		}
-	// 	}
-	// }
+				platforms.at(i).platformSprite.move(-movement, 0);
+			}
+		}
+	}
 
 	void Platform::DrawPlatforms()
 	{

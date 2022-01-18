@@ -1,6 +1,7 @@
 #include <sstream>
 #include "DEFINITIONS.hpp"
 #include "GameState.hpp"
+#include "Player.hpp"
 
 #include <iostream>
 
@@ -15,8 +16,11 @@ namespace Sonar
 	{
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
+		_data->assets.LoadTexture("Player", CHAR6_FILEPATH);
+		_data->assets.LoadTexture("Player Mirrored", CHAR6MIR_FILEPATH);
 
-		platform = new Platform(_data);	
+		platform = new Platform(_data);
+		player = new Player(_data);
 
 		_background.setTexture(_data->assets.GetTexture("Game Background"));
 	}
@@ -45,7 +49,7 @@ namespace Sonar
 
 	void GameState::Update(float dt)
 	{
-		if (platform->getPlatformAmount() < 18) platform->SpawnPlatform();
+		if (platform->GetPlatformAmount() < 18) platform->SpawnPlatform();
 	}
 
 	void GameState::Draw(float dt)
