@@ -6,12 +6,29 @@
 
 namespace Sonar
 {
+	enum category
+	{
+		DEFAULT,
+		BOOSTER
+	};
+
+	struct platform
+	{
+		sf::Sprite platformSprite;
+		category platformCategory;
+
+		platform(sf::Sprite platformSprite, category platformCategory)
+			: platformSprite(platformSprite), platformCategory(platformCategory)
+		{}
+	};
+
 	class Platform
 	{
 	public:
 		Platform(GameDataRef data);
 
 		void SpawnPlatform();
+		void SpawnFirstPlatform();
 		void SpawnMovingPlatform();
 		void SpawnInvisiblePlatform();
 		void MovePlatforms(float dt);
@@ -20,11 +37,11 @@ namespace Sonar
 
 	private:
 		GameDataRef _data;
-		std::vector<sf::Sprite> platformSprites;
-		std::vector<sf::Sprite > platformsToDelete;
+		std::vector<platform> platformSprites;
+		std::vector<platform> platformsToDelete;
 
-		int _landHeight;
-		int _platformSpawnXOffset;
 
+		int maxWidth;
+		int _platformSpawnYOffset;
 	};
 }
