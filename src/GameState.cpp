@@ -39,22 +39,31 @@ namespace Sonar
 				// 	platform->SpawnPlatform();
 				// }
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				player->setPlayerTexture(_data->assets.GetTexture("Player"));
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			{
+				player->setPlayerTexture(_data->assets.GetTexture("Player Mirrored"));
+			}
 
 		}
 	}
 
 	void GameState::Update(float dt)
 	{
-		if (platform->GetPlatformAmount() < 18) platform->SpawnPlatform();
-
-		platform->MovePlatforms(dt);
+		platform->SpawnPlatform();
+		// platform->MovePlatforms(dt);
 	}
 
 	void GameState::Draw(float dt)
 	{
-		_data->window.clear(sf::Color::Red);
+		_data->window.clear(sf::Color::Black);
 
 		_data->window.draw(_background);
+
+		player->Draw();
 
 		platform->DrawPlatforms();
 

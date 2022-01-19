@@ -28,8 +28,7 @@ namespace Sonar
 	public:
 		Platform(GameDataRef data);
 
-		int GetPlatformAmount();
-		void CalculateMaxWidth();
+		float CalculateRandomWidth(float x);
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void SpawnMovingPlatform();
@@ -45,6 +44,5 @@ namespace Sonar
 
 		int _platformWidth;
 		int _maxWidth;
-		int _platformSpawnYOffset;
 	};
 }

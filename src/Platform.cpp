@@ -8,26 +8,19 @@ namespace Sonar
 	Platform::Platform(GameDataRef data) : _data(data)
 	{
 		SpawnFirstPlatform();
-		CalculateMaxWidth();
 	}
 
-	void Platform::CalculateMaxWidth()
-	{
-		_maxWidth = _data->window.getSize().x * 0.99f - _platformWidth;
-	}
-
-	int Platform::GetPlatformAmount()
-	{
-		return platforms.size();
+	float Platform::CalculateRandomWidth(float platformWidth)
+	{		
+		int maxWidth = _data->window.getSize().x * 0.99f - platformWidth;
+		return rand() % maxWidth + _data->window.getSize().x * 0.005f;
 	}
 
 	void Platform::SpawnFirstPlatform()
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		_platformWidth = platformSprite.getGlobalBounds().width;
-
-		int randomWidth = rand() % _maxWidth + _data->window.getSize().x * 0.005f;
+		float randomWidth = CalculateRandomWidth(platformSprite.getGlobalBounds().width);
 
 		platformSprite.setPosition(randomWidth, _data->window.getSize().y - platformSprite.getGlobalBounds().height);
 		platforms.push_back(platform(platformSprite, DEFAULT));
@@ -35,9 +28,11 @@ namespace Sonar
 
 	void Platform::SpawnPlatform()
 	{
+		if (platforms.size() > 17) return;
+
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		int randomWidth = rand() % _maxWidth + _data->window.getSize().x * 0.005f;
+		float randomWidth = CalculateRandomWidth(platformSprite.getGlobalBounds().width);
 
 		platform previousPlatform = platforms.back();
 		int previousPlatformTop = previousPlatform.platformSprite.getGlobalBounds().top;
@@ -76,9 +71,7 @@ namespace Sonar
 			}
 			else
 			{
-				sf::Vector2f position = platforms.at(i).platformSprite.getPosition();
 				float movement = 200.0f * dt;
-
 				platforms.at(i).platformSprite.move(0, movement);
 			}
 		}

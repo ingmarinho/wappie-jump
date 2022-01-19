@@ -3,16 +3,26 @@
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 #include <vector>
+#include <iostream>
 
 #include "DEFINITIONS.hpp"
-
 
 namespace Sonar
 {
     class Player
     {
+        enum movement
+        {
+            MOVING,
+            STANDING,
+            JUMPING,
+            FALLING
+        };
+
     public:
         Player(GameDataRef data);
+
+        void setPlayerTexture(const sf::Texture &texture);
 
         void Draw();
 
@@ -20,14 +30,12 @@ namespace Sonar
 
         void Update(float dt);
 
-        void Tap();
-
     private:
         GameDataRef _data;
 
-        sf::Sprite _playerSprite;
-        sf::Sprite _playerSpriteMirrored;
-        sf::Sprite _playerCurrent;
+        movement playerMovement = STANDING;
+
+        sf::Sprite _player;
         int _playerState;
     };
 }

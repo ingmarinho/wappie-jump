@@ -2,24 +2,44 @@
 
 namespace Sonar
 {
-    Player::Player(GameDataRef data) : _data(data)
-    {
-        
-    }
-
-    void Player::Draw()
+	Player::Player(GameDataRef data) : _data(data)
 	{
-		_data->window.draw(_playerSprite);
-        _data->window.draw(_playerSpriteMirrored);
+		_player.setTexture(_data->assets.GetTexture("Player"));
 	}
 
-    void Player::Animate(float dt)
-    {
-        _playerCurrent = _playerSpriteMirrored;
-    }
+	void Player::setPlayerTexture(const sf::Texture &texture)
+	{
+		_player.setTexture(texture);
+	}
 
-    void Player::Update(float dt)
-    {
+	void Player::Draw()
+	{
+		_data->window.draw(_player);
+	}
 
-    }
+	void Player::Animate(float dt)
+	{
+	}
+
+	void Player::Update(float dt)
+	{
+		switch (playerMovement)
+		{
+		case MOVING:
+
+			break;
+
+		case STANDING:
+
+			break;
+
+		case JUMPING:
+
+			break;
+
+		case FALLING:
+
+			break;
+		}
+	}
 }
