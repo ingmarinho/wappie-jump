@@ -6,6 +6,7 @@
 
 #include "State.hpp"
 #include "Game.hpp"
+#include "Collision.hpp"
 #include "Platform.hpp"
 #include "Player.hpp"
 
@@ -30,6 +31,7 @@ namespace Sonar
 
 		sf::Sprite _background;
 
+		Collision *collision;
 		Platform *platform;
 		Player *player; 
 

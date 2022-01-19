@@ -10,6 +10,20 @@ namespace Sonar
 		SpawnFirstPlatform();
 	}
 
+	void Platform::SpawnStaticPlatform()
+	{
+		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
+
+		platformSprite.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.5);
+		platforms.push_back(platform(platformSprite, DEFAULT));
+	}
+
+	sf::Sprite Platform::getStaticPlatform()
+	{
+		return platforms.back().platformSprite;
+	}
+
+
 	float Platform::CalculateRandomWidth(float platformWidth)
 	{		
 		int maxWidth = _data->window.getSize().x * 0.99f - platformWidth;
@@ -28,7 +42,7 @@ namespace Sonar
 
 	void Platform::SpawnPlatform()
 	{
-		if (platforms.size() > 17) return;
+		if (platforms.size() > 1) return;
 
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 

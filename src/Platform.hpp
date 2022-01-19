@@ -37,11 +37,15 @@ namespace Sonar
 		void DrawPlatforms();
 		void RandomisePipeOffset();
 
+		sf::Sprite getStaticPlatform();
+		void SpawnStaticPlatform(); 
+
 	private:
 		GameDataRef _data;
 		std::vector<platform> platforms;
 		std::vector<platform> platformsToDelete;
 
+		
 		int _platformWidth;
 		int _maxWidth;
 	};
