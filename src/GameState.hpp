@@ -33,7 +33,10 @@ namespace Sonar
 
 		Collision *collision;
 		Platform *platform;
-		Player *player; 
+		Player *player;
+
+		std::vector<Platform::platform> _platforms;
+		sf::Sprite _player;
 
 		sf::Clock clock;
 	};

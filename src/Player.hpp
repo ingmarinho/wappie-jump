@@ -5,8 +5,6 @@
 #include <iostream>
 
 #include "Game.hpp"
-#include "Platform.hpp"
-#include "Collision.hpp"
 
 #include "DEFINITIONS.hpp"
 
@@ -14,16 +12,24 @@ namespace Sonar
 {
     class Player
     {
-        enum movement
+    public:
+        enum Angle
+        {
+            LEFT,
+            RIGHT
+        };
+        enum Movement
         {
             JUMPING,
             FALLING
         };
 
     public:
-        Player(GameDataRef data, Platform* platform, Collision* collision);
+        Player(GameDataRef data);
 
-        void setPlayerTexture(const sf::Texture &texture);
+        sf::Sprite& getPlayerSprite();
+        void SetPlayerAngle(Angle newPlayerAngle);
+        void SetPlayerMovement(Movement newPlayerMovement);
         void Draw();
         void Update(float dt);
         void MoveRight();
@@ -31,12 +37,11 @@ namespace Sonar
 
     private:
         GameDataRef _data;
-        Platform* platform;
-        Collision* collision;
 
-        sf::Vector2f _velocity = {5.0f, -20.0f};
-        float _gravity = 0.7f;
-        movement playerMovement = FALLING;
+        sf::Vector2f _velocity = {PLAYER_VELOCITY_X, PLAYER_VELOCITY_Y};
+
+        Movement _playerMovement = FALLING;
+        Angle _playerAngle = LEFT;
 
         sf::Sprite _player;
         int _playerState;

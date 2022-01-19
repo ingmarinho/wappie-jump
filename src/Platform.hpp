@@ -6,28 +6,29 @@
 
 namespace Sonar
 {
-	enum category
-	{
-		DEFAULT,
-		BOOSTER,
-		INVISBLE
-	};
-
-	struct platform
-	{
-		sf::Sprite platformSprite;
-		category platformCategory;
-
-		platform(sf::Sprite platformSprite, category platformCategory)
-			: platformSprite(platformSprite), platformCategory(platformCategory)
-		{}
-	};
-
 	class Platform
 	{
 	public:
+		enum category
+		{
+			DEFAULT,
+			BOOSTER,
+			INVISBLE
+		};
+
+		struct platform
+		{
+			sf::Sprite platformSprite;
+			category platformCategory;
+
+			platform(sf::Sprite platformSprite, category platformCategory)
+				: platformSprite(platformSprite), platformCategory(platformCategory)
+			{}
+		};
+	public:
 		Platform(GameDataRef data);
 
+		std::vector<platform>& GetPlatformsVector();
 		float CalculateRandomWidth(float x);
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
@@ -35,7 +36,6 @@ namespace Sonar
 		void SpawnInvisiblePlatform();
 		void MovePlatforms(float dt);
 		void DrawPlatforms();
-		void RandomisePipeOffset();
 
 		sf::Sprite getStaticPlatform();
 		void SpawnStaticPlatform(); 
@@ -44,7 +44,6 @@ namespace Sonar
 		GameDataRef _data;
 		std::vector<platform> platforms;
 		std::vector<platform> platformsToDelete;
-
 		
 		int _platformWidth;
 		int _maxWidth;

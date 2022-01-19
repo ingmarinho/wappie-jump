@@ -8,7 +8,7 @@ namespace Sonar
         sf::Rect<float> platformRect = platform.getGlobalBounds();
         sf::Rect<float> playerRect = player.getGlobalBounds();
 
-        return  platformRect.top <= playerRect.top + playerRect.height // Onderkant Player
+        return  platformRect.top <= playerRect.top + playerRect.height // bottom of player
                 &&
                 platformRect.left < playerRect.left + playerRect.width * 0.8
                 &&

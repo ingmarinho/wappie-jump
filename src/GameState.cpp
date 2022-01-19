@@ -13,9 +13,9 @@ namespace Sonar
 		_data->assets.LoadTexture("Player", CHAR6_FILEPATH);
 		_data->assets.LoadTexture("Player Mirrored", CHAR6MIR_FILEPATH);
 
-		platform = new Platform(_data);
 		collision = new Collision();
-		player = new Player(_data, platform, collision);
+		platform = new Platform(_data);
+		player = new Player(_data);
 
 		_background.setTexture(_data->assets.GetTexture("Game Background"));
 	}
@@ -30,30 +30,38 @@ namespace Sonar
 			{
 				_data->window.close();
 			}
-
-			if (_data->input.IsSpriteClicked(_background, sf::Mouse::Left, _data->window))
-			{
-
-			}
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			player->SetPlayerAngle(Player::LEFT);
+			player->MoveLeft();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			player->SetPlayerAngle(Player::RIGHT);
+			player->MoveRight();
 		}
 	}
 
 	void GameState::Update(float dt)
 	{
-		platform->SpawnStaticPlatform();
+		// platform->SpawnStaticPlatform();
 		player->Update(dt);
+		
+		_platforms = platform->GetPlatformsVector();
+		_player = player->getPlayerSprite();
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		for (auto &platform : _platforms)
 		{
-			player->setPlayerTexture(_data->assets.GetTexture("Player"));
-			player->MoveLeft();
+			if (collision->CheckPlayerBounceCollision(platform.platformSprite, _player))
+			{
+				player->SetPlayerMovement(Player::JUMPING);
+				break;
+			}
+
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		{
-			player->setPlayerTexture(_data->assets.GetTexture("Player Mirrored"));
-			player->MoveRight();
-		}
-		platform->SpawnPlatform();
+
+		// platform->SpawnPlatform();
 		// platform->MovePlatforms(dt);
 	}
 

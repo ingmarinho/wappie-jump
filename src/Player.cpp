@@ -2,15 +2,43 @@
 
 namespace Sonar
 {
-	Player::Player(GameDataRef data, Platform* platform, Collision* collision) : _data(data), platform(platform), collision(collision)
+	Player::Player(GameDataRef data) : _data(data)
 	{
 		_player.setTexture(_data->assets.GetTexture("Player"));
 		_player.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.2);
 	}
 
-	void Player::setPlayerTexture(const sf::Texture &texture)
+	sf::Sprite& Player::getPlayerSprite()
 	{
-		_player.setTexture(texture);
+		return _player;
+	}
+
+	void Player::SetPlayerAngle(Angle newPlayerAngle)
+	{
+		switch (newPlayerAngle)
+		{
+			case LEFT:
+				_player.setTexture(_data->assets.GetTexture("Player"));
+				break;
+
+			case RIGHT:
+				_player.setTexture(_data->assets.GetTexture("Player Mirrored"));
+				break;
+		}
+	}
+
+	void Player::SetPlayerMovement(Movement newPlayerMovement)
+	{
+		switch (newPlayerMovement)
+		{
+			case JUMPING:
+				_playerMovement = JUMPING;
+				break;
+
+			case FALLING:
+				_playerMovement = FALLING;
+				break;
+		}
 	}
 
 	void Player::Draw()
@@ -22,28 +50,28 @@ namespace Sonar
 	{
 		_player.move(_velocity.x, 0);
 	}
+
 	void Player::MoveLeft()
 	{
 		_player.move(-_velocity.x, 0);
 	}
 
-
 	void Player::Update(float dt)
 	{
-		switch (playerMovement)
+		switch (_playerMovement)
 		{
 		case JUMPING:
 			_velocity.y = -20;
+
 			_player.move(0, _velocity.y);
 
-			playerMovement = FALLING;
+			_playerMovement = FALLING;
+
 			break;
-			
-
 		case FALLING:
-			_velocity.y += _gravity;
+			_velocity.y += GRAVITY;
+
 			_player.move(0, _velocity.y);
-			if (collision->CheckPlayerBounceCollision(platform->getStaticPlatform(), _player)) playerMovement = JUMPING;
 
 			break;
 		}

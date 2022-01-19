@@ -10,6 +10,11 @@ namespace Sonar
 		SpawnFirstPlatform();
 	}
 
+	std::vector<Platform::platform>& Platform::GetPlatformsVector()
+	{
+		return platforms;
+	}
+
 	void Platform::SpawnStaticPlatform()
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
@@ -42,7 +47,7 @@ namespace Sonar
 
 	void Platform::SpawnPlatform()
 	{
-		if (platforms.size() > 1) return;
+		if (platforms.size() > 17) return;
 
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
@@ -97,10 +102,5 @@ namespace Sonar
 		{
 			_data->window.draw(platforms.at(i).platformSprite);
 		}
-	}
-
-	void Platform::RandomisePipeOffset()
-	{
-		// _platformSpawnYOffset = rand() % (_landHeight + 1);
 	}
 }
