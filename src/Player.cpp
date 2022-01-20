@@ -18,9 +18,19 @@ namespace Sonar
 		return _playerMovement;
 	}
 	
+	void Player::SetPlayerPosition(float x, float y)
+	{
+		_player.setPosition(x, y);
+	}
+
 	float Player::GetPlayerVelocityY()
 	{
 		return _velocity.y;
+	}
+
+	void Player::SetPlayerVelocityY(float velocity)
+	{
+		_velocity.y = velocity;
 	}
 
 	void Player::SetPlayerAngle(Angle newPlayerAngle)
@@ -47,6 +57,10 @@ namespace Sonar
 
 			case RISING:
 				_playerMovement = RISING;
+				break;
+
+			case FLOATING:
+				_playerMovement = FLOATING;
 				break;
 
 			case FALLING:
@@ -93,6 +107,13 @@ namespace Sonar
 			// std::cout << "RISING\n";
 
 			if (_velocity.y > 0) _playerMovement = FALLING;
+
+			break;
+
+		case FLOATING:
+			// std::cout << "RISING\n";
+			
+			// if (_velocity.y > 0) _playerMovement = FALLING;
 
 			break;
 

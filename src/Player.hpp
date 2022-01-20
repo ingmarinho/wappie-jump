@@ -22,6 +22,7 @@ namespace Sonar
         {
             JUMPING,
             RISING,
+            FLOATING,
             FALLING
         };
 
@@ -30,7 +31,9 @@ namespace Sonar
 
         sf::Sprite& GetPlayerSprite();
         Movement GetPlayerMovement();
+        void SetPlayerPosition(float x, float y);
         float GetPlayerVelocityY();
+        void SetPlayerVelocityY(float velocity);
         void SetPlayerAngle(Angle newPlayerAngle);
         void SetPlayerMovement(Movement newPlayerMovement);
         void Draw();

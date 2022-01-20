@@ -33,11 +33,21 @@
 #define CHAR8_FILEPATH "Resources/res/char8.png"
 #define CHAR8MIR_FILEPATH "Resources/res/char8mir.png"
 
+#define ARROW_LEFT_FILEPATH "Resources/res/Arrow_left.png"
+#define ARROW_RIGHT_FILEPATH "Resources/res/Arrow_right.png"
+
+#define FONT_FILEPATH "Resources/fonts/normal.otf"
+
 #define PLATFORM_MOVEMENT_SPEED 200.0f      // for moving platforms
 #define MAX_PLATFORMS 18
 
-#define PLAYER_VELOCITY_X 5.0f
-#define PLAYER_VELOCITY_Y -5.0f
+#define PLAYER_VELOCITY_X 10.0f
+#define PLAYER_VELOCITY_Y -6.0f
+
+#define SCORE_X _score.getGlobalBounds().width
+#define SCORE_Y 10
+
+#define DIFFICULTY_LEVEL 100 // 0-100 (lower = harder)
 
 #define GRAVITY 0.7f
 

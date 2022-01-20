@@ -18,6 +18,7 @@ namespace Sonar
 		_data->assets.LoadTexture("Play Button", PLAY_BUTTON_FILEPATH);
 		_data->assets.LoadTexture("Play Button Down", PLAY_BUTTON_DOWN_FILEPATH);
 
+			
 		_background.setTexture(_data->assets.GetTexture("Main Menu Background"));
 		_title.setTexture(_data->assets.GetTexture("Game Title"));
 		_playButton.setTexture(_data->assets.GetTexture("Play Button"));
@@ -44,6 +45,8 @@ namespace Sonar
 				// Switch To Main Menu
 				_data->machine.AddState(StateRef(new GameState(_data)), true);
 			}
+
+	
 
 			// sf::Event event;
 

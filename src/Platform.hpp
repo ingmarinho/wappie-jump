@@ -13,7 +13,7 @@ namespace Sonar
 		{
 			DEFAULT,
 			BOOSTER,
-			INVISBLE
+			INVISIBLE
 		};
 
 		struct platform
@@ -28,12 +28,15 @@ namespace Sonar
 	public:
 		Platform(GameDataRef data);
 
+		int GetDeletedPlatforms();
 		std::vector<platform>& GetPlatformsVector();
 		float CalculateRandomWidth(float x);
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void SpawnMovingPlatform();
 		void SpawnInvisiblePlatform();
+		void AddInvisiblePlatform(sf::Sprite &platformSprite);
+		void AddDefaultPlatform(sf::Sprite &platformSprite);
 		void MovePlatforms(float dt);
 		void DrawPlatforms();
 
@@ -43,9 +46,8 @@ namespace Sonar
 	private:
 		GameDataRef _data;
 		std::vector<platform> platforms;
-		std::vector<platform> platformsToDelete;
 		
-		int _platformWidth;
-		int _maxWidth;
+		long long int _deletedPlatforms = 0;
+		int _consecutiveInvisiblePlatforms = 0;
 	};
 }

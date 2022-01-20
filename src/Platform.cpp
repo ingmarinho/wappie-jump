@@ -2,6 +2,7 @@
 #include "DEFINITIONS.hpp"
 
 #include <iostream>
+#include <cmath>
 
 namespace Sonar
 {
@@ -9,6 +10,11 @@ namespace Sonar
 	{
 		SpawnFirstPlatform();
 		// SpawnStaticPlatform();
+	}
+
+	int Platform::GetDeletedPlatforms()
+	{
+		return _deletedPlatforms;
 	}
 
 	std::vector<Platform::platform> &Platform::GetPlatformsVector()
@@ -47,7 +53,8 @@ namespace Sonar
 
 	void Platform::SpawnPlatform()
 	{
-		if (platforms.size() > MAX_PLATFORMS) return;
+		if (platforms.size() > MAX_PLATFORMS)
+			return;
 
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
@@ -58,7 +65,36 @@ namespace Sonar
 
 		platformSprite.setPosition(randomWidth, previousPlatformTop - platformSprite.getGlobalBounds().height * 1.2); // random hoogtes
 
-		platforms.push_back(platform(platformSprite, DEFAULT));
+		// this is the algorithm for spawning random invisible beds
+		if (_consecutiveInvisiblePlatforms < 3)
+		{
+			int randomNumber = rand() % 101 + 1;
+
+			int invisiblePlatformProbability = (_consecutiveInvisiblePlatforms * 10) + (90 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 10);
+
+			if (randomNumber > invisiblePlatformProbability)
+			{
+				AddInvisiblePlatform(platformSprite);
+				_consecutiveInvisiblePlatforms++;
+			}
+			else AddDefaultPlatform(platformSprite);
+		}
+		else
+		{
+			AddDefaultPlatform(platformSprite);
+			_consecutiveInvisiblePlatforms = 0;
+		}
+	}
+
+	void Platform::AddDefaultPlatform(sf::Sprite &platformSprite)
+	{
+		platforms.push_back(platform(platformSprite, Platform::DEFAULT));
+	}
+
+	void Platform::AddInvisiblePlatform(sf::Sprite &platformSprite)
+	{
+		platformSprite.setColor(sf::Color(0, 0, 0, 0));
+		platforms.push_back(platform(platformSprite, Platform::INVISIBLE));
 	}
 
 	// void Platform::SpawnMovingPlatform()
@@ -75,7 +111,7 @@ namespace Sonar
 	// 	sf::Sprite sprite(_data->assets.GetTexture("Platform"));
 
 	// 	sprite.setPosition(_data->window.getSize().x, -_platformSpawnXOffset);
-	// 	sprite.setColor(sf::Color(0, 0, 0, 0));
+	// sprite.setColor(sf::Color(0, 0, 0, 0));
 
 	// 	platformSprites.push_back(sprite);
 	// }
@@ -85,6 +121,7 @@ namespace Sonar
 		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(0).platformSprite.getGlobalBounds().height)
 		{
 			platforms.erase(platforms.begin());
+			_deletedPlatforms++;
 		}
 		for (unsigned int i = 0; i < platforms.size(); i++)
 		{

@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "SplashState.hpp"
 #include "GameState.hpp"
+#include "CharPickState.hpp"
 
 namespace Sonar
 {
@@ -11,7 +12,8 @@ namespace Sonar
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 		_data->window.setFramerateLimit(60);
 		// _data->machine.AddState(StateRef(new SplashState(_data)));
-		_data->machine.AddState(StateRef(new GameState(_data)));
+		// _data->machine.AddState(StateRef(new GameState(_data)));
+		_data->machine.AddState(StateRef(new CharPickState(_data)));
 
 		Run();
 	}

@@ -9,6 +9,7 @@
 #include "Collision.hpp"
 #include "Platform.hpp"
 #include "Player.hpp"
+#include "Score.hpp"
 
 #include "DEFINITIONS.hpp"
 
@@ -34,9 +35,13 @@ namespace Sonar
 		Collision *collision;
 		Platform *platform;
 		Player *player;
-
+		Score *score;
+		
 		std::vector<Platform::platform> _platforms;
 		sf::Sprite _player;
+
+		float _platformVelocityY = 0.0;
+		bool _hasProgressed = false;
 
 		sf::Clock clock;
 	};

@@ -12,10 +12,12 @@ namespace Sonar
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Player", CHAR6_FILEPATH);
 		_data->assets.LoadTexture("Player Mirrored", CHAR6MIR_FILEPATH);
+		_data->assets.LoadFont("Font", FONT_FILEPATH);
 
 		collision = new Collision(_data);
 		platform = new Platform(_data);
 		player = new Player(_data);
+		score = new Score(_data);
 
 		_background.setTexture(_data->assets.GetTexture("Game Background"));
 	}
@@ -46,15 +48,36 @@ namespace Sonar
 	void GameState::Update(float dt)
 	{
 		player->Update(dt);
-		
+		platform->SpawnPlatform();
+		score->UpdateScore(platform->GetDeletedPlatforms() * 10);
+
+		if (_player.getPosition().x > _data->window.getSize().x) player->SetPlayerPosition(-_player.getGlobalBounds().width, _player.getPosition().y);
+		else if (_player.getPosition().x + _player.getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player.getPosition().y);
+
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
 
-		if (player->GetPlayerMovement() == Player::FALLING)
+		if (_player.getPosition().y < SCREEN_HEIGHT * 0.4f && (player->GetPlayerMovement() == Player::RISING))
+		{
+			if (!_hasProgressed) _hasProgressed = true;
+			
+			_platformVelocityY = player->GetPlayerVelocityY();
+			player->SetPlayerVelocityY(2.0f);
+			player->SetPlayerMovement(Player::FLOATING);
+		}
+
+		if (_platformVelocityY > 0) player->SetPlayerMovement(Player::FALLING);
+
+		if (player->GetPlayerMovement() == Player::FLOATING)
+		{
+			_platformVelocityY += GRAVITY;
+			platform->MovePlatforms(-_platformVelocityY);
+		}
+		else if (player->GetPlayerMovement() == Player::FALLING)
 		{
 			for (auto &platform : _platforms)
 			{
-				if (collision->CheckPlatformBounceCollision(platform.platformSprite, _player))
+				if (platform.platformCategory != Platform::INVISIBLE && collision->CheckPlatformBounceCollision(platform.platformSprite, _player))
 				{
 					player->SetPlayerMovement(Player::JUMPING);
 					break;
@@ -62,16 +85,8 @@ namespace Sonar
 			}
 		}
 
-		if (_player.getPosition().y < SCREEN_HEIGHT * 0.8 && (player->GetPlayerMovement() == Player::RISING))
-		{
-			platform->MovePlatforms(-player->GetPlayerVelocityY() * 1.1);
-		}
-
 		// bottom window jumping
-		if (collision->CheckWindowBottomBounceCollision(_player)) player->SetPlayerMovement(Player::JUMPING);
-
-		platform->SpawnPlatform();
-		// platform->MovePlatforms(dt);
+		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(_player)) player->SetPlayerMovement(Player::JUMPING);
 	}
 
 	void GameState::Draw(float dt)
@@ -80,9 +95,11 @@ namespace Sonar
 
 		_data->window.draw(_background);
 
+		platform->DrawPlatforms();
+
 		player->Draw();
 
-		platform->DrawPlatforms();
+		score->Draw();
 
 		_data->window.display();
 	}

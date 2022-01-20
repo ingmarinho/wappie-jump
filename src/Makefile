@@ -9,10 +9,10 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := AssetManager.cpp Game.cpp GameOverState.cpp GameState.cpp InputManager.cpp MainMenuState.cpp SplashState.cpp StateMachine.cpp Platform.cpp Player.cpp Collision.cpp
+SOURCES := AssetManager.cpp Game.cpp GameOverState.cpp GameState.cpp InputManager.cpp MainMenuState.cpp SplashState.cpp StateMachine.cpp Platform.cpp Player.cpp Collision.cpp Score.cpp CharPickState.cpp
 
 # header files in this project
-HEADERS := AssetManager.hpp DEFINITIONS.hpp Game.hpp GameOverState.hpp GameState.hpp InputManager.hpp MainMenuState.hpp SplashState.hpp State.hpp StateMachine.cpp Platform.hpp Player.hpp Collision.hpp
+HEADERS := AssetManager.hpp DEFINITIONS.hpp Game.hpp GameOverState.hpp GameState.hpp InputManager.hpp MainMenuState.hpp SplashState.hpp State.hpp StateMachine.cpp Platform.hpp Player.hpp Collision.hpp Score.hpp CharPickState.hpp
 
 # other places to look for files for this project
 SEARCH  := 

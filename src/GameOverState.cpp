@@ -8,7 +8,6 @@ namespace Sonar
 {
 	GameOverState::GameOverState(GameDataRef data) : _data(data)
 	{
-
 	}
 
 	void GameOverState::Init()
@@ -40,7 +39,7 @@ namespace Sonar
 	{
 		this->_data->window.clear(sf::Color::Red);
 
-		this->_data->window.draw(this->_background);
+		this->_data->window.draw(_background);
 
 		this->_data->window.display();
 	}
