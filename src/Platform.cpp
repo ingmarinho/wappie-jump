@@ -8,9 +8,10 @@ namespace Sonar
 	Platform::Platform(GameDataRef data) : _data(data)
 	{
 		SpawnFirstPlatform();
+		// SpawnStaticPlatform();
 	}
 
-	std::vector<Platform::platform>& Platform::GetPlatformsVector()
+	std::vector<Platform::platform> &Platform::GetPlatformsVector()
 	{
 		return platforms;
 	}
@@ -28,9 +29,8 @@ namespace Sonar
 		return platforms.back().platformSprite;
 	}
 
-
 	float Platform::CalculateRandomWidth(float platformWidth)
-	{		
+	{
 		int maxWidth = _data->window.getSize().x * 0.99f - platformWidth;
 		return rand() % maxWidth + _data->window.getSize().x * 0.005f;
 	}
@@ -47,7 +47,7 @@ namespace Sonar
 
 	void Platform::SpawnPlatform()
 	{
-		if (platforms.size() > 17) return;
+		if (platforms.size() > MAX_PLATFORMS) return;
 
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
@@ -82,17 +82,14 @@ namespace Sonar
 
 	void Platform::MovePlatforms(float dt)
 	{
-		for ( unsigned int i = 0; i < platforms.size(); i++)
+		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(0).platformSprite.getGlobalBounds().height)
 		{
-			if (platforms.at(i).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(i).platformSprite.getGlobalBounds().height)
-			{
-				platforms.erase( platforms.begin( ) + i );
-			}
-			else
-			{
-				float movement = 200.0f * dt;
-				platforms.at(i).platformSprite.move(0, movement);
-			}
+			platforms.erase(platforms.begin());
+		}
+		for (unsigned int i = 0; i < platforms.size(); i++)
+		{
+			float movement = 200.0f * dt;
+			platforms.at(i).platformSprite.move(0, movement);
 		}
 	}
 

@@ -34,6 +34,7 @@
 #define CHAR8MIR_FILEPATH "Resources/res/char8mir.png"
 
 #define PLATFORM_MOVEMENT_SPEED 200.0f      // for moving platforms
+#define MAX_PLATFORMS 18
 
 #define PLAYER_VELOCITY_X 5.0f
 #define PLAYER_VELOCITY_Y -20.0f

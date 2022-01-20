@@ -21,13 +21,15 @@ namespace Sonar
         enum Movement
         {
             JUMPING,
+            RISING,
             FALLING
         };
 
     public:
         Player(GameDataRef data);
 
-        sf::Sprite& getPlayerSprite();
+        sf::Sprite& GetPlayerSprite();
+        Movement GetPlayerMovement();
         void SetPlayerAngle(Angle newPlayerAngle);
         void SetPlayerMovement(Movement newPlayerMovement);
         void Draw();

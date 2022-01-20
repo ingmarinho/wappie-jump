@@ -13,7 +13,7 @@ namespace Sonar
 		_data->assets.LoadTexture("Player", CHAR6_FILEPATH);
 		_data->assets.LoadTexture("Player Mirrored", CHAR6MIR_FILEPATH);
 
-		collision = new Collision();
+		collision = new Collision(_data);
 		platform = new Platform(_data);
 		player = new Player(_data);
 
@@ -45,23 +45,27 @@ namespace Sonar
 
 	void GameState::Update(float dt)
 	{
-		// platform->SpawnStaticPlatform();
 		player->Update(dt);
 		
 		_platforms = platform->GetPlatformsVector();
-		_player = player->getPlayerSprite();
+		_player = player->GetPlayerSprite();
 
-		for (auto &platform : _platforms)
+		if (player->GetPlayerMovement() == Player::FALLING)
 		{
-			if (collision->CheckPlayerBounceCollision(platform.platformSprite, _player))
+			for (auto &platform : _platforms)
 			{
-				player->SetPlayerMovement(Player::JUMPING);
-				break;
+				if (collision->CheckPlatformBounceCollision(platform.platformSprite, _player))
+				{
+					player->SetPlayerMovement(Player::JUMPING);
+					break;
+				}
 			}
-
 		}
 
-		// platform->SpawnPlatform();
+		// bottom window jumping
+		if (collision->CheckWindowBottomBounceCollision(_player)) player->SetPlayerMovement(Player::JUMPING);
+
+		platform->SpawnPlatform();
 		// platform->MovePlatforms(dt);
 	}
 

@@ -1,17 +1,36 @@
 #include "Collision.hpp"
-#include <iostream>
 
 namespace Sonar
 {
-    bool Collision::CheckPlayerBounceCollision(sf::Sprite platform, sf::Sprite player)
+    Collision::Collision(GameDataRef data) : _data(data)
+	{
+	}
+
+    bool Collision::CheckPlatformBounceCollision(sf::Sprite platform, sf::Sprite player)
     {
-        sf::Rect<float> platformRect = platform.getGlobalBounds();
-        sf::Rect<float> playerRect = player.getGlobalBounds();
+        sf::FloatRect platformRect = platform.getGlobalBounds();
+        sf::FloatRect playerRect = player.getGlobalBounds();
+
 
         return  platformRect.top <= playerRect.top + playerRect.height // bottom of player
                 &&
                 platformRect.left < playerRect.left + playerRect.width * 0.8
                 &&
-                platformRect.left + platformRect.width > playerRect.left + 0.2 * playerRect.width; 
+                platformRect.left + platformRect.width >= playerRect.left + playerRect.width * 0.3
+                && 
+                platformRect.top + platformRect.height >= playerRect.top + playerRect.height;
+
+                // &&
+                // platformRect.left + platformRect.width > playerRect.left + 0.2 * playerRect.width; 
+        // return  platformRect.top <= playerRect.top + playerRect.height // bottom of player
+        //         &&
+        //         platformRect.left < playerRect.left + playerRect.width * 0.8
+        //         &&
+        //         platformRect.left + platformRect.width > playerRect.left + 0.2 * playerRect.width; 
+    }
+
+    bool Collision::CheckWindowBottomBounceCollision(sf::Sprite player)
+    {
+        return SCREEN_HEIGHT <= player.getPosition().y + player.getGlobalBounds().height;
     }
 }
