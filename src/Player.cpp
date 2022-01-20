@@ -74,7 +74,7 @@ namespace Sonar
 
 			_player.move(0, _velocity.y);
 
-			std::cout << "JUMPING" << '\n';
+			// std::cout << "JUMPING" << '\n';
 
 			_playerMovement = RISING;
 
@@ -85,7 +85,7 @@ namespace Sonar
 
 			_player.move(0, _velocity.y);
 
-			std::cout << "RISING\n";
+			// std::cout << "RISING\n";
 
 			if (_velocity.y > 0) _playerMovement = FALLING;
 
@@ -96,7 +96,7 @@ namespace Sonar
 
 			_player.move(0, _velocity.y);
 
-			std::cout << "FALLING\n";
+			// std::cout << "FALLING\n";
 
 			break;
 		}
