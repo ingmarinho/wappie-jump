@@ -80,7 +80,7 @@ namespace Sonar
 	// 	platformSprites.push_back(sprite);
 	// }
 
-	void Platform::MovePlatforms(float dt)
+	void Platform::MovePlatforms(float velocity)
 	{
 		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(0).platformSprite.getGlobalBounds().height)
 		{
@@ -88,8 +88,8 @@ namespace Sonar
 		}
 		for (unsigned int i = 0; i < platforms.size(); i++)
 		{
-			float movement = 200.0f * dt;
-			platforms.at(i).platformSprite.move(0, movement);
+			// float movement = 200.0f * dt;
+			platforms.at(i).platformSprite.move(0, velocity);
 		}
 	}
 

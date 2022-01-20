@@ -30,6 +30,7 @@ namespace Sonar
 
         sf::Sprite& GetPlayerSprite();
         Movement GetPlayerMovement();
+        float GetPlayerVelocityY();
         void SetPlayerAngle(Angle newPlayerAngle);
         void SetPlayerMovement(Movement newPlayerMovement);
         void Draw();

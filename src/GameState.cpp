@@ -62,6 +62,11 @@ namespace Sonar
 			}
 		}
 
+		if (_player.getPosition().y < SCREEN_HEIGHT * 0.8 && (player->GetPlayerMovement() == Player::RISING))
+		{
+			platform->MovePlatforms(-player->GetPlayerVelocityY() * 1.1);
+		}
+
 		// bottom window jumping
 		if (collision->CheckWindowBottomBounceCollision(_player)) player->SetPlayerMovement(Player::JUMPING);
 

@@ -17,6 +17,11 @@ namespace Sonar
 	{
 		return _playerMovement;
 	}
+	
+	float Player::GetPlayerVelocityY()
+	{
+		return _velocity.y;
+	}
 
 	void Player::SetPlayerAngle(Angle newPlayerAngle)
 	{

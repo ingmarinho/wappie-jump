@@ -37,7 +37,8 @@
 #define MAX_PLATFORMS 18
 
 #define PLAYER_VELOCITY_X 5.0f
-#define PLAYER_VELOCITY_Y -20.0f
+#define PLAYER_VELOCITY_Y -5.0f
+
 #define GRAVITY 0.7f
 
 
