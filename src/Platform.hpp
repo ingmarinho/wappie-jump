@@ -4,7 +4,7 @@
 #include "Game.hpp"
 #include <vector>
 
-namespace Sonar
+namespace WappieJump
 {
 	class Platform
 	{
@@ -33,15 +33,11 @@ namespace Sonar
 		float CalculateRandomWidth(float x);
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
-		void SpawnMovingPlatform();
-		void SpawnInvisiblePlatform();
 		void AddInvisiblePlatform(sf::Sprite &platformSprite);
+		void AddBoosterPlatform(sf::Sprite &platformSprite);
 		void AddDefaultPlatform(sf::Sprite &platformSprite);
-		void MovePlatforms(float dt);
+		void MovePlatforms(float velocity);
 		void DrawPlatforms();
-
-		sf::Sprite getStaticPlatform();
-		void SpawnStaticPlatform(); 
 
 	private:
 		GameDataRef _data;

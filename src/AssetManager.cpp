@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	void AssetManager::LoadTexture(std::string name, std::string fileName)
 	{
@@ -9,13 +9,13 @@ namespace Sonar
 
 		if (tex.loadFromFile(fileName))
 		{
-			this->_textures[name] = tex;
+			_textures[name] = tex;
 		}
 	}
 
 	sf::Texture &AssetManager::GetTexture(std::string name)
 	{
-		return this->_textures.at(name);
+		return _textures.at(name);
 	}
 
 	void AssetManager::LoadFont(std::string name, std::string fileName)
@@ -24,12 +24,12 @@ namespace Sonar
 
 		if (font.loadFromFile(fileName))
 		{
-			this->_fonts[name] = font;
+			_fonts[name] = font;
 		}
 	}
 
 	sf::Font &AssetManager::GetFont(std::string name)
 	{
-		return this->_fonts.at(name);
+		return _fonts.at(name);
 	}
 }

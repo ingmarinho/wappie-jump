@@ -7,7 +7,7 @@
 
 #include "DEFINITIONS.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	class Collision
 	{

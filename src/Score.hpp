@@ -7,7 +7,7 @@
 
 #include "DEFINITIONS.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
     class Score
     {
@@ -20,6 +20,6 @@ namespace Sonar
 
     private:
         GameDataRef _data;
-        sf::Text _score;
+        sf::Text _scoreText;
     };
 }

@@ -9,18 +9,18 @@
 
 #include "DEFINITIONS.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
-	class CharPickState: public State
+	class CharacterSelectionState: public State
 	{
 	public:
-		CharPickState(GameDataRef data);
+		CharacterSelectionState(GameDataRef data);
 
 		void Init();
 
 		void HandleInput();
-		void Update(float dt);
-		void Draw(float dt);
+		void Update();
+		void Draw();
 		
 
 	private:		

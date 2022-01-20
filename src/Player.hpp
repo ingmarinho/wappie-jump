@@ -8,7 +8,7 @@
 
 #include "DEFINITIONS.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
     class Player
     {
@@ -21,6 +21,7 @@ namespace Sonar
         enum Movement
         {
             JUMPING,
+            BOOSTJUMPING,
             RISING,
             FLOATING,
             FALLING
@@ -36,10 +37,10 @@ namespace Sonar
         void SetPlayerVelocityY(float velocity);
         void SetPlayerAngle(Angle newPlayerAngle);
         void SetPlayerMovement(Movement newPlayerMovement);
-        void Draw();
-        void Update(float dt);
         void MoveRight();
         void MoveLeft();
+        void Draw();
+        void Update();
 
     private:
         GameDataRef _data;

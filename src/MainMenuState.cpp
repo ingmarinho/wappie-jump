@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-namespace Sonar
+namespace WappieJump
 {
 	MainMenuState::MainMenuState(GameDataRef data) : _data(data)
 	{
@@ -60,11 +60,11 @@ namespace Sonar
 		}
 	}
 
-	void MainMenuState::Update(float dt)
+	void MainMenuState::Update()
 	{
 	}
 
-	void MainMenuState::Draw(float dt)
+	void MainMenuState::Draw()
 	{
 		_data->window.clear(sf::Color::White);
 

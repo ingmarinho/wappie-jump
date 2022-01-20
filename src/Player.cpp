@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	Player::Player(GameDataRef data) : _data(data)
 	{
@@ -55,6 +55,10 @@ namespace Sonar
 				_playerMovement = JUMPING;
 				break;
 
+			case BOOSTJUMPING:
+				_playerMovement = BOOSTJUMPING;
+				break;
+
 			case RISING:
 				_playerMovement = RISING;
 				break;
@@ -84,16 +88,23 @@ namespace Sonar
 		_player.move(-_velocity.x, 0);
 	}
 
-	void Player::Update(float dt)
+	void Player::Update()
 	{
 		switch (_playerMovement)
 		{
 		case JUMPING:
-			_velocity.y = -20;
+			_velocity.y = PLAYER_VELOCITY_Y;
 
 			_player.move(0, _velocity.y);
 
-			// std::cout << "JUMPING" << '\n';
+			_playerMovement = RISING;
+
+			break;
+
+		case BOOSTJUMPING:
+			_velocity.y = BOOSTER_VELOCITY_Y;
+
+			_player.move(0, _velocity.y);
 
 			_playerMovement = RISING;
 
@@ -104,25 +115,17 @@ namespace Sonar
 
 			_player.move(0, _velocity.y);
 
-			// std::cout << "RISING\n";
-
 			if (_velocity.y > 0) _playerMovement = FALLING;
 
 			break;
 
 		case FLOATING:
-			// std::cout << "RISING\n";
-			
-			// if (_velocity.y > 0) _playerMovement = FALLING;
-
 			break;
 
 		case FALLING:
 			_velocity.y += GRAVITY;
 
 			_player.move(0, _velocity.y);
-
-			// std::cout << "FALLING\n";
 
 			break;
 		}

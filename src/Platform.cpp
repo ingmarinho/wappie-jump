@@ -4,12 +4,11 @@
 #include <iostream>
 #include <cmath>
 
-namespace Sonar
+namespace WappieJump
 {
 	Platform::Platform(GameDataRef data) : _data(data)
 	{
 		SpawnFirstPlatform();
-		// SpawnStaticPlatform();
 	}
 
 	int Platform::GetDeletedPlatforms()
@@ -20,19 +19,6 @@ namespace Sonar
 	std::vector<Platform::platform> &Platform::GetPlatformsVector()
 	{
 		return platforms;
-	}
-
-	void Platform::SpawnStaticPlatform()
-	{
-		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
-
-		platformSprite.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.5);
-		platforms.push_back(platform(platformSprite, DEFAULT));
-	}
-
-	sf::Sprite Platform::getStaticPlatform()
-	{
-		return platforms.back().platformSprite;
 	}
 
 	float Platform::CalculateRandomWidth(float platformWidth)
@@ -53,8 +39,7 @@ namespace Sonar
 
 	void Platform::SpawnPlatform()
 	{
-		if (platforms.size() > MAX_PLATFORMS)
-			return;
+		if (platforms.size() > MAX_PLATFORMS) return;
 
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
@@ -69,7 +54,6 @@ namespace Sonar
 		if (_consecutiveInvisiblePlatforms < 3)
 		{
 			int randomNumber = rand() % 101 + 1;
-
 			int invisiblePlatformProbability = (_consecutiveInvisiblePlatforms * 10) + (90 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 10);
 
 			if (randomNumber > invisiblePlatformProbability)
@@ -91,13 +75,18 @@ namespace Sonar
 		platforms.push_back(platform(platformSprite, Platform::DEFAULT));
 	}
 
+	void Platform::AddBoosterPlatform(sf::Sprite &platformSprite)
+	{
+		platforms.push_back(platform(platformSprite, Platform::BOOSTER));
+	}
+
 	void Platform::AddInvisiblePlatform(sf::Sprite &platformSprite)
 	{
 		platformSprite.setColor(sf::Color(0, 0, 0, 0));
 		platforms.push_back(platform(platformSprite, Platform::INVISIBLE));
 	}
 
-	// void Platform::SpawnMovingPlatform()
+	// void Platform::AddMovingPlatform()
 	// {
 	// 	sf::Sprite sprite(_data->assets.GetTexture("Platform"));
 
@@ -106,15 +95,6 @@ namespace Sonar
 	// 	platformSprites.push_back(sprite);
 	// }
 
-	// void Platform::SpawnInvisiblePlatform()
-	// {
-	// 	sf::Sprite sprite(_data->assets.GetTexture("Platform"));
-
-	// 	sprite.setPosition(_data->window.getSize().x, -_platformSpawnXOffset);
-	// sprite.setColor(sf::Color(0, 0, 0, 0));
-
-	// 	platformSprites.push_back(sprite);
-	// }
 
 	void Platform::MovePlatforms(float velocity)
 	{
@@ -125,7 +105,6 @@ namespace Sonar
 		}
 		for (unsigned int i = 0; i < platforms.size(); i++)
 		{
-			// float movement = 200.0f * dt;
 			platforms.at(i).platformSprite.move(0, velocity);
 		}
 	}

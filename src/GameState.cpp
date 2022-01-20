@@ -1,6 +1,6 @@
 #include "GameState.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	GameState::GameState(GameDataRef data) : _data(data)
 	{
@@ -45,24 +45,26 @@ namespace Sonar
 		}
 	}
 
-	void GameState::Update(float dt)
+	void GameState::Update()
 	{
-		player->Update(dt);
+		player->Update();
 		platform->SpawnPlatform();
 		score->UpdateScore(platform->GetDeletedPlatforms() * 10);
 
 		if (_player.getPosition().x > _data->window.getSize().x) player->SetPlayerPosition(-_player.getGlobalBounds().width, _player.getPosition().y);
-		else if (_player.getPosition().x + _player.getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player.getPosition().y);
+		else if (_player.getPosition().x + _player.getGlobalBounds().width < 0)player->SetPlayerPosition(_data->window.getSize().x, _player.getPosition().y);
 
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
 
-		if (_player.getPosition().y < SCREEN_HEIGHT * 0.4f && (player->GetPlayerMovement() == Player::RISING))
+		bool playerOnHeightLimit = _player.getPosition().y <= _data->window.getSize().y * 0.4f;
+
+		if (playerOnHeightLimit && player->GetPlayerMovement() == Player::RISING)
 		{
-			if (!_hasProgressed) _hasProgressed = true;
-			
+			if (!_hasProgressed)_hasProgressed = true;
+
 			_platformVelocityY = player->GetPlayerVelocityY();
-			player->SetPlayerVelocityY(2.0f);
+			player->SetPlayerVelocityY(0.0f);
 			player->SetPlayerMovement(Player::FLOATING);
 		}
 
@@ -77,9 +79,23 @@ namespace Sonar
 		{
 			for (auto &platform : _platforms)
 			{
-				if (platform.platformCategory != Platform::INVISIBLE && collision->CheckPlatformBounceCollision(platform.platformSprite, _player))
+				if (platform.platformCategory == Platform::INVISIBLE) continue;
+
+				if (collision->CheckPlatformBounceCollision(platform.platformSprite, _player))
 				{
-					player->SetPlayerMovement(Player::JUMPING);
+					switch (platform.platformCategory)
+					{
+					case Platform::DEFAULT:
+						player->SetPlayerMovement(Player::JUMPING);
+						break;
+
+					case Platform::BOOSTER:
+						player->SetPlayerMovement(Player::BOOSTJUMPING);
+						break;
+
+					case Platform::INVISIBLE: // case is unecessary but required by c++
+						break;
+					}
 					break;
 				}
 			}
@@ -87,9 +103,12 @@ namespace Sonar
 
 		// bottom window jumping
 		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(_player)) player->SetPlayerMovement(Player::JUMPING);
+
+		// check out of screen death (should change state to gameover state, game close is temporary)
+		if (_player.getPosition().y - _player.getGlobalBounds().height > _data->window.getSize().y) _data->isRunning = false;
 	}
 
-	void GameState::Draw(float dt)
+	void GameState::Draw()
 	{
 		_data->window.clear(sf::Color::Black);
 

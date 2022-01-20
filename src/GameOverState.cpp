@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-namespace Sonar
+namespace WappieJump
 {
 	GameOverState::GameOverState(GameDataRef data) : _data(data)
 	{
@@ -12,20 +12,20 @@ namespace Sonar
 
 	void GameOverState::Init()
 	{
-		this->_data->assets.LoadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
+		_data->assets.LoadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
 
-		_background.setTexture(this->_data->assets.GetTexture("Game Over Background"));
+		_background.setTexture(_data->assets.GetTexture("Game Over Background"));
 	}
 
 	void GameOverState::HandleInput()
 	{
 		sf::Event event;
 
-		while (this->_data->window.pollEvent(event))
+		while (_data->window.pollEvent(event))
 		{
 			if (sf::Event::Closed == event.type)
 			{
-				this->_data->window.close();
+				_data->window.close();
 			}
 		}
 	}
@@ -37,10 +37,10 @@ namespace Sonar
 
 	void GameOverState::Draw(float dt)
 	{
-		this->_data->window.clear(sf::Color::Red);
+		_data->window.clear(sf::Color::Red);
 
-		this->_data->window.draw(_background);
+		_data->window.draw(_background);
 
-		this->_data->window.display();
+		_data->window.display();
 	}
 }

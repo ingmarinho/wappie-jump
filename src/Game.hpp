@@ -7,7 +7,7 @@
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	struct GameData
 	{
@@ -15,6 +15,7 @@ namespace Sonar
 		sf::RenderWindow window;
 		AssetManager assets;
 		InputManager input;
+		bool isRunning = true;
 	};
 
 	typedef std::shared_ptr<GameData> GameDataRef;
@@ -25,10 +26,6 @@ namespace Sonar
 		Game(int width, int height, std::string title);
 
 	private:
-		// Updates run at 60 per second.
-		const float dt = 1.0f / 60.0f;
-		sf::Clock _clock;
-
 		GameDataRef _data = std::make_shared<GameData>();
 
 		void Run();

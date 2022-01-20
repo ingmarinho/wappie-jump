@@ -4,7 +4,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	class MainMenuState : public State
 	{
@@ -14,8 +14,8 @@ namespace Sonar
 		void Init();
 
 		void HandleInput();
-		void Update(float dt);
-		void Draw(float dt);
+		void Update();
+		void Draw();
 
 	private:
 		GameDataRef _data;

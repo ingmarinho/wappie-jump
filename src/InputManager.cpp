@@ -1,6 +1,6 @@
 #include "InputManager.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	bool InputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window)
 	{

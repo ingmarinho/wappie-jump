@@ -1,6 +1,6 @@
 #include "Collision.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
     Collision::Collision(GameDataRef data) : _data(data)
 	{

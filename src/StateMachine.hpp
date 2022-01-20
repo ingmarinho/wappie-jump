@@ -5,7 +5,7 @@
 
 #include "State.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
 	typedef std::unique_ptr<State> StateRef;
 

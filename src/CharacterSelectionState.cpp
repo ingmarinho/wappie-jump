@@ -1,12 +1,12 @@
-#include "CharPickState.hpp"
+#include "CharacterSelectionState.hpp"
 
-namespace Sonar
+namespace WappieJump
 {
-    CharPickState::CharPickState(GameDataRef data) : _data(data)
+    CharacterSelectionState::CharacterSelectionState(GameDataRef data) : _data(data)
     {
     }
 
-    void CharPickState::Init()
+    void CharacterSelectionState::Init()
     {
         _data->assets.LoadTexture("Char1", CHAR1_FILEPATH);
         _data->assets.LoadTexture("Char2", CHAR2_FILEPATH);
@@ -16,17 +16,17 @@ namespace Sonar
         _data->assets.LoadTexture("Char6", CHAR6_FILEPATH);
         _data->assets.LoadTexture("Char7", CHAR7_FILEPATH);
         _data->assets.LoadTexture("Char8", CHAR8_FILEPATH);
-        std::cout << "chars loaded\n";
 
         _data->assets.LoadTexture("leftArrow", ARROW_LEFT_FILEPATH);
         _data->assets.LoadTexture("rightArrow", ARROW_RIGHT_FILEPATH);
-        std::cout << "arrows loaded\n";
+        // _data->assets.LoadTexture("selectButton", SELECT_BUTTON_FILEPATH);
 
-        _background.setTexture(_data->assets.GetTexture("Game Background"));
-        std::cout << "main menu set\n";
+        _data->assets.LoadTexture("Character Selection Background", CHARACTER_SELECTION_BACKGROUND_FILEPATH);
+        _data->assets.LoadTexture("Character Selection Title", CHARACTER_SELECTION_TITLE_FILEPATH);
 
-        _title.setTexture(_data->assets.GetTexture("Game Title"));
-        std::cout << "title set\n";
+
+        _background.setTexture(_data->assets.GetTexture("Character Selection Background"));
+        _title.setTexture(_data->assets.GetTexture("Character Selection Title"));
         
         _char1.setTexture(_data->assets.GetTexture("Char1"));
         _char2.setTexture(_data->assets.GetTexture("Char2"));
@@ -36,11 +36,9 @@ namespace Sonar
         _char6.setTexture(_data->assets.GetTexture("Char6"));
         _char7.setTexture(_data->assets.GetTexture("Char7"));
         _char8.setTexture(_data->assets.GetTexture("Char8"));
-        std::cout << "chars set\n";
 
         _leftArrow.setTexture(_data->assets.GetTexture("leftArrow"));
         _rightArrow.setTexture(_data->assets.GetTexture("rightArrow"));
-        std::cout << "arrows set\n";
         // _selectButton.setTexture(_data->assets.GetTexture("selectButton"));
 
         _title.setPosition((SCREEN_WIDTH / 2) - (_title.getGlobalBounds().width / 2), _title.getGlobalBounds().height * 2);
@@ -58,7 +56,7 @@ namespace Sonar
         // _selectButton.setPosition((SCREEN_WIDTH / 2) - (_selectButton.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2);
     }
 
-    void CharPickState::HandleInput()
+    void CharacterSelectionState::HandleInput()
     {
         sf::Event event;
 
@@ -138,24 +136,24 @@ namespace Sonar
         }
     }
 
-    void CharPickState::Update(float dt)
+    void CharacterSelectionState::Update()
     {
     }
 
-    void CharPickState::Draw(float dt)
+    void CharacterSelectionState::Draw()
     {
         _data->window.clear(sf::Color::White);
 
         _data->window.draw(_background);
         _data->window.draw(_title);
-        // _data->window.draw(_char1);
-        // _data->window.draw(_char2);
-        // _data->window.draw(_char3);
-        // _data->window.draw(_char4);
-        // _data->window.draw(_char5);
-        // _data->window.draw(_char6);
-        // _data->window.draw(_char7);
-        // _data->window.draw(_char8);
+        _data->window.draw(_char1);
+        _data->window.draw(_char2);
+        _data->window.draw(_char3);
+        _data->window.draw(_char4);
+        _data->window.draw(_char5);
+        _data->window.draw(_char6);
+        _data->window.draw(_char7);
+        _data->window.draw(_char8);
         _data->window.draw(chars[_selected]);
         _data->window.display();
     }
