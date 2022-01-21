@@ -17,6 +17,16 @@ namespace WappieJump
 	{
 		return _playerMovement;
 	}
+
+	void Player::SetJumpVelocity(float newVelocity)
+	{
+		_jumpVelocity = newVelocity;
+	}
+	
+	void Player::SetBoostJumpVelocity(float newVelocity)
+	{
+		_jumpVelocity = newVelocity;
+	}
 	
 	void Player::SetPlayerPosition(float x, float y)
 	{
@@ -93,7 +103,9 @@ namespace WappieJump
 		switch (_playerMovement)
 		{
 		case JUMPING:
-			_velocity.y = PLAYER_VELOCITY_Y;
+			_distance = _player.getPosition().y;
+
+			_velocity.y = _jumpVelocity;
 
 			_player.move(0, _velocity.y);
 
@@ -102,7 +114,7 @@ namespace WappieJump
 			break;
 
 		case BOOSTJUMPING:
-			_velocity.y = BOOSTER_VELOCITY_Y;
+			_velocity.y = _boosterJumpVelocity;
 
 			_player.move(0, _velocity.y);
 
@@ -115,11 +127,12 @@ namespace WappieJump
 
 			_player.move(0, _velocity.y);
 
-			if (_velocity.y > 0) _playerMovement = FALLING;
-
+			if (_velocity.y >= 0) _playerMovement = FALLING;
+		
 			break;
 
 		case FLOATING:
+			_velocity.y = 0.0f;
 			break;
 
 		case FALLING:

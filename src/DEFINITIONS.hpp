@@ -52,7 +52,7 @@
 #define SCORE_X                     _scoreText.getGlobalBounds().width
 #define SCORE_Y                     10
 
-#define DIFFICULTY_LEVEL            100 // 0-100 (lower = harder)
+#define DIFFICULTY_LEVEL            100          // 0-100 (lower = harder)
 
 #define GRAVITY                     0.7f
 

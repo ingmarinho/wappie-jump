@@ -57,14 +57,14 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
 
-		bool playerOnHeightLimit = _player.getPosition().y <= _data->window.getSize().y * 0.4f;
+		float heightLimit = _data->window.getSize().y * 0.4f;
+		// float playerDistanceToHeightLimit = heightLimit -( _player.getPosition().y + _player.getGlobalBounds().height);
 
-		if (playerOnHeightLimit && player->GetPlayerMovement() == Player::RISING)
+		if (_player.getPosition().y < heightLimit && player->GetPlayerMovement() == Player::RISING)
 		{
 			if (!_hasProgressed)_hasProgressed = true;
 
 			_platformVelocityY = player->GetPlayerVelocityY();
-			player->SetPlayerVelocityY(0.0f);
 			player->SetPlayerMovement(Player::FLOATING);
 		}
 
@@ -100,6 +100,16 @@ namespace WappieJump
 				}
 			}
 		}
+
+		// calculate distance to height limit (for player), jump to limit, extend remainder of jump by moving platforms down and making player float 
+		// if the distance to height limit would become negative by jumping, float instead and simulate jump by moving platforms down
+		// calculate velocity needed to get to specific point
+
+		// float velocity = std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit));
+
+		// float distance = heightLimit - (_player.getPosition().y + _player.getGlobalBounds().height);
+		// std::cout << heightLimit << '\n';
+		// std::cout << distance << '\n';
 
 		// bottom window jumping
 		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(_player)) player->SetPlayerMovement(Player::JUMPING);
