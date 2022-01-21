@@ -31,6 +31,8 @@ namespace WappieJump
     public:
         Player(GameDataRef data);
 
+        bool hasReachedMaxDistance();
+
         sf::Sprite& GetPlayerSprite();
         Movement GetPlayerMovement();
         float GetPlayerVelocityY();
@@ -52,14 +54,14 @@ namespace WappieJump
     private:
         GameDataRef _data;
 
-        sf::Vector2f _velocity = {PLAYER_VELOCITY_X, PLAYER_VELOCITY_Y};
-        float _jumpVelocity = PLAYER_VELOCITY_Y;
-        float _boosterJumpVelocity = BOOSTER_VELOCITY_Y;
+        sf::Vector2f _velocity = {PLAYER_VELOCITY_X, -PLAYER_VELOCITY_Y};
+        float _jumpVelocity = -PLAYER_VELOCITY_Y;
+        float _boosterJumpVelocity = -BOOSTER_VELOCITY_Y;
+        bool _reachedMaxDistance = false;
 
         Movement _playerMovement = FALLING;
         Angle _playerAngle = LEFT;
 
         sf::Sprite _player;
-        float _distance;
     };
 }

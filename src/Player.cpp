@@ -5,7 +5,12 @@ namespace WappieJump
 	Player::Player(GameDataRef data) : _data(data)
 	{
 		_player.setTexture(_data->assets.GetTexture("Player"));
-		_player.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2.2);
+		_player.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.1);
+	}
+
+	bool Player::hasReachedMaxDistance()
+	{
+		return _reachedMaxDistance;
 	}
 
 	sf::Sprite& Player::GetPlayerSprite()
@@ -103,8 +108,6 @@ namespace WappieJump
 		switch (_playerMovement)
 		{
 		case JUMPING:
-			_distance = _player.getPosition().y;
-
 			_velocity.y = _jumpVelocity;
 
 			_player.move(0, _velocity.y);
@@ -123,19 +126,29 @@ namespace WappieJump
 			break;
 
 		case RISING:
+			// std::cout << "just rising\n";
 			_velocity.y += GRAVITY;
+			// std::cout << _velocity.y << '\n';
 
 			_player.move(0, _velocity.y);
 
-			if (_velocity.y >= 0) _playerMovement = FALLING;
+			if (_velocity.y >= 0) 
+			{
+				// std::cout << "rising to falling\n";
+				_reachedMaxDistance = true;
+				_playerMovement = FALLING;
+			}
 		
 			break;
 
 		case FLOATING:
+			// std::cout << "floating\n";
 			_velocity.y = 0.0f;
 			break;
 
 		case FALLING:
+			_reachedMaxDistance = false;
+			// std::cout << "falling\n";
 			_velocity.y += GRAVITY;
 
 			_player.move(0, _velocity.y);

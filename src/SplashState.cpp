@@ -33,7 +33,7 @@ namespace WappieJump
 		}
 	}
 
-	void SplashState::Update(float dt)
+	void SplashState::Update()
 	{
 		if (_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME)
 		{
@@ -42,7 +42,7 @@ namespace WappieJump
 		}
 	}
 
-	void SplashState::Draw(float dt)
+	void SplashState::Draw()
 	{
 		_data->window.clear(sf::Color::White);
 

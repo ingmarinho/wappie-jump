@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <sstream>
+#include <math.h>
 
 #include "State.hpp"
 #include "Game.hpp"
@@ -42,6 +43,7 @@ namespace WappieJump
 
 		float _platformVelocityY = 0.0;
 		bool _hasProgressed = false;
+		bool _playerWillExceedLimit = false;
 
 		sf::Clock clock;
 	};

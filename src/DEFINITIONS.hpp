@@ -44,10 +44,10 @@
 #define PLATFORM_MOVEMENT_SPEED     200.0f      // for moving platforms
 #define MAX_PLATFORMS               18
 
-#define BOOSTER_VELOCITY_Y          -50.0f
+#define BOOSTER_VELOCITY_Y          30.0f
 
 #define PLAYER_VELOCITY_X           10.0f
-#define PLAYER_VELOCITY_Y           -20.0f
+#define PLAYER_VELOCITY_Y           20.0f
 
 #define SCORE_X                     _scoreText.getGlobalBounds().width
 #define SCORE_Y                     10
