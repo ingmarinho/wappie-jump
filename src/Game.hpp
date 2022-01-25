@@ -16,6 +16,7 @@ namespace WappieJump
 		AssetManager assets;
 		InputManager input;
 		bool isRunning = true;
+		long long int score = 0;
 	};
 
 	typedef std::shared_ptr<GameData> GameDataRef;

@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+// #include "sqlite3.h"
 
 #include "Game.hpp"
 
@@ -15,8 +16,10 @@ namespace WappieJump
         Score(GameDataRef data);
 
         void Draw();
+        // void OpenDatabase();
         void Update(float dt);
         void UpdateScore(int score);
+        void SetPosition(float x, float y);
 
     private:
         GameDataRef _data;

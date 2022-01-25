@@ -39,11 +39,9 @@ namespace WappieJump
 		sf::Sprite _leftArrow;
 		sf::Sprite _rightArrow;
 		sf::Sprite _selectButton;
-		// std::array<sf::Sprite, 8> _chars;
+		sf::Text _selectText;
 		std::vector<sf::Sprite*> _chars = {&_char1, &_char2, &_char3, &_char4, &_char5, &_char6, &_char7, &_char8};
 		int _selected = 0;
-		bool mouseReleased = false;
 		bool mouseClicked = false;
-		bool press = false;
 	};
 }

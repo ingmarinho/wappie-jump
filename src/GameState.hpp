@@ -41,9 +41,16 @@ namespace WappieJump
 		std::vector<Platform::platform> _platforms;
 		sf::Sprite _player;
 
-		float _platformVelocityY = 0.0;
+		const float potentialTravelDistance = 0.5f * (1.0f / GRAVITY) * (float) std::pow(PLAYER_VELOCITY_Y, 2);
+		const float potentialTravelDistanceBoost = 0.5f * (1.0f / GRAVITY) * (float) std::pow(BOOSTER_VELOCITY_Y, 2);
+		float playerDistanceToHeightLimit;
+		float velocityToReachHeightLimit;
+		float remainingDistance;
+		float remainingVelocity;
+
+		float _platformVelocityY = 0.0f;
 		bool _hasProgressed = false;
-		bool _playerWillExceedLimit = false;
+		bool _correctedJump = false;
 
 		sf::Clock clock;
 	};

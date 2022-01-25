@@ -3,7 +3,18 @@
 #define SCREEN_WIDTH 768
 #define SCREEN_HEIGHT 1024
 
-#define SPLASH_STATE_SHOW_TIME 3.0
+#define SPLASH_STATE_SHOW_TIME 3.0f
+
+
+#define DATABASE_FILEPATH                       "Resources/db/database.db"
+
+#define GAME_QUOTE_TEXT                         "Breek zoveel mogelijk IC-bedden!"
+
+#define GAME_OVER_TEXT                          "GAME OVER!"
+#define SCORE_TEXT                              "Your last score is: "
+#define HIGHSCORE_TEXT                          "Your high-score is: "
+
+#define CHARACTER_SELECTION_TEXT                "Select Character"
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH        "Resources/res/hu.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH           "Resources/res/space.png"
@@ -16,7 +27,13 @@
 #define PLAY_BUTTON_FILEPATH                    "Resources/res/play.png"
 #define PLAY_BUTTON_DOWN_FILEPATH               "Resources/res/play_down.png"
 
+//Game Over Screen
+#define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/play.png"
+#define MAIN_MENU_BUTTON_FILEPATH               "Resources/res/platform.png"
+//
+
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"
+#define BOOSTER_PLATFORM_FILEPATH               "Resources/res/platform_green.png"
 
 #define CHAR1_FILEPATH                          "Resources/res/char1.png"
 #define CHAR1MIR_FILEPATH                       "Resources/res/char1mir.png"
@@ -35,22 +52,26 @@
 #define CHAR8_FILEPATH                          "Resources/res/char8.png"
 #define CHAR8MIR_FILEPATH                       "Resources/res/char8mir.png"
 
-#define ARROW_LEFT_FILEPATH                     "Resources/res/Arrow_left.png"
-#define ARROW_RIGHT_FILEPATH                    "Resources/res/Arrow_right.png"
+#define ARROW_LEFT_FILEPATH                     "Resources/res/Arrow_left_2.png"
+#define ARROW_RIGHT_FILEPATH                    "Resources/res/Arrow_right_2.png"
 
 #define FONT_FILEPATH                           "Resources/fonts/normal.otf"
 
 
-#define PLATFORM_MOVEMENT_SPEED     200.0f      // for moving platforms
+#define PLATFORM_MOVEMENT_SPEED     10.0f      // for moving platforms
+#define MOVING_PLATFORM_DISTANCE    100.0f     // for moving platforms
 #define MAX_PLATFORMS               18
 
-#define BOOSTER_VELOCITY_Y          30.0f
+#define BOOSTER_VELOCITY_Y          50.0f
 
-#define PLAYER_VELOCITY_X           10.0f
+#define PLAYER_VELOCITY_X           12.0f
 #define PLAYER_VELOCITY_Y           20.0f
 
 #define SCORE_X                     _scoreText.getGlobalBounds().width
 #define SCORE_Y                     10
+
+#define SCOREBOARD_X                _scoreText.getGlobalBounds().width
+#define SCOREBOARD_Y                10
 
 #define DIFFICULTY_LEVEL            100          // 0-100 (lower = harder)
 

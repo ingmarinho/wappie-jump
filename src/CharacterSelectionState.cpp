@@ -7,7 +7,8 @@ namespace WappieJump
     }
 
     void CharacterSelectionState::Init()
-    {
+    {   
+        _data->assets.LoadFont("Font", FONT_FILEPATH);
         _data->assets.LoadTexture("Char1", CHAR1_FILEPATH);
         _data->assets.LoadTexture("Char2", CHAR2_FILEPATH);
         _data->assets.LoadTexture("Char3", CHAR3_FILEPATH);
@@ -23,6 +24,8 @@ namespace WappieJump
 
         _data->assets.LoadTexture("Character Selection Background", CHARACTER_SELECTION_BACKGROUND_FILEPATH);
         _data->assets.LoadTexture("Character Selection Title", CHARACTER_SELECTION_TITLE_FILEPATH);
+        
+        _selectText.setFont(_data->assets.GetFont("Font"));
 
         _background.setTexture(_data->assets.GetTexture("Character Selection Background"));
         _title.setTexture(_data->assets.GetTexture("Character Selection Title"));
@@ -41,6 +44,12 @@ namespace WappieJump
         _rightArrow.setTexture(_data->assets.GetTexture("rightArrow"));
         _rightArrow.setScale(0.5f, 0.5f);
         // _selectButton.setTexture(_data->assets.GetTexture("selectButton"));
+
+        _selectText.setString(GAME_QUOTE_TEXT);
+		_selectText.setCharacterSize(30);
+		_selectText.setFillColor(sf::Color::White);
+		_selectText.setOrigin(sf::Vector2f(_selectText.getGlobalBounds().width / 2, _selectText.getGlobalBounds().height / 2));
+		_selectText.setPosition(_data->window.getSize().x / 2, _data->window.getSize().y * 0.1);
 
         _title.setPosition((SCREEN_WIDTH / 2) - (_title.getGlobalBounds().width / 2), _title.getGlobalBounds().height * 2);
         _char1.setPosition((SCREEN_WIDTH / 2) - (_char1.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char1.getGlobalBounds().height / 2));
@@ -63,24 +72,36 @@ namespace WappieJump
 
         while (_data->window.pollEvent(event))
         {
-            switch(event.type)
+            if (event.type == sf::Event::Closed)
             {
-                case sf::Event::Closed:
-                    _data->window.close();
-                    break;
-                case sf::Event::MouseButtonReleased:
-                    mouseReleased = true;
-                    break;
-                case sf::Event::MouseButtonPressed:
-
-                default:
-                    break;
+                _data->window.close();
             }
-            if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) && mouseReleased)
+
+            if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) || _data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window))
             {
-                mouseReleased = true;
+                mouseClicked = true;
+            }
+
+            if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) && mouseClicked)
+            {
+                mouseClicked = false;
                 _selected == 7 ? _selected = 0 : _selected += 1;
             }
+            
+            else if (_data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window) && mouseClicked)
+            {
+                mouseClicked = false;
+                _selected == 0 ? _selected = 7 : _selected -= 1;
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed && _selectText.getGlobalBounds().contains(sf::Mouse::getPosition(_data->window).x, sf::Mouse::getPosition(_data->window).y))  
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    // _data->machine.AddState(StateRef(new GameState(_data)), true);
+                }
+            }
+            
         }
             // if (_data->input.IsSpriteClicked(_char1, sf::Mouse::Left, _data->window))
             // {
@@ -139,21 +160,21 @@ namespace WappieJump
             //     _data->machine.AddState(StateRef(new GameState(_data)), true);
             // }
 
-        if (_data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window))
-        {
-            std::cout << _selected << '\n';
-            _selected == 0 ? _selected = 7 : _selected -= 1;
-        }
-        if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window))
-        {
-            std::cout << _selected << '\n';
-            _selected == 7 ? _selected = 0 : _selected += 1;
-        }
+        // if (_data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window))
+        // {
+        //     std::cout << _selected << '\n';
+        //     _selected == 0 ? _selected = 7 : _selected -= 1;
+        // }
+        // if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window))
+        // {
+        //     std::cout << _selected << '\n';
+        //     _selected == 7 ? _selected = 0 : _selected += 1;
+        // }
     }
 
     void CharacterSelectionState::Update()
     {
-        // _chars[_selected].setColor(sf::Color::Red);
+        // *_chars[_selected]->setColor(sf::Color::Red);
     }
 
     void CharacterSelectionState::Draw()

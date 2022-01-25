@@ -1,8 +1,16 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <sstream>
+#include <iostream>
+
 #include "State.hpp"
 #include "Game.hpp"
+#include "MainMenuState.hpp"
+#include "CharacterSelectionState.hpp"
+
+#include "DEFINITIONS.hpp"
+
 
 namespace WappieJump
 {
@@ -20,6 +28,7 @@ namespace WappieJump
 	private:
 		GameDataRef _data;
 
+		sf::Text _gameQuote;
 		sf::Sprite _background;
 		sf::Sprite _title;
 		sf::Sprite _playButton;

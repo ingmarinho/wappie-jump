@@ -1,9 +1,5 @@
-#include <sstream>
-#include "DEFINITIONS.hpp"
 #include "MainMenuState.hpp"
-#include "GameState.hpp"
 
-#include <iostream>
 
 namespace WappieJump
 {
@@ -13,15 +9,22 @@ namespace WappieJump
 
 	void MainMenuState::Init()
 	{
+		_data->assets.LoadFont("Font", FONT_FILEPATH);
 		_data->assets.LoadTexture("Main Menu Background", MAIN_MENU_BACKGROUND_FILEPATH);
 		_data->assets.LoadTexture("Game Title", GAME_TITLE_FILEPATH);
 		_data->assets.LoadTexture("Play Button", PLAY_BUTTON_FILEPATH);
 		_data->assets.LoadTexture("Play Button Down", PLAY_BUTTON_DOWN_FILEPATH);
 
-			
+		_gameQuote.setFont(_data->assets.GetFont("Font"));
 		_background.setTexture(_data->assets.GetTexture("Main Menu Background"));
 		_title.setTexture(_data->assets.GetTexture("Game Title"));
 		_playButton.setTexture(_data->assets.GetTexture("Play Button"));
+
+		_gameQuote.setString(GAME_QUOTE_TEXT);
+		_gameQuote.setCharacterSize(30);
+		_gameQuote.setFillColor(sf::Color::White);
+		_gameQuote.setOrigin(sf::Vector2f(_gameQuote.getGlobalBounds().width / 2, _gameQuote.getGlobalBounds().height / 2));
+		_gameQuote.setPosition(_data->window.getSize().x / 2, _data->window.getSize().y * 0.1);
 
 		_title.setPosition((SCREEN_WIDTH / 2) - (_title.getGlobalBounds().width / 2), _title.getGlobalBounds().height * 2);
 		_playButton.setPosition((SCREEN_WIDTH / 2) - (_playButton.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_playButton.getGlobalBounds().height / 3));
@@ -43,20 +46,8 @@ namespace WappieJump
 				_playButton.setTexture(_data->assets.GetTexture("Play Button Down"));
 
 				// Switch To Main Menu
-				_data->machine.AddState(StateRef(new GameState(_data)), true);
+				_data->machine.AddState(StateRef(new CharacterSelectionState(_data)), true);
 			}
-
-	
-
-			// sf::Event event;
-
-			// while (_data->window.pollEvent(event))
-			// {
-			// 	if (sf::Event::Closed == event.type)
-			// 	{
-			// 		_data->window.close();
-			// 	}
-			// }
 		}
 	}
 
@@ -71,6 +62,7 @@ namespace WappieJump
 		_data->window.draw(_background);
 		_data->window.draw(_title);
 		_data->window.draw(_playButton);
+		_data->window.draw(_gameQuote);
 
 		_data->window.display();
 	}

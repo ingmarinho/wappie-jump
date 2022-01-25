@@ -22,7 +22,6 @@ namespace WappieJump
         enum Movement
         {
             JUMPING,
-            BOOSTJUMPING,
             RISING,
             FLOATING,
             FALLING
@@ -38,7 +37,6 @@ namespace WappieJump
         float GetPlayerVelocityY();
 
         void SetJumpVelocity(float newVelocity);
-        void SetBoostJumpVelocity(float newVelocity);
 
         void SetPlayerPosition(float x, float y);
         void SetPlayerVelocityY(float velocity);

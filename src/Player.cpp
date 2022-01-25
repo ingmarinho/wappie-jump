@@ -28,11 +28,6 @@ namespace WappieJump
 		_jumpVelocity = newVelocity;
 	}
 	
-	void Player::SetBoostJumpVelocity(float newVelocity)
-	{
-		_jumpVelocity = newVelocity;
-	}
-	
 	void Player::SetPlayerPosition(float x, float y)
 	{
 		_player.setPosition(x, y);
@@ -68,10 +63,6 @@ namespace WappieJump
 		{
 			case JUMPING:
 				_playerMovement = JUMPING;
-				break;
-
-			case BOOSTJUMPING:
-				_playerMovement = BOOSTJUMPING;
 				break;
 
 			case RISING:
@@ -116,25 +107,13 @@ namespace WappieJump
 
 			break;
 
-		case BOOSTJUMPING:
-			_velocity.y = _boosterJumpVelocity;
-
-			_player.move(0, _velocity.y);
-
-			_playerMovement = RISING;
-
-			break;
-
 		case RISING:
-			// std::cout << "just rising\n";
 			_velocity.y += GRAVITY;
-			// std::cout << _velocity.y << '\n';
 
 			_player.move(0, _velocity.y);
 
 			if (_velocity.y >= 0) 
 			{
-				// std::cout << "rising to falling\n";
 				_reachedMaxDistance = true;
 				_playerMovement = FALLING;
 			}
@@ -142,13 +121,11 @@ namespace WappieJump
 			break;
 
 		case FLOATING:
-			// std::cout << "floating\n";
 			_velocity.y = 0.0f;
 			break;
 
 		case FALLING:
 			_reachedMaxDistance = false;
-			// std::cout << "falling\n";
 			_velocity.y += GRAVITY;
 
 			_player.move(0, _velocity.y);
