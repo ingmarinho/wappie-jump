@@ -14,6 +14,7 @@ namespace WappieJump
 			DEFAULT,
 			BOOSTER,
 			MOVING,
+			BREAKING,
 			INVISIBLE
 		};
 		enum direction
@@ -26,13 +27,11 @@ namespace WappieJump
 		struct platform
 		{
 			sf::Sprite platformSprite;
-			const category platformCategory;
-			const direction platformDirection;
-			direction currentPlatformDirection;
-			const float originalXPos;
+			category platformCategory;
+			direction platformDirection;
 
-			platform(sf::Sprite platformSprite, category platformCategory, direction platformDirection = NONE, direction currentPlatformDirection = NONE)
-				: platformSprite(platformSprite), platformCategory(platformCategory), platformDirection(platformDirection), currentPlatformDirection(currentPlatformDirection)
+			platform(sf::Sprite platformSprite, category platformCategory, direction platformDirection = NONE)
+				: platformSprite(platformSprite), platformCategory(platformCategory), platformDirection(platformDirection)
 			{}
 		};
 	public:
@@ -41,14 +40,15 @@ namespace WappieJump
 		int GetDeletedPlatforms();
 		std::vector<platform>& GetPlatformsVector();
 		float CalculateRandomWidth(float x);
-		direction DetermineDirection(float randomWidth);
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void AddInvisiblePlatform(float randomWidth, float prevTop);
+		void AddBreakingPlatform(float randomWidth, float prevTop);
 		void AddBoosterPlatform(float randomWidth, float prevTop);
 		void AddMovingPlatform(float randomWidth, float prevTop);
 		void AddDefaultPlatform(float randomWidth, float prevTop);
-		void MovePlatforms(float velocity);
+		void MovePlatformsX();
+		void MovePlatformsY(float velocity);
 		void DrawPlatforms();
 
 	private:

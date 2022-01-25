@@ -61,7 +61,7 @@ namespace WappieJump
 			// platformCategory = 
 		}
 
-		platformCategory = Platform::DEFAULT;
+		platformCategory = Platform::MOVING;
 
 
 		switch(platformCategory)
@@ -75,6 +75,10 @@ namespace WappieJump
 				break;
 
 			case Platform::MOVING:
+				AddMovingPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
+				break;
+
+			case Platform::BREAKING:
 				AddMovingPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 				break;
 			
@@ -96,11 +100,6 @@ namespace WappieJump
 		}
 	}
 
-	Platform::direction Platform::DetermineDirection(float randomWidth)
-	{
-		if (randomWidth + MOVING_PLATFORM_DISTANCE > _data->window.getSize().x) return Platform::LEFT;
-		return Platform::RIGHT;
-	}
 
 	void Platform::AddDefaultPlatform(float randomWidth, float prevTop)
 	{
@@ -121,45 +120,50 @@ namespace WappieJump
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
-		platforms.push_back(platform(platformSprite, Platform::MOVING, DetermineDirection(randomWidth)));
+		platforms.push_back(platform(platformSprite, Platform::MOVING, Platform::LEFT));
+	}
+
+	void Platform::AddBreakingPlatform(float randomWidth, float prevTop)
+	{
+		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
+
+		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
+		platforms.push_back(platform(platformSprite, Platform::BREAKING));
 	}
 
 	void Platform::AddInvisiblePlatform(float randomWidth, float prevTop)
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
+		
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
 		platformSprite.setColor(sf::Color(0, 0, 0, 0));
 		platforms.push_back(platform(platformSprite, Platform::INVISIBLE));
 	}
 
-
-	void Platform::MovePlatforms(float velocity)
+	void Platform::MovePlatformsX()
 	{
-		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(0).platformSprite.getGlobalBounds().height)
+		for (auto &platform : platforms)
 		{
-			platforms.erase(platforms.begin());
-			_deletedPlatforms++;
-		}
-		for (unsigned int i = 0; i < platforms.size(); i++)
-		{
-			platform *currentPlatform = &platforms.at(i);
-			currentPlatform->platformSprite.move(0, velocity);
-			if (currentPlatform->platformCategory == Platform::MOVING)
+			if (platform.platformCategory == Platform::MOVING)
 			{
-				switch(currentPlatform->platformDirection)
+				switch(platform.platformDirection)
 				{
 					case Platform::LEFT:
-						if (currentPlatform->platformSprite.getPosition().x <= currentPlatform->originalXPos && currentPlatform->originalXPos - MOVING_PLATFORM_DISTANCE >= currentPlatform->platformSprite.getPosition().x)
+						if (platform.platformSprite.getPosition().x <= 0.0f)
 						{
-							currentPlatform->platformSprite.move(PLATFORM_MOVEMENT_SPEED, 0);
+							platform.platformDirection = Platform::RIGHT;
+							break;
 						}
-						else
-						{
-							
-						}
+						else platform.platformSprite.move(-PLATFORM_MOVEMENT_SPEED, 0);
 						break;
 
 					case Platform::RIGHT:
+						if (platform.platformSprite.getPosition().x + _platformWidth >= _data->window.getSize().x)
+						{
+							platform.platformDirection = Platform::LEFT;
+							break;
+						}
+						else platform.platformSprite.move(PLATFORM_MOVEMENT_SPEED, 0);
 						break;
 
 					default:
@@ -169,11 +173,25 @@ namespace WappieJump
 		}
 	}
 
+
+	void Platform::MovePlatformsY(float velocity)
+	{
+		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(0).platformSprite.getGlobalBounds().height)
+		{
+			platforms.erase(platforms.begin());
+			_deletedPlatforms++;
+		}
+		for (auto &platform : platforms)
+		{
+			platform.platformSprite.move(0, velocity);
+		}
+	}
+
 	void Platform::DrawPlatforms()
 	{
-		for (unsigned short int i = 0; i < platforms.size(); i++)
+		for (auto &platform : platforms)
 		{
-			_data->window.draw(platforms.at(i).platformSprite);
+			_data->window.draw(platform.platformSprite);
 		}
 	}
 }

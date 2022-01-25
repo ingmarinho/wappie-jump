@@ -45,12 +45,6 @@ namespace WappieJump
         _rightArrow.setScale(0.5f, 0.5f);
         // _selectButton.setTexture(_data->assets.GetTexture("selectButton"));
 
-        _selectText.setString(GAME_QUOTE_TEXT);
-		_selectText.setCharacterSize(30);
-		_selectText.setFillColor(sf::Color::White);
-		_selectText.setOrigin(sf::Vector2f(_selectText.getGlobalBounds().width / 2, _selectText.getGlobalBounds().height / 2));
-		_selectText.setPosition(_data->window.getSize().x / 2, _data->window.getSize().y * 0.1);
-
         _title.setPosition((SCREEN_WIDTH / 2) - (_title.getGlobalBounds().width / 2), _title.getGlobalBounds().height * 2);
         _char1.setPosition((SCREEN_WIDTH / 2) - (_char1.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char1.getGlobalBounds().height / 2));
         _char2.setPosition((SCREEN_WIDTH / 2) - (_char2.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char2.getGlobalBounds().height / 2));
@@ -63,7 +57,7 @@ namespace WappieJump
 
         _leftArrow.setPosition((SCREEN_WIDTH * 0.25) - (_leftArrow.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_leftArrow.getGlobalBounds().height / 2));
         _rightArrow.setPosition((SCREEN_WIDTH * 0.75) - (_rightArrow.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_rightArrow.getGlobalBounds().height / 2));
-        // _selectButton.setPosition((SCREEN_WIDTH / 2) - (_selectButton.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2);
+        // _selectButton.setPosition((SCREEN_WIDTH / 2) - (_selectButton.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2); // change position
     }
 
     void CharacterSelectionState::HandleInput()

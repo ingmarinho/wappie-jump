@@ -50,6 +50,7 @@ namespace WappieJump
 	{
 		player->Update();
 		platform->SpawnPlatform();
+		platform->MovePlatformsX();
 		_data->score = platform->GetDeletedPlatforms() * 10;
 		score->UpdateScore(_data->score);
 
@@ -75,7 +76,7 @@ namespace WappieJump
 
 		if (_platformVelocityY > 0)
 		{
-			platform->MovePlatforms(_platformVelocityY);
+			platform->MovePlatformsY(_platformVelocityY);
 			_platformVelocityY -= GRAVITY;
 		}
 		else if (player->GetPlayerMovement() == Player::FALLING)
@@ -91,6 +92,25 @@ namespace WappieJump
 					switch (platform.platformCategory)
 					{
 					case Platform::DEFAULT:
+						if (potentialTravelDistance <= playerDistanceToHeightLimit)
+						{
+							player->SetJumpVelocity(-PLAYER_VELOCITY_Y);
+							player->SetPlayerMovement(Player::JUMPING);
+						}
+						// else if (remainingVelocity > 8)
+						else
+						{
+							velocityToReachHeightLimit = playerDistanceToHeightLimit > 0 ? std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit)) : 0.0f;
+							remainingDistance = potentialTravelDistance - playerDistanceToHeightLimit;
+							remainingVelocity = remainingDistance > 0 ? std::sqrt(2.0f * (GRAVITY * remainingDistance)) : 0.0f;
+
+							_correctedJump = true;
+							_platformVelocityY = remainingVelocity;
+							player->SetJumpVelocity(-velocityToReachHeightLimit);
+							player->SetPlayerMovement(Player::JUMPING);
+						}
+						break;
+					case Platform::MOVING:
 						if (potentialTravelDistance <= playerDistanceToHeightLimit)
 						{
 							player->SetJumpVelocity(-PLAYER_VELOCITY_Y);

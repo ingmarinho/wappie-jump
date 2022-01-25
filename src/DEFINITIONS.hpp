@@ -58,8 +58,7 @@
 #define FONT_FILEPATH                           "Resources/fonts/normal.otf"
 
 
-#define PLATFORM_MOVEMENT_SPEED     10.0f      // for moving platforms
-#define MOVING_PLATFORM_DISTANCE    100.0f     // for moving platforms
+#define PLATFORM_MOVEMENT_SPEED     5.0f      // for moving platforms
 #define MAX_PLATFORMS               18
 
 #define BOOSTER_VELOCITY_Y          50.0f
