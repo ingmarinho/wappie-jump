@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+.idea/dataSources.local.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/wappie-jump.iml
+.idea/workspace.xml
