@@ -5,14 +5,28 @@ namespace WappieJump
 	GameState::GameState(GameDataRef data) : _data(data)
 	{
 	}
+	
+	GameState::~GameState()
+	{
+		delete collision;
+		delete score;
+		delete platform;
+		delete player;
+	}
 
 	void GameState::Init()
 	{
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
+
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
+		_data->assets.LoadTexture("Moving Platform", MOVING_PLATFORM_FILEPATH);
+		_data->assets.LoadTexture("Breaking Platform", BREAKING_PLATFORM_FILEPATH);
+		_data->assets.LoadTexture("Breaking Broke Platform", BREAKING_BROKE_PLATFORM_FILEPATH);
+
 		_data->assets.LoadTexture("Player", CHAR6_FILEPATH);
 		_data->assets.LoadTexture("Player Mirrored", CHAR6MIR_FILEPATH);
+
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
 
 		collision = new Collision(_data);
@@ -49,16 +63,19 @@ namespace WappieJump
 	void GameState::Update()
 	{
 		player->Update();
+
 		platform->SpawnPlatform();
 		platform->MovePlatformsX();
+
 		_data->score = platform->GetDeletedPlatforms() * 10;
 		score->UpdateScore(_data->score);
 
-		if (_player.getPosition().x > _data->window.getSize().x) player->SetPlayerPosition(-_player.getGlobalBounds().width, _player.getPosition().y);
-		else if (_player.getPosition().x + _player.getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player.getPosition().y);
-
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
+
+		if (_player->getPosition().x > _data->window.getSize().x) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
+		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);
+
 
 		if (_correctedJump && player->hasReachedMaxDistance())
 		{
@@ -81,13 +98,13 @@ namespace WappieJump
 		}
 		else if (player->GetPlayerMovement() == Player::FALLING)
 		{
-			for (auto &platform : _platforms)
+			for (auto &platform : *_platforms)
 			{
 				if (platform.platformCategory == Platform::INVISIBLE) continue;
 
-				if (collision->CheckPlatformBounceCollision(platform.platformSprite, _player))
+				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
-					playerDistanceToHeightLimit = _player.getPosition().y - _data->window.getSize().y * 0.3f;
+					playerDistanceToHeightLimit = _player->getPosition().y - _data->window.getSize().y * 0.3f;
 
 					switch (platform.platformCategory)
 					{
@@ -140,6 +157,9 @@ namespace WappieJump
 						player->SetJumpVelocity(-velocityToReachHeightLimit);
 						player->SetPlayerMovement(Player::JUMPING);
 						break;
+					case Platform::BREAKING:
+						platform.platformSprite.setTexture(_data->assets.GetTexture("Breaking Broke Platform"));
+						break;
 
 					default:
 						break;
@@ -150,10 +170,10 @@ namespace WappieJump
 		}
 
 		// bottom window jumping
-		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(_player)) player->SetPlayerMovement(Player::JUMPING);
+		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
 
 		// check out of screen death (should change state to gameover state, game close is temporary)
-		if (_player.getPosition().y - _player.getGlobalBounds().height > _data->window.getSize().y) _data->isRunning = false;
+		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) _data->isRunning = false;
 	}
 
 	void GameState::Draw()

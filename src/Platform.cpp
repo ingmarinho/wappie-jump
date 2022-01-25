@@ -16,9 +16,9 @@ namespace WappieJump
 		return _deletedPlatforms;
 	}
 
-	std::vector<Platform::platform> &Platform::GetPlatformsVector()
+	std::vector<Platform::platform>* Platform::GetPlatformsVector()
 	{
-		return platforms;
+		return &platforms;
 	}
 
 	float Platform::CalculateRandomWidth(float platformWidth)
@@ -51,17 +51,31 @@ namespace WappieJump
 		category platformCategory;
 
 
-		if (_consecutiveInvisiblePlatforms < 3) platformCategory = Platform::INVISIBLE;
+		if (_consecutiveInvisiblePlatforms < 3)
+		{
+			int randomNumber = rand() % 101 + 1;
+			int invisiblePlatformProbability = (90 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 10);
+
+			if (randomNumber > invisiblePlatformProbability && randomNumber % 2 == 0)
+			{
+				_consecutiveInvisiblePlatforms++;
+				platformCategory = Platform::INVISIBLE;
+			}
+			else if (randomNumber > invisiblePlatformProbability)
+			{
+				_consecutiveInvisiblePlatforms++;
+				platformCategory = Platform::BREAKING;
+			}
+		}
 		else 
 		{
 			platformCategory = Platform::DEFAULT;
 			_consecutiveInvisiblePlatforms = 0;
+			platformCategory = Platform::BREAKING;
 			
 			// hier moet algoritme om te kiezen tussen default/booster/moving
 			// platformCategory = 
 		}
-
-		platformCategory = Platform::MOVING;
 
 
 		switch(platformCategory)
@@ -79,20 +93,12 @@ namespace WappieJump
 				break;
 
 			case Platform::BREAKING:
-				AddMovingPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
+				AddBreakingPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 				break;
 			
 			case Platform::INVISIBLE:
 			{
-				int randomNumber = rand() % 101 + 1;
-				int invisiblePlatformProbability = (90 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 10);
-
-				if (randomNumber > invisiblePlatformProbability)
-				{
-					_consecutiveInvisiblePlatforms++;
-					AddInvisiblePlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
-				}
-				// else SpawnPlatform();
+				AddInvisiblePlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 				break;
 			}
 			default:
@@ -100,10 +106,10 @@ namespace WappieJump
 		}
 	}
 
-
 	void Platform::AddDefaultPlatform(float randomWidth, float prevTop)
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
+
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
 		platforms.push_back(platform(platformSprite, Platform::DEFAULT));
 	}
@@ -111,13 +117,14 @@ namespace WappieJump
 	void Platform::AddBoosterPlatform(float randomWidth, float prevTop)
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Booster Platform"));
+
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);	
 		platforms.push_back(platform(platformSprite, Platform::BOOSTER));
 	}
 
 	void Platform::AddMovingPlatform(float randomWidth, float prevTop)
 	{
-		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
+		sf::Sprite platformSprite(_data->assets.GetTexture("Moving Platform"));
 
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
 		platforms.push_back(platform(platformSprite, Platform::MOVING, Platform::LEFT));
@@ -125,7 +132,7 @@ namespace WappieJump
 
 	void Platform::AddBreakingPlatform(float randomWidth, float prevTop)
 	{
-		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
+		sf::Sprite platformSprite(_data->assets.GetTexture("Breaking Platform"));
 
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
 		platforms.push_back(platform(platformSprite, Platform::BREAKING));
@@ -134,7 +141,7 @@ namespace WappieJump
 	void Platform::AddInvisiblePlatform(float randomWidth, float prevTop)
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
-		
+
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
 		platformSprite.setColor(sf::Color(0, 0, 0, 0));
 		platforms.push_back(platform(platformSprite, Platform::INVISIBLE));

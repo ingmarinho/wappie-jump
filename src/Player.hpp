@@ -32,7 +32,7 @@ namespace WappieJump
 
         bool hasReachedMaxDistance();
 
-        sf::Sprite& GetPlayerSprite();
+        sf::Sprite* GetPlayerSprite();
         Movement GetPlayerMovement();
         float GetPlayerVelocityY();
 

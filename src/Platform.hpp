@@ -1,8 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Game.hpp"
 #include <vector>
+
+#include "Game.hpp"
 
 namespace WappieJump
 {
@@ -38,7 +39,7 @@ namespace WappieJump
 		Platform(GameDataRef data);
 
 		int GetDeletedPlatforms();
-		std::vector<platform>& GetPlatformsVector();
+		std::vector<platform>* GetPlatformsVector();
 		float CalculateRandomWidth(float x);
 		void SpawnPlatform();
 		void SpawnFirstPlatform();

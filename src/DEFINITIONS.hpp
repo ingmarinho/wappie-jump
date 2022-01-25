@@ -14,7 +14,7 @@
 #define SCORE_TEXT                              "Your last score is: "
 #define HIGHSCORE_TEXT                          "Your high-score is: "
 
-#define CHARACTER_SELECTION_TEXT                "Select Character"
+#define SELECT_BUTTON_FILEPATH                  "Resources/res/"              
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH        "Resources/res/hu.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH           "Resources/res/space.png"
@@ -28,12 +28,15 @@
 #define PLAY_BUTTON_DOWN_FILEPATH               "Resources/res/play_down.png"
 
 //Game Over Screen
-#define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/play.png"
-#define MAIN_MENU_BUTTON_FILEPATH               "Resources/res/platform.png"
+#define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/play_again.png"
+#define MAIN_MENU_BUTTON_FILEPATH               "Resources/res/main_menu.png"
 //
 
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"
 #define BOOSTER_PLATFORM_FILEPATH               "Resources/res/platform_green.png"
+#define BREAKING_PLATFORM_FILEPATH              "Resources/res/platform_breaking.png"
+#define BREAKING_BROKE_PLATFORM_FILEPATH        "Resources/res/platform_breaking_broke.png"
+#define MOVING_PLATFORM_FILEPATH                "Resources/res/platform_moving.png"
 
 #define CHAR1_FILEPATH                          "Resources/res/char1.png"
 #define CHAR1MIR_FILEPATH                       "Resources/res/char1mir.png"

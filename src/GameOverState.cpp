@@ -11,6 +11,11 @@ namespace WappieJump
 
 	}
 
+	GameOverState::~GameOverState()
+	{
+		delete score;
+	}
+
 	void GameOverState::Init()
 	{	
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
@@ -55,6 +60,8 @@ namespace WappieJump
 		
 
 		_playAgainButton.setPosition((SCREEN_WIDTH / 2) - (_playAgainButton.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_playAgainButton.getGlobalBounds().height / 3));
+		
+		_mainMenuButton.setPosition((SCREEN_WIDTH / 2) - (_mainMenuButton.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_mainMenuButton.getGlobalBounds().height / 3));
 		
 	}
 

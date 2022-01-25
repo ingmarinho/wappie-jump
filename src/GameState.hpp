@@ -21,7 +21,7 @@ namespace WappieJump
 	{
 	public:
 		GameState(GameDataRef data);
-
+		~GameState();
 		void Init();
 
 		void HandleInput();
@@ -38,8 +38,8 @@ namespace WappieJump
 		Player *player;
 		Score *score;
 		
-		std::vector<Platform::platform> _platforms;
-		sf::Sprite _player;
+		std::vector<Platform::platform> *_platforms;
+		sf::Sprite *_player;
 
 		const float potentialTravelDistance = 0.5f * (1.0f / GRAVITY) * (float) std::pow(PLAYER_VELOCITY_Y, 2);
 		const float potentialTravelDistanceBoost = 0.5f * (1.0f / GRAVITY) * (float) std::pow(BOOSTER_VELOCITY_Y, 2);

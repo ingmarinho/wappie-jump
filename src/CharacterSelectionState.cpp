@@ -68,7 +68,7 @@ namespace WappieJump
         {
             if (event.type == sf::Event::Closed)
             {
-                _data->window.close();
+                _data->window.close(); // hey ian, nou dan niet :(
             }
 
             if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) || _data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window))

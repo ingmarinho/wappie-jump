@@ -13,9 +13,9 @@ namespace WappieJump
 		return _reachedMaxDistance;
 	}
 
-	sf::Sprite& Player::GetPlayerSprite()
+	sf::Sprite* Player::GetPlayerSprite()
 	{
-		return _player;
+		return &_player;
 	}
 
 	Player::Movement Player::GetPlayerMovement()

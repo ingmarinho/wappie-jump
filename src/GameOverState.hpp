@@ -12,7 +12,7 @@ namespace WappieJump
 	{
 	public:
 		GameOverState(GameDataRef data);
-
+		~GameOverState();
 		void Init();
 
 		void HandleInput();
