@@ -8,7 +8,6 @@ namespace WappieJump
 {
 	GameOverState::GameOverState(GameDataRef data) : _data(data)
 	{
-
 	}
 
 	GameOverState::~GameOverState()
@@ -34,34 +33,34 @@ namespace WappieJump
 		_scoreText.setFont(_data->assets.GetFont("Font"));
 		_highScoreText.setFont(_data->assets.GetFont("Font"));
 
-
 		_gameOverText.setString(GAME_OVER_TEXT);
 		_gameOverText.setCharacterSize(100);
-		_gameOverText.setFillColor(sf::Color::White);
+		_gameOverText.setFillColor(sf::Color(50, 150, 255, 255));
 		_gameOverText.setOrigin(sf::Vector2f(_gameOverText.getGlobalBounds().width / 2, _gameOverText.getGlobalBounds().height / 2));
 		_gameOverText.setPosition(_data->window.getSize().x * 0.5 , _data->window.getSize().y * 0.1);
 
+
 		_scoreText.setString(SCORE_TEXT);
 		_scoreText.setCharacterSize(50);
-		_scoreText.setFillColor(sf::Color::White);
+		_scoreText.setFillColor(sf::Color(50, 150, 255, 255));
 		_scoreText.setOrigin(sf::Vector2f(_scoreText.getGlobalBounds().width / 2, _scoreText.getGlobalBounds().height / 2));
 		_scoreText.setPosition(_data->window.getSize().x / 2, _data->window.getSize().y * 0.3);
 
 		_highScoreText.setString(HIGHSCORE_TEXT);
 		_highScoreText.setCharacterSize(50);
-		_highScoreText.setFillColor(sf::Color::White);
+		_highScoreText.setFillColor(sf::Color(50, 150, 255, 255));
 		_highScoreText.setOrigin(sf::Vector2f(_highScoreText.getGlobalBounds().width / 2, _highScoreText.getGlobalBounds().height / 2));
 		_highScoreText.setPosition(_data->window.getSize().x / 2, _data->window.getSize().y * 0.4);
-	
-		
-		
+
+
 		score->SetPosition(_data->window.getSize().x / 2 + _scoreText.getGlobalBounds().width * 0.01, _data->window.getSize().y * 0.35);
 		score->UpdateScore(_data->score);
 		
-
-		_playAgainButton.setPosition((SCREEN_WIDTH / 2) - (_playAgainButton.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_playAgainButton.getGlobalBounds().height / 3));
+		_playAgainButton.setScale(0.5f, 0.5f);
+		_playAgainButton.setPosition((SCREEN_WIDTH / 2) - (_playAgainButton.getGlobalBounds().width / 2), (SCREEN_HEIGHT * 0.7f) - (_playAgainButton.getGlobalBounds().height));
 		
-		_mainMenuButton.setPosition((SCREEN_WIDTH / 2) - (_mainMenuButton.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_mainMenuButton.getGlobalBounds().height / 3));
+		_mainMenuButton.setScale(0.5f, 0.5f);
+		_mainMenuButton.setPosition((SCREEN_WIDTH / 2) - (_mainMenuButton.getGlobalBounds().width / 2), _playAgainButton.getPosition().y + _playAgainButton.getGlobalBounds().height + 15.0f);
 		
 	}
 
