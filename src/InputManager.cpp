@@ -8,12 +8,8 @@ namespace WappieJump
 		{
 			sf::IntRect playButtonRect(object.getPosition().x, object.getPosition().y, object.getGlobalBounds().width, object.getGlobalBounds().height);
 
-			if (playButtonRect.contains(sf::Mouse::getPosition(window)))
-			{
-				return true;
-			}
+			if (playButtonRect.contains(sf::Mouse::getPosition(window))) return true;
 		}
-
 		return false;
 	}
 

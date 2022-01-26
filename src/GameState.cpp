@@ -24,8 +24,7 @@ namespace WappieJump
 		_data->assets.LoadTexture("Breaking Platform", BREAKING_PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Breaking Broke Platform", BREAKING_BROKE_PLATFORM_FILEPATH);
 
-		_data->assets.LoadTexture("Player", CHAR6_FILEPATH);
-		_data->assets.LoadTexture("Player Mirrored", CHAR6MIR_FILEPATH);
+		// _data->assets.LoadTexture("Player", CHAR6_FILEPATH);
 
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
 
@@ -73,7 +72,7 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
 
-		if (_player->getPosition().x > _data->window.getSize().x) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
+		if (_player->getPosition().x - _player->getGlobalBounds().width > _data->window.getSize().x) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
 		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);
 
 

@@ -40,6 +40,8 @@ namespace WappieJump
 
 		int GetDeletedPlatforms();
 		std::vector<platform>* GetPlatformsVector();
+		category GeneratePlatformCategory();
+		category GenerateBounceablePlatformCategory();
 		float CalculateRandomWidth(float x);
 		void SpawnPlatform();
 		void SpawnFirstPlatform();

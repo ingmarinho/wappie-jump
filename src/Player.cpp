@@ -4,7 +4,7 @@ namespace WappieJump
 {
 	Player::Player(GameDataRef data) : _data(data)
 	{
-		_player.setTexture(_data->assets.GetTexture("Player"));
+		_player = _data->characterSprite;
 		_player.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 1.1);
 	}
 
@@ -48,11 +48,21 @@ namespace WappieJump
 		switch (newPlayerAngle)
 		{
 			case LEFT:
-				_player.setTexture(_data->assets.GetTexture("Player"));
+				if (_playerAngle != Player::LEFT)
+				{
+					_player.setScale(1, 1);
+					_player.move(-_player.getGlobalBounds().width, 0);
+					_playerAngle = Player::LEFT;
+				}
 				break;
 
 			case RIGHT:
-				_player.setTexture(_data->assets.GetTexture("Player Mirrored"));
+				if (_playerAngle != Player::RIGHT)
+				{
+					_player.setScale(-1, 1);
+					_player.move(_player.getGlobalBounds().width, 0);
+					_playerAngle = Player::RIGHT;
+				}
 				break;
 		}
 	}

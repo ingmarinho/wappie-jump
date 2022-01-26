@@ -17,6 +17,7 @@ namespace WappieJump
 		InputManager input;
 		bool isRunning = true;
 		long long int score = 0;
+		sf::Sprite characterSprite;
 	};
 
 	typedef std::shared_ptr<GameData> GameDataRef;

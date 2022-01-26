@@ -40,17 +40,22 @@ namespace WappieJump
 		platforms.push_back(platform(platformSprite, DEFAULT));
 	}
 
-	void Platform::SpawnPlatform()
+	Platform::category Platform::GenerateBounceablePlatformCategory()
 	{
-		if (platforms.size() > MAX_PLATFORMS) return;
+		_consecutiveInvisiblePlatforms = 0;
+		//Moeilijkheidsgraad mag niet onder de 10 komen bij deze oplossing
 
-		float randomWidth = CalculateRandomWidth(_platformWidth);
+		int randomNumber = rand() % 1001 + 1;
+		int defaultPlatformProbability = 3000000 / (_deletedPlatforms/ 0.1f * DIFFICULTY_LEVEL+ 10000) + 500;
+		int boosterPlatformProbability = defaultPlatformProbability + 3000000 / (_deletedPlatforms / 0.1f * DIFFICULTY_LEVEL + 16000) + 10;
 
-		platform previousPlatform = platforms.back();
-		
-		category platformCategory;
+		if (randomNumber < defaultPlatformProbability) return Platform::DEFAULT;
+		if (randomNumber < boosterPlatformProbability) return Platform::BOOSTER;
+		return Platform::MOVING;
+	}
 
-
+	Platform::category Platform::GeneratePlatformCategory()
+	{
 		if (_consecutiveInvisiblePlatforms < 3)
 		{
 			int randomNumber = rand() % 101 + 1;
@@ -59,24 +64,28 @@ namespace WappieJump
 			if (randomNumber > invisiblePlatformProbability && randomNumber % 2 == 0)
 			{
 				_consecutiveInvisiblePlatforms++;
-				platformCategory = Platform::INVISIBLE;
+				return Platform::INVISIBLE;
 			}
 			else if (randomNumber > invisiblePlatformProbability)
 			{
 				_consecutiveInvisiblePlatforms++;
-				platformCategory = Platform::BREAKING;
+				return Platform::BREAKING;
 			}
+			else return GenerateBounceablePlatformCategory();
 		}
-		else 
-		{
-			platformCategory = Platform::DEFAULT;
-			_consecutiveInvisiblePlatforms = 0;
-			platformCategory = Platform::BREAKING;
-			
-			// hier moet algoritme om te kiezen tussen default/booster/moving
-			// platformCategory = 
-		}
+		else return GenerateBounceablePlatformCategory();
 
+	}
+
+	void Platform::SpawnPlatform()
+	{
+		if (platforms.size() > MAX_PLATFORMS) return;
+
+		float randomWidth = CalculateRandomWidth(_platformWidth);
+
+		platform previousPlatform = platforms.back();
+		
+		category platformCategory = GeneratePlatformCategory();
 
 		switch(platformCategory)
 		{
@@ -97,10 +106,9 @@ namespace WappieJump
 				break;
 			
 			case Platform::INVISIBLE:
-			{
 				AddInvisiblePlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 				break;
-			}
+			
 			default:
 				break;
 		}

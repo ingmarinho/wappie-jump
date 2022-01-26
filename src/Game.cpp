@@ -14,8 +14,8 @@ namespace WappieJump
 		_data->window.setFramerateLimit(60);
 		// _data->machine.AddState(StateRef(new SplashState(_data)));
 		// _data->machine.AddState(StateRef(new GameState(_data)));
-		// _data->machine.AddState(StateRef(new CharacterSelectionState(_data)));
-		_data->machine.AddState(StateRef(new GameOverState(_data)));
+		_data->machine.AddState(StateRef(new CharacterSelectionState(_data)));
+		// _data->machine.AddState(StateRef(new GameOverState(_data)));
 
 		Run();
 	}

@@ -14,7 +14,7 @@
 #define SCORE_TEXT                              "Your last score is: "
 #define HIGHSCORE_TEXT                          "Your high-score is: "
 
-#define SELECT_BUTTON_FILEPATH                  "Resources/res/"              
+#define SELECT_BUTTON_FILEPATH                  "Resources/res/select.png"              
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH        "Resources/res/hu.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH           "Resources/res/space.png"
@@ -39,21 +39,14 @@
 #define MOVING_PLATFORM_FILEPATH                "Resources/res/platform_moving.png"
 
 #define CHAR1_FILEPATH                          "Resources/res/char1.png"
-#define CHAR1MIR_FILEPATH                       "Resources/res/char1mir.png"
 #define CHAR2_FILEPATH                          "Resources/res/char2.png"
-#define CHAR2MIR_FILEPATH                       "Resources/res/char2mir.png"
 #define CHAR3_FILEPATH                          "Resources/res/char3.png"
-#define CHAR3MIR_FILEPATH                       "Resources/res/char3mir.png"
 #define CHAR4_FILEPATH                          "Resources/res/char4.png"
-#define CHAR4MIR_FILEPATH                       "Resources/res/char4mir.png"
 #define CHAR5_FILEPATH                          "Resources/res/char5.png"
-#define CHAR5MIR_FILEPATH                       "Resources/res/char5mir.png"
 #define CHAR6_FILEPATH                          "Resources/res/char6.png"
-#define CHAR6MIR_FILEPATH                       "Resources/res/char6mir.png"
 #define CHAR7_FILEPATH                          "Resources/res/char7.png"
-#define CHAR7MIR_FILEPATH                       "Resources/res/char7mir.png"
 #define CHAR8_FILEPATH                          "Resources/res/char8.png"
-#define CHAR8MIR_FILEPATH                       "Resources/res/char8mir.png"
+
 
 #define ARROW_LEFT_FILEPATH                     "Resources/res/Arrow_left_2.png"
 #define ARROW_RIGHT_FILEPATH                    "Resources/res/Arrow_right_2.png"
@@ -75,7 +68,7 @@
 #define SCOREBOARD_X                _scoreText.getGlobalBounds().width
 #define SCOREBOARD_Y                10
 
-#define DIFFICULTY_LEVEL            100          // 0-100 (lower = harder)
+#define DIFFICULTY_LEVEL            100          // 10-100 (lower = harder)
 
 #define GRAVITY                     0.7f
 
