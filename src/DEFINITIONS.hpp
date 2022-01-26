@@ -11,16 +11,18 @@
 #define GAME_QUOTE_TEXT                         "Breek zoveel mogelijk IC-bedden!"
 
 #define GAME_OVER_TEXT                          "GAME OVER!"
-#define SCORE_TEXT                              "Your last score is: "
-#define HIGHSCORE_TEXT                          "Your high-score is: "
+#define SCORE_TEXT                              "SCORE: "
+#define HIGHSCORE_TEXT                          "HIGHSCORE: "
 
 #define SELECT_BUTTON_FILEPATH                  "Resources/res/select.png"              
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH        "Resources/res/hu.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH           "Resources/res/space.png"
-#define CHARACTER_SELECTION_BACKGROUND_FILEPATH "Resources/res/space.png"
+#define CHARACTER_SELECTION_BACKGROUND_FILEPATH "Resources/res/PickStateBackground.png"
 #define GAME_BACKGROUND_FILEPATH                "Resources/res/space.png"
-#define GAME_OVER_BACKGROUND_FILEPATH           "Resources/res/space.png"
+#define GAME_OVER_BACKGROUND_FILEPATH           "Resources/res/mark.png"
+
+#define CORONA_FILEPATH                         "Resources/res/corona.png"
 
 #define GAME_TITLE_FILEPATH                     "Resources/res/title.png"
 #define CHARACTER_SELECTION_TITLE_FILEPATH      "Resources/res/title.png"
@@ -35,7 +37,7 @@
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"
 #define BOOSTER_PLATFORM_FILEPATH               "Resources/res/platform_green.png"
 #define BREAKING_PLATFORM_FILEPATH              "Resources/res/platform_breaking.png"
-#define BREAKING_BROKE_PLATFORM_FILEPATH        "Resources/res/platform_breaking_broke.png"
+// #define BREAKING_BROKE_PLATFORM_FILEPATH        "Resources/res/platform_breaking_broke.png"
 #define MOVING_PLATFORM_FILEPATH                "Resources/res/platform_moving.png"
 
 #define CHAR1_FILEPATH                          "Resources/res/char1.png"
@@ -68,7 +70,7 @@
 #define SCOREBOARD_X                _scoreText.getGlobalBounds().width
 #define SCOREBOARD_Y                10
 
-#define DIFFICULTY_LEVEL            100          // 10-100 (lower = harder)
+#define DIFFICULTY_LEVEL            1          // 1-100 (lower = harder)
 
 #define GRAVITY                     0.7f
 

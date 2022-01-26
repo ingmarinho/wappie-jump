@@ -27,7 +27,6 @@ namespace WappieJump
 		sf::Text _highScoreText;
 		sf::Text _scoreText;
 		sf::Text _gameOverText;
-		Score *score;
-		
+		sf::Text _score;
 	};
 }

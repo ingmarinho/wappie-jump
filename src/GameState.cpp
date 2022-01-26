@@ -22,9 +22,7 @@ namespace WappieJump
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Moving Platform", MOVING_PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Breaking Platform", BREAKING_PLATFORM_FILEPATH);
-		_data->assets.LoadTexture("Breaking Broke Platform", BREAKING_BROKE_PLATFORM_FILEPATH);
-
-		// _data->assets.LoadTexture("Player", CHAR6_FILEPATH);
+		// _data->assets.LoadTexture("Breaking Broke Platform", BREAKING_BROKE_PLATFORM_FILEPATH);
 
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
 
@@ -84,6 +82,9 @@ namespace WappieJump
 			player->SetPlayerMovement(Player::FLOATING);
 		}
 
+
+
+
 		if (_platformVelocityY <= 0) 
 		{
 			_platformVelocityY = 0;
@@ -118,7 +119,7 @@ namespace WappieJump
 						{
 							velocityToReachHeightLimit = playerDistanceToHeightLimit > 0 ? std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit)) : 0.0f;
 							remainingDistance = potentialTravelDistance - playerDistanceToHeightLimit;
-							remainingVelocity = remainingDistance > 0 ? std::sqrt(2.0f * (GRAVITY * remainingDistance)) : 0.0f;
+							remainingVelocity = remainingDistance > 0.0f ? std::sqrt(2.0f * (GRAVITY * remainingDistance)) : 0.0f;
 
 							_correctedJump = true;
 							_platformVelocityY = remainingVelocity;
@@ -157,7 +158,8 @@ namespace WappieJump
 						player->SetPlayerMovement(Player::JUMPING);
 						break;
 					case Platform::BREAKING:
-						platform.platformSprite.setTexture(_data->assets.GetTexture("Breaking Broke Platform"));
+						platform.platformSprite.setColor(sf::Color(0, 0, 0, 100));
+
 						break;
 
 					default:
@@ -172,7 +174,7 @@ namespace WappieJump
 		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
 
 		// check out of screen death (should change state to gameover state, game close is temporary)
-		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) _data->isRunning = false;
+		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) _data->machine.AddState(StateRef(new GameOverState(_data)), true);
 	}
 
 	void GameState::Draw()

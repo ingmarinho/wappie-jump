@@ -43,11 +43,11 @@ namespace WappieJump
 	Platform::category Platform::GenerateBounceablePlatformCategory()
 	{
 		_consecutiveInvisiblePlatforms = 0;
-		//Moeilijkheidsgraad mag niet onder de 10 komen bij deze oplossing
+		//Moeilijkheidsgraad mag niet onder de 1 komen bij deze oplossing
 
 		int randomNumber = rand() % 1001 + 1;
-		int defaultPlatformProbability = 3000000 / (_deletedPlatforms/ 0.1f * DIFFICULTY_LEVEL+ 10000) + 500;
-		int boosterPlatformProbability = defaultPlatformProbability + 3000000 / (_deletedPlatforms / 0.1f * DIFFICULTY_LEVEL + 16000) + 10;
+		int defaultPlatformProbability = 3000000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 15000) + 500;
+		int boosterPlatformProbability = defaultPlatformProbability + 3000000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 35000) + 10;
 
 		if (randomNumber < defaultPlatformProbability) return Platform::DEFAULT;
 		if (randomNumber < boosterPlatformProbability) return Platform::BOOSTER;
@@ -59,7 +59,7 @@ namespace WappieJump
 		if (_consecutiveInvisiblePlatforms < 3)
 		{
 			int randomNumber = rand() % 101 + 1;
-			int invisiblePlatformProbability = (90 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 10);
+			int invisiblePlatformProbability = (90 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 5);
 
 			if (randomNumber > invisiblePlatformProbability && randomNumber % 2 == 0)
 			{

@@ -71,26 +71,25 @@ namespace WappieJump
                 _data->window.close();
             }
 
-            if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) || _data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window) || _data->input.IsSpriteClicked(_selectButton, sf::Mouse::Left, _data->window))
+            if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) || _data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window))
             {
                 mouseClicked = true;
             }
 
-            if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) && mouseClicked)
+            else if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) && mouseClicked)
             {
                 mouseClicked = false;
                 _selected == 7 ? _selected = 0 : _selected += 1;
             }
             
-            if (_data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window) && mouseClicked)
+            else if (_data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window) && mouseClicked)
             {
                 mouseClicked = false;
                 _selected == 0 ? _selected = 7 : _selected -= 1;
             }
 
-            if (_data->input.IsSpriteClicked(_selectButton, sf::Mouse::Left, _data->window) && mouseClicked)  
+            if (_data->input.IsSpriteClicked(_selectButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))  
             {
-                mouseClicked = false;
                 _data->characterSprite = *_chars[_selected];
                 _data->machine.AddState(StateRef(new GameState(_data)), true);
             }

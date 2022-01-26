@@ -11,6 +11,7 @@
 #include "Platform.hpp"
 #include "Player.hpp"
 #include "Score.hpp"
+#include "GameOverState.hpp"
 
 #include "DEFINITIONS.hpp"
 

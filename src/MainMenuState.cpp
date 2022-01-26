@@ -41,7 +41,7 @@ namespace WappieJump
 				_data->window.close();
 			}
 
-			if (_data->input.IsSpriteClicked(_playButton, sf::Mouse::Left, _data->window))
+			if (_data->input.IsSpriteClicked(_playButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
 				_playButton.setTexture(_data->assets.GetTexture("Play Button Down"));
 

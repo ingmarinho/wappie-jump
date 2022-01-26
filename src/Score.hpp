@@ -17,6 +17,7 @@ namespace WappieJump
 
         void Draw();
         // void OpenDatabase();
+        long long int GetScore();
         void Update(float dt);
         void UpdateScore(int score);
         void SetPosition(float x, float y);
