@@ -76,13 +76,13 @@ namespace WappieJump
                 mouseClicked = true;
             }
 
-            else if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) && mouseClicked)
+            if (_data->input.IsSpriteClicked(_rightArrow, sf::Mouse::Left, _data->window) && mouseClicked)
             {
                 mouseClicked = false;
                 _selected == 7 ? _selected = 0 : _selected += 1;
             }
             
-            else if (_data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window) && mouseClicked)
+            if (_data->input.IsSpriteClicked(_leftArrow, sf::Mouse::Left, _data->window) && mouseClicked)
             {
                 mouseClicked = false;
                 _selected == 0 ? _selected = 7 : _selected -= 1;

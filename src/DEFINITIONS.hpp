@@ -70,7 +70,7 @@
 #define SCOREBOARD_X                _scoreText.getGlobalBounds().width
 #define SCOREBOARD_Y                10
 
-#define DIFFICULTY_LEVEL            1          // 1-100 (lower = harder)
+#define DIFFICULTY_LEVEL            100          // 1-100 (lower = harder)
 
 #define GRAVITY                     0.7f
 
