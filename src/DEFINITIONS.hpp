@@ -10,7 +10,7 @@
 
 #define GAME_QUOTE_TEXT                         "Breek zoveel mogelijk IC-bedden!"
 
-#define GAME_OVER_TEXT                          "GAME OVER!"
+#define GAME_OVER_TEXT                          "YOU DIED!"
 #define SCORE_TEXT                              "SCORE: "
 #define HIGHSCORE_TEXT                          "HIGHSCORE: "
 
@@ -30,8 +30,10 @@
 #define PLAY_BUTTON_DOWN_FILEPATH               "Resources/res/play_down.png"
 
 //Game Over Screen
-#define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/play_again.png"
-#define MAIN_MENU_BUTTON_FILEPATH               "Resources/res/main_menu.png"
+#define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/newGame.png"
+#define MAIN_MENU_BUTTON_FILEPATH               "Resources/res/return.png"
+#define HIGH_SCORE_FILEPATH                     "Resources/res/highscore.png"
+#define SCORE_FILEPATH                          "Resources/res/score.png"
 //
 
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"

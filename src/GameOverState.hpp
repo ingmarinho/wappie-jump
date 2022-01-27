@@ -24,9 +24,12 @@ namespace WappieJump
 		sf::Sprite _playAgainButton;
 		sf::Sprite _mainMenuButton;
 		sf::Sprite _background;
+		sf::Sprite _highScoreSprite;
+		sf::Sprite _scoreSprite;
 		sf::Text _highScoreText;
 		sf::Text _scoreText;
 		sf::Text _gameOverText;
 		sf::Text _score;
+
 	};
 }
