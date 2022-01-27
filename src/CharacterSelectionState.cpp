@@ -63,9 +63,23 @@ namespace WappieJump
         _char7.setPosition(AlignObjectCenterX(_char7), AlignObjectCenterY(_char7));
         _char8.setPosition(AlignObjectCenterX(_char8), AlignObjectCenterY(_char8));
 
+        _basePositionY = _char1.getPosition().y;
+
         _leftArrow.setPosition(AlignObjectCenterX(_leftArrow) - 100, AlignObjectCenterY(_leftArrow));
         _rightArrow.setPosition(AlignObjectCenterX(_rightArrow) + 100, AlignObjectCenterY(_rightArrow));
         _selectButton.setPosition(AlignObjectCenterX(_selectButton), AlignObjectCenterY(_selectButton) + 150); // change position
+    }
+
+    void CharacterSelectionState::BounceCharacter()
+    {
+        if (_chars[_selected] != &_selectedCharacter)
+        {
+            _chars[_selected]->setPosition(_selectedCharacter.getPosition());
+            _selectedCharacter = *_chars[_selected];
+        }
+        if (_selectedCharacter.getPosition().y >= _basePositionY) _characterVelocityY = -PLAYER_VELOCITY_Y * 0.7f;
+       _selectedCharacter.move(0.0f, _characterVelocityY);
+        _characterVelocityY += GRAVITY;
     }
 
     void CharacterSelectionState::HandleInput()
@@ -106,6 +120,7 @@ namespace WappieJump
 
     void CharacterSelectionState::Update()
     {
+        BounceCharacter();
         // *_chars[_selected]->setColor(sf::Color::Red);
     }
 

@@ -16,6 +16,7 @@ namespace WappieJump
 			BOOSTER,
 			MOVING,
 			BREAKING,
+			SHADOW,
 			INVISIBLE
 		};
 		enum direction
@@ -30,6 +31,7 @@ namespace WappieJump
 			sf::Sprite platformSprite;
 			category platformCategory;
 			direction platformDirection;
+			bool collided = false;
 
 			platform(sf::Sprite platformSprite, category platformCategory, direction platformDirection = NONE)
 				: platformSprite(platformSprite), platformCategory(platformCategory), platformDirection(platformDirection)
@@ -46,11 +48,13 @@ namespace WappieJump
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void AddInvisiblePlatform(float randomWidth, float prevTop);
+		void AddShadowPlatform(float randomWidth, float prevTop);
 		void AddBreakingPlatform(float randomWidth, float prevTop);
 		void AddBoosterPlatform(float randomWidth, float prevTop);
 		void AddMovingPlatform(float randomWidth, float prevTop);
 		void AddDefaultPlatform(float randomWidth, float prevTop);
-		void MovePlatformsX();
+		// void MovePlatformsX();
+		void MoveOtherPlatforms();
 		void MovePlatformsY(float velocity);
 		void DrawPlatforms();
 

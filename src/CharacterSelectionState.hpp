@@ -16,6 +16,7 @@ namespace WappieJump
 	public:
 		CharacterSelectionState(GameDataRef data);
 
+		void BounceCharacter();
 		int AlignObjectCenterX(sf::Sprite object);
         int AlignObjectCenterY(sf::Sprite object);
 		void Init();
@@ -44,6 +45,9 @@ namespace WappieJump
 		sf::Sprite _selectButton;
 		std::vector<sf::Sprite*> _chars = {&_char1, &_char2, &_char3, &_char4, &_char5, &_char6, &_char7, &_char8};
 
+		float _characterVelocityY = -PLAYER_VELOCITY_Y * 0.7f;
+		sf::Sprite &_selectedCharacter = *_chars[0];
+		float _basePositionY;
 		int _selected = 0;
 		bool mouseClicked = false;
 	};

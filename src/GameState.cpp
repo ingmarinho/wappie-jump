@@ -45,12 +45,12 @@ namespace WappieJump
 				_data->window.close();
 			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			player->SetPlayerAngle(Player::LEFT);
 			player->MoveLeft();
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			player->SetPlayerAngle(Player::RIGHT);
 			player->MoveRight();
@@ -62,7 +62,7 @@ namespace WappieJump
 		player->Update();
 
 		platform->SpawnPlatform();
-		platform->MovePlatformsX();
+		platform->MoveOtherPlatforms();
 
 		_data->score = platform->GetDeletedPlatforms() * 10;
 		score->UpdateScore(_data->score);
@@ -73,7 +73,6 @@ namespace WappieJump
 		if (_player->getPosition().x - _player->getGlobalBounds().width > _data->window.getSize().x) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
 		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);
 
-
 		if (_correctedJump && player->hasReachedMaxDistance())
 		{
 			_correctedJump = false;
@@ -81,9 +80,6 @@ namespace WappieJump
 			if (!_hasProgressed)_hasProgressed = true;
 			player->SetPlayerMovement(Player::FLOATING);
 		}
-
-
-
 
 		if (_platformVelocityY <= 0) 
 		{
@@ -100,7 +96,7 @@ namespace WappieJump
 		{
 			for (auto &platform : *_platforms)
 			{
-				if (platform.platformCategory == Platform::INVISIBLE) continue;
+				if (platform.platformCategory == Platform::INVISIBLE || platform.platformCategory == Platform::SHADOW) continue;
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
@@ -158,8 +154,7 @@ namespace WappieJump
 						player->SetPlayerMovement(Player::JUMPING);
 						break;
 					case Platform::BREAKING:
-						platform.platformSprite.setColor(sf::Color(0, 0, 0, 100));
-
+						platform.collided = true;
 						break;
 
 					default:
@@ -173,7 +168,7 @@ namespace WappieJump
 		// bottom window jumping
 		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
 
-		// check out of screen death (should change state to gameover state, game close is temporary)
+		// check out of screen death
 		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) _data->machine.AddState(StateRef(new GameOverState(_data)), true);
 	}
 

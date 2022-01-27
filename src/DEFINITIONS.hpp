@@ -58,22 +58,23 @@
 #define FONT_FILEPATH                           "Resources/fonts/normal.otf"
 
 
-#define PLATFORM_MOVEMENT_SPEED     5.0f      // for moving platforms
-#define MAX_PLATFORMS               18
+#define PLATFORM_MOVEMENT_SPEED         5.0f      // for moving platforms
+#define BREAKING_PLATFORM_FALL_SPEED    15.0f 
+#define MAX_PLATFORMS                   18
 
-#define BOOSTER_VELOCITY_Y          50.0f
+#define BOOSTER_VELOCITY_Y              50.0f
 
-#define PLAYER_VELOCITY_X           12.0f
-#define PLAYER_VELOCITY_Y           20.0f
+#define PLAYER_VELOCITY_X               12.0f
+#define PLAYER_VELOCITY_Y               20.0f
 
-#define SCORE_X                     _scoreText.getGlobalBounds().width
-#define SCORE_Y                     10
+#define SCORE_X                         _scoreText.getGlobalBounds().width
+#define SCORE_Y                         10
 
-#define SCOREBOARD_X                _scoreText.getGlobalBounds().width
-#define SCOREBOARD_Y                10
+#define SCOREBOARD_X                    _scoreText.getGlobalBounds().width
+#define SCOREBOARD_Y                    10
 
-#define DIFFICULTY_LEVEL            100          // 1-100 (lower = harder)
+#define DIFFICULTY_LEVEL                100          // 1-100 (lower = harder)
 
-#define GRAVITY                     0.7f
+#define GRAVITY                         0.7f
 
 
