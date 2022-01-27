@@ -6,6 +6,16 @@ namespace WappieJump
     {
     }
 
+    int CharacterSelectionState::AlignObjectCenterX(sf::Sprite object)
+    {
+        return SCREEN_WIDTH / 2 - object.getGlobalBounds().width / 2;
+    }
+
+    int CharacterSelectionState::AlignObjectCenterY(sf::Sprite object)
+    {
+        return SCREEN_HEIGHT / 2 - object.getGlobalBounds().height / 2;
+    }
+
     void CharacterSelectionState::Init()
     {   
         _data->assets.LoadFont("Font", FONT_FILEPATH);
@@ -27,7 +37,6 @@ namespace WappieJump
         _data->assets.LoadTexture("Character Selection Title", CHARACTER_SELECTION_TITLE_FILEPATH);
 
         _background.setTexture(_data->assets.GetTexture("Character Selection Background"));
-        _title.setTexture(_data->assets.GetTexture("Character Selection Title"));
 
         _char1.setTexture(_data->assets.GetTexture("Char1"));
         _char2.setTexture(_data->assets.GetTexture("Char2"));
@@ -45,19 +54,18 @@ namespace WappieJump
         _selectButton.setTexture(_data->assets.GetTexture("selectButton"));
         _selectButton.setScale(0.5f, 0.5f);
 
-        _title.setPosition((SCREEN_WIDTH / 2) - (_title.getGlobalBounds().width / 2), _title.getGlobalBounds().height * 2);
-        _char1.setPosition((SCREEN_WIDTH / 2) - (_char1.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char1.getGlobalBounds().height / 2));
-        _char2.setPosition((SCREEN_WIDTH / 2) - (_char2.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char2.getGlobalBounds().height / 2));
-        _char3.setPosition((SCREEN_WIDTH / 2) - (_char3.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char3.getGlobalBounds().height / 2));
-        _char4.setPosition((SCREEN_WIDTH / 2) - (_char4.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char4.getGlobalBounds().height / 2));
-        _char5.setPosition((SCREEN_WIDTH / 2) - (_char5.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char5.getGlobalBounds().height / 2));
-        _char6.setPosition((SCREEN_WIDTH / 2) - (_char6.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char6.getGlobalBounds().height / 2));
-        _char7.setPosition((SCREEN_WIDTH / 2) - (_char7.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char7.getGlobalBounds().height / 2));
-        _char8.setPosition((SCREEN_WIDTH / 2) - (_char8.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_char8.getGlobalBounds().height / 2));
+        _char1.setPosition(AlignObjectCenterX(_char1), AlignObjectCenterY(_char1));
+        _char2.setPosition(AlignObjectCenterX(_char2), AlignObjectCenterY(_char2));
+        _char3.setPosition(AlignObjectCenterX(_char3), AlignObjectCenterY(_char3));
+        _char4.setPosition(AlignObjectCenterX(_char4), AlignObjectCenterY(_char4));
+        _char5.setPosition(AlignObjectCenterX(_char5), AlignObjectCenterY(_char5));
+        _char6.setPosition(AlignObjectCenterX(_char6), AlignObjectCenterY(_char6));
+        _char7.setPosition(AlignObjectCenterX(_char7), AlignObjectCenterY(_char7));
+        _char8.setPosition(AlignObjectCenterX(_char8), AlignObjectCenterY(_char8));
 
-        _leftArrow.setPosition((SCREEN_WIDTH * 0.25) - (_leftArrow.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_leftArrow.getGlobalBounds().height / 2));
-        _rightArrow.setPosition((SCREEN_WIDTH * 0.75) - (_rightArrow.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 - (_rightArrow.getGlobalBounds().height / 2));
-        _selectButton.setPosition((SCREEN_WIDTH / 2) - (_selectButton.getGlobalBounds().width / 2), SCREEN_HEIGHT / 2 + (_selectButton.getGlobalBounds().height)); // change position
+        _leftArrow.setPosition(AlignObjectCenterX(_leftArrow) - 100, AlignObjectCenterY(_leftArrow));
+        _rightArrow.setPosition(AlignObjectCenterX(_rightArrow) + 100, AlignObjectCenterY(_rightArrow));
+        _selectButton.setPosition(AlignObjectCenterX(_selectButton), AlignObjectCenterY(_selectButton) + 150); // change position
     }
 
     void CharacterSelectionState::HandleInput()

@@ -16,6 +16,8 @@ namespace WappieJump
 	public:
 		CharacterSelectionState(GameDataRef data);
 
+		int AlignObjectCenterX(sf::Sprite object);
+        int AlignObjectCenterY(sf::Sprite object);
 		void Init();
 
 		void HandleInput();
