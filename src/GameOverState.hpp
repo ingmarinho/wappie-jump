@@ -13,6 +13,9 @@ namespace WappieJump
 	public:
 		GameOverState(GameDataRef data);
 		~GameOverState();
+
+        int AlignObjectCenterX(sf::Sprite object);
+        int AlignObjectCenterY(sf::Sprite object);
 		void Init();
 
 		void HandleInput();
