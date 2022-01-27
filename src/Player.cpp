@@ -117,8 +117,8 @@ namespace WappieJump
 			_velocity.x += PLAYER_ACCELERATION_X;
 			if (_velocity.x > 0.0f) _velocity.x = 0.0f;
 		}
-
-		_player.move(_velocity.x, 0);
+		
+		if (_velocity.x != 0.0f) _player.move(_velocity.x, 0);
 	}
 
 	void Player::Update()
