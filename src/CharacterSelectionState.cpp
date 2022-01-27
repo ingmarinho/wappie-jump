@@ -78,6 +78,7 @@ namespace WappieJump
             _selectedCharacter = *_chars[_selected];
         }
         if (_selectedCharacter.getPosition().y >= _basePositionY) _characterVelocityY = -PLAYER_VELOCITY_Y * 0.7f;
+        
        _selectedCharacter.move(0.0f, _characterVelocityY);
         _characterVelocityY += GRAVITY;
     }
@@ -121,7 +122,6 @@ namespace WappieJump
     void CharacterSelectionState::Update()
     {
         BounceCharacter();
-        // *_chars[_selected]->setColor(sf::Color::Red);
     }
 
     void CharacterSelectionState::Draw()

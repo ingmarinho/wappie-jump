@@ -32,6 +32,7 @@ namespace WappieJump
 			category platformCategory;
 			direction platformDirection;
 			bool collided = false;
+			int fadeValue = 255;
 
 			platform(sf::Sprite platformSprite, category platformCategory, direction platformDirection = NONE)
 				: platformSprite(platformSprite), platformCategory(platformCategory), platformDirection(platformDirection)

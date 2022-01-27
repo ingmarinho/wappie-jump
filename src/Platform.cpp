@@ -136,8 +136,10 @@ namespace WappieJump
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Moving Platform"));
 
+		int randomNumber = rand() % 11 + 1;
+
 		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
-		platforms.push_back(platform(platformSprite, Platform::MOVING, Platform::LEFT));
+		platforms.push_back(platform(platformSprite, Platform::MOVING, randomNumber % 2 == 0 ? Platform::RIGHT : Platform::LEFT));
 	}
 
 	void Platform::AddBreakingPlatform(float randomWidth, float prevTop)
@@ -197,7 +199,15 @@ namespace WappieJump
 				}
 				break;
 			case Platform::BREAKING:
-				if (platform.collided) platform.platformSprite.move(0.0f, BREAKING_PLATFORM_FALL_SPEED);
+				if (platform.collided)
+				{
+					if (platform.fadeValue > 0)
+					{
+						platform.fadeValue -= 15;
+						platform.platformSprite.setColor(sf::Color(255, 255, 255, platform.fadeValue));
+					}
+					platform.platformSprite.move(0.0f, BREAKING_PLATFORM_FALL_SPEED);
+				}
 				break;
 
 			default:
@@ -208,7 +218,7 @@ namespace WappieJump
 
 	void Platform::MovePlatformsY(float velocity)
 	{
-		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y + platforms.at(0).platformSprite.getGlobalBounds().height)
+		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y)
 		{
 			platforms.erase(platforms.begin());
 			_deletedPlatforms++;
