@@ -19,6 +19,8 @@ namespace WappieJump
 	public:
 		MainMenuState(GameDataRef data);
 
+        int AlignObjectCenterX(sf::Sprite object);
+        int AlignObjectCenterY(sf::Sprite object);
 		void Init();
 
 		void HandleInput();

@@ -7,6 +7,16 @@ namespace WappieJump
 	{
 	}
 
+    int MainMenuState::AlignObjectCenterX(sf::Sprite object)
+    {
+        return SCREEN_WIDTH / 2 - object.getGlobalBounds().width / 2;
+    }
+
+    int MainMenuState::AlignObjectCenterY(sf::Sprite object)
+    {
+        return SCREEN_HEIGHT / 2 - object.getGlobalBounds().height / 2;
+    }
+
 	void MainMenuState::Init()
 	{
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
@@ -23,11 +33,10 @@ namespace WappieJump
 		_gameQuote.setString(GAME_QUOTE_TEXT);
 		_gameQuote.setCharacterSize(30);
 		_gameQuote.setFillColor(sf::Color::White);
-		_gameQuote.setOrigin(sf::Vector2f(_gameQuote.getGlobalBounds().width / 2, _gameQuote.getGlobalBounds().height / 2));
-		_gameQuote.setPosition(_data->window.getSize().x / 2, _data->window.getSize().y * 0.1);
+		_gameQuote.setPosition(sf::Vector2f(SCREEN_WIDTH / 2 - _gameQuote.getGlobalBounds().width / 2, 100));
 
-		_title.setPosition((SCREEN_WIDTH / 2) - (_title.getGlobalBounds().width / 2), _title.getGlobalBounds().height * 2);
-		_playButton.setPosition((SCREEN_WIDTH / 2) - (_playButton.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_playButton.getGlobalBounds().height / 3));
+		_title.setPosition(AlignObjectCenterX(_title), 200);
+		_playButton.setPosition(AlignObjectCenterX(_playButton), AlignObjectCenterY(_playButton));
 	}
 
 	void MainMenuState::HandleInput()
