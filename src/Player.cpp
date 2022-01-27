@@ -95,12 +95,30 @@ namespace WappieJump
 
 	void Player::MoveRight()
 	{
+		if (_velocity.x < PLAYER_VELOCITY_X_MAX) _velocity.x += PLAYER_ACCELERATION_X;
 		_player.move(_velocity.x, 0);
 	}
 
 	void Player::MoveLeft()
 	{
-		_player.move(-_velocity.x, 0);
+		if (_velocity.x > -PLAYER_VELOCITY_X_MAX) _velocity.x -= PLAYER_ACCELERATION_X;
+		_player.move(_velocity.x, 0);
+	}
+
+	void Player::Decelleration()
+	{
+		if (_velocity.x > 0.0f) 
+		{
+			_velocity.x -= PLAYER_ACCELERATION_X;
+			if (_velocity.x < 0.0f) _velocity.x = 0.0f;
+		}
+		else if (_velocity.x < 0.0f) 
+		{
+			_velocity.x += PLAYER_ACCELERATION_X;
+			if (_velocity.x > 0.0f) _velocity.x = 0.0f;
+		}
+
+		_player.move(_velocity.x, 0);
 	}
 
 	void Player::Update()

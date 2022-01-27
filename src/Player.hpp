@@ -45,6 +45,7 @@ namespace WappieJump
 
         void MoveRight();
         void MoveLeft();
+        void Decelleration();
 
         void Draw();
         void Update();
@@ -52,7 +53,7 @@ namespace WappieJump
     private:
         GameDataRef _data;
 
-        sf::Vector2f _velocity = {PLAYER_VELOCITY_X, -PLAYER_VELOCITY_Y};
+        sf::Vector2f _velocity = {0.0f, -PLAYER_VELOCITY_Y};
         float _jumpVelocity = -PLAYER_VELOCITY_Y;
         float _boosterJumpVelocity = -BOOSTER_VELOCITY_Y;
         bool _reachedMaxDistance = false;

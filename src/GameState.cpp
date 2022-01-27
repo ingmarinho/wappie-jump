@@ -22,7 +22,6 @@ namespace WappieJump
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Moving Platform", MOVING_PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Breaking Platform", BREAKING_PLATFORM_FILEPATH);
-		// _data->assets.LoadTexture("Breaking Broke Platform", BREAKING_BROKE_PLATFORM_FILEPATH);
 
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
 
@@ -50,10 +49,14 @@ namespace WappieJump
 			player->SetPlayerAngle(Player::LEFT);
 			player->MoveLeft();
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			player->SetPlayerAngle(Player::RIGHT);
 			player->MoveRight();
+		}
+		else
+		{
+			player->Decelleration();
 		}
 	}
 
