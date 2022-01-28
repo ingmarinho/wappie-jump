@@ -17,11 +17,13 @@ namespace WappieJump
 
         int AlignObjectCenterX(sf::Sprite object);
         int AlignObjectCenterY(sf::Sprite object);
-        void SetSpeed(sf::Vector2f velocity);
+        void SetSpeed(float x, float y);
         void Draw();
 		
 	private:
 		GameDataRef _data;
-        sf::Text _speedText;
+		sf::Sprite _speedometer;
+		sf::RectangleShape _indicator;
+        // sf::Text _speedText;
 	};
 }

@@ -14,6 +14,9 @@
 #define SCORE_TEXT                              "SCORE: "
 #define HIGHSCORE_TEXT                          "HIGHSCORE: "
 
+
+#define SPEEDOMETER_FILEPATH                    "Resources/res/speedometer.png"
+
 #define SELECT_BUTTON_FILEPATH                  "Resources/res/select.png"              
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH        "Resources/res/hu.png"
@@ -75,7 +78,7 @@
 #define MAX_PLATFORMS                   18
 
 #define BOOSTER_VELOCITY_Y              50.0f
-#define PLAYER_ACCELERATION_X           1.0f
+#define PLAYER_ACCELERATION_X           2.0f
 
 #define PLAYER_VELOCITY_X_MAX           10.0f
 #define PLAYER_VELOCITY_Y               20.0f

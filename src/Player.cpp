@@ -135,11 +135,12 @@ namespace WappieJump
 			break;
 
 		case RISING:
-			_velocity.y += GRAVITY;
+			if (_velocity.y + GRAVITY > 0) _velocity.y += -(_velocity.y + GRAVITY);
+			else _velocity.y += GRAVITY;
 
 			_player.move(0, _velocity.y);
 
-			if (_velocity.y >= 0) 
+			if (_velocity.y == 0.0f)
 			{
 				_reachedMaxDistance = true;
 				_playerMovement = FALLING;
@@ -148,7 +149,6 @@ namespace WappieJump
 			break;
 
 		case FLOATING:
-			_velocity.y = 0.0f;
 			break;
 
 		case FALLING:

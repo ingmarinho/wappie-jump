@@ -18,6 +18,8 @@ namespace WappieJump
 	{
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 
+		_data->assets.LoadTexture("Speedometer", SPEEDOMETER_FILEPATH);
+
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Moving Platform", MOVING_PLATFORM_FILEPATH);
@@ -64,7 +66,7 @@ namespace WappieJump
 	{
 		player->Update();
 
-		accelerometer->SetSpeed(player->GetPlayerVelocity());
+		accelerometer->SetSpeed(player->GetPlayerVelocity().x,  player->GetPlayerVelocity().y + -_platformVelocityY);
 		platform->SpawnPlatform();
 		platform->MoveOtherPlatforms();
 
