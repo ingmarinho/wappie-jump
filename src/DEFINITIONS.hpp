@@ -51,6 +51,18 @@
 #define CHAR7_FILEPATH                          "Resources/res/char7.png"
 #define CHAR8_FILEPATH                          "Resources/res/char8.png"
 
+#define SETTINGS_TEXT                           "SETTINGS"
+#define SOUND_TEXT                              "CHANGE SOUND LEVEL:"
+#define LOW_SOUND_TEXT                          "LOW"
+#define MEDIUM_SOUND_TEXT                       "MEDIUM"
+#define HARD_SOUND_TEXT                         "HARD"
+
+#define DIFFICULTY_TEXT                         "CHANGE DIFFICULTY LEVEL:"
+#define DIFFICULTY_EASY_TEXT                    "EASY"
+#define DIFFICULTY_MEDIUM_TEXT                  "INTERMEDIATE"
+#define DIFFICULTY_HARD_TEXT                    "HARD"
+
+
 
 #define ARROW_LEFT_FILEPATH                     "Resources/res/Arrow_left_2.png"
 #define ARROW_RIGHT_FILEPATH                    "Resources/res/Arrow_right_2.png"
@@ -64,9 +76,7 @@
 
 #define BOOSTER_VELOCITY_Y              50.0f
 
-#define PLAYER_ACCELERATION_X           1.0f
-
-#define PLAYER_VELOCITY_X_MAX           10.0f
+#define PLAYER_VELOCITY_X               12.0f
 #define PLAYER_VELOCITY_Y               20.0f
 
 #define SCORE_X                         _scoreText.getGlobalBounds().width
@@ -75,8 +85,8 @@
 #define SCOREBOARD_X                    _scoreText.getGlobalBounds().width
 #define SCOREBOARD_Y                    10
 
-#define DIFFICULTY_LEVEL                50          // 1-100 (lower = harder)
+#define DIFFICULTY_LEVEL                100          // 1-100 (lower = harder)
 
 #define GRAVITY                         0.7f
 
-
+#define SOUND_VOLUME                    50
