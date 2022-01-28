@@ -29,6 +29,8 @@ namespace WappieJump
 		platform = new Platform(_data);
 		player = new Player(_data);
 		score = new Score(_data);
+		score = new Score(_data);
+		accelerometer = new Accelerometer(_data);
 
 		_background.setTexture(_data->assets.GetTexture("Game Background"));
 	}
@@ -54,16 +56,15 @@ namespace WappieJump
 			player->SetPlayerAngle(Player::RIGHT);
 			player->MoveRight();
 		}
-		else
-		{
-			player->Decelleration();
-		}
+		else player->Decelleration();
+		
 	}
 
 	void GameState::Update()
 	{
 		player->Update();
 
+		accelerometer->SetSpeed(player->GetPlayerVelocity());
 		platform->SpawnPlatform();
 		platform->MoveOtherPlatforms();
 
@@ -186,6 +187,8 @@ namespace WappieJump
 		player->Draw();
 
 		score->Draw();
+
+		accelerometer->Draw();
 
 		_data->window.display();
 	}

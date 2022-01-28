@@ -34,7 +34,7 @@ namespace WappieJump
 
         sf::Sprite* GetPlayerSprite();
         Movement GetPlayerMovement();
-        float GetPlayerVelocityY();
+        sf::Vector2f GetPlayerVelocity();
 
         void SetJumpVelocity(float newVelocity);
 

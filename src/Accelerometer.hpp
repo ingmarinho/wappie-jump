@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <cmath>
+#include <math.h>
 
 #include "Game.hpp"
 
@@ -15,7 +15,9 @@ namespace WappieJump
 	public:
 		Accelerometer(GameDataRef data);
 
-        void SetSpeed();
+        int AlignObjectCenterX(sf::Sprite object);
+        int AlignObjectCenterY(sf::Sprite object);
+        void SetSpeed(sf::Vector2f velocity);
         void Draw();
 		
 	private:

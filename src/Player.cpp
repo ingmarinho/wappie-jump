@@ -32,9 +32,9 @@ namespace WappieJump
 		_player.setPosition(x, y);
 	}
 
-	float Player::GetPlayerVelocityY()
+	sf::Vector2f Player::GetPlayerVelocity()
 	{
-		return _velocity.y;
+		return _velocity;
 	}
 
 	void Player::SetPlayerVelocityY(float velocity)
