@@ -62,8 +62,12 @@
 
 #define DIFFICULTY_TEXT                         "CHANGE DIFFICULTY LEVEL:"
 #define DIFFICULTY_EASY_TEXT                    "EASY"
-#define DIFFICULTY_MEDIUM_TEXT                  "INTERMEDIATE"
+#define DIFFICULTY_MEDIUM_TEXT                  "normal"
 #define DIFFICULTY_HARD_TEXT                    "HARD"
+
+#define MUTE_SOUND_BUTTON_FILEPATH              "Resources/res/soundButtonMute.png"
+#define SOUND_BUTTON_FILEPATH                   "Resources/res/soundButton.png"
+#define DIFFICULTY_BUTTON_FILEPATH              "Resources/res/vaccineFlipped.png"
 
 
 

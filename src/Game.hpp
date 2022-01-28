@@ -18,6 +18,9 @@ namespace WappieJump
 		bool isRunning = true;
 		long long int score = 0;
 		sf::Sprite characterSprite;
+		int difficultyLevel = 100; 
+		int soundVolume = 50; 
+
 	};
 
 	typedef std::shared_ptr<GameData> GameDataRef;
