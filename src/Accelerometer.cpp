@@ -28,7 +28,7 @@ namespace WappieJump
 
     void Accelerometer::SetSpeed(sf::Vector2f velocity)
     {
-        _speedText.setString(std::to_string(sqrt(pow(velocity.x) + pow(velocity.y))));
+        _speedText.setString(std::to_string(static_cast<int>(sqrt(pow(velocity.x, 2) + pow(velocity.y, 2)))));
     }
 
     void Accelerometer::Draw()
