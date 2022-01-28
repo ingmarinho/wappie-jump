@@ -74,7 +74,7 @@
 
 
 #define PLATFORM_MOVEMENT_SPEED         5.0f      // for moving platforms
-#define BREAKING_PLATFORM_FALL_SPEED    15.0f 
+#define BREAKING_PLATFORM_FALL_SPEED    5.0f 
 #define MAX_PLATFORMS                   18
 
 #define BOOSTER_VELOCITY_Y              50.0f

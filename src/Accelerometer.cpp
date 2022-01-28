@@ -29,7 +29,6 @@ namespace WappieJump
 
     void Accelerometer::SetSpeed(float x, float y)
     {
-        std::cout << "y: " << y << '\n';
         _indicator.setPosition(_indicatorX, _indicatorY - (std::abs(static_cast<int>(x)) + std::abs(static_cast<int>(y))) * 2.8f);
     }
 

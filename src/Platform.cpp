@@ -48,10 +48,8 @@ namespace WappieJump
 		int defaultPlatformProbability = 300000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 1500) + 490;
 		int boosterPlatformProbability = defaultPlatformProbability + 300000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 3500) + 10;
 
-		if (randomNumber < defaultPlatformProbability)
-			return Platform::DEFAULT;
-		if (randomNumber < boosterPlatformProbability)
-			return Platform::BOOSTER;
+		if (randomNumber < defaultPlatformProbability) return Platform::DEFAULT;
+		if (randomNumber < boosterPlatformProbability) return Platform::BOOSTER;
 		return Platform::MOVING;
 	}
 
@@ -120,7 +118,7 @@ namespace WappieJump
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
+		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2f);
 		platforms.push_back(platform(platformSprite, Platform::DEFAULT));
 	}
 
@@ -128,7 +126,7 @@ namespace WappieJump
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Booster Platform"));
 
-		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
+		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2f);
 		platforms.push_back(platform(platformSprite, Platform::BOOSTER));
 	}
 
@@ -138,7 +136,7 @@ namespace WappieJump
 
 		int randomNumber = rand() % 11 + 1;
 
-		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
+		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2f);
 		platforms.push_back(platform(platformSprite, Platform::MOVING, randomNumber % 2 == 0 ? Platform::RIGHT : Platform::LEFT));
 	}
 
@@ -146,7 +144,7 @@ namespace WappieJump
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Breaking Platform"));
 
-		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
+		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2f);
 		platforms.push_back(platform(platformSprite, Platform::BREAKING));
 	}
 	void Platform::AddShadowPlatform(float randomWidth, float prevTop)
@@ -154,7 +152,7 @@ namespace WappieJump
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
 		platformSprite.setColor(sf::Color(0, 0, 0, 100));
-		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
+		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2f);
 		platforms.push_back(platform(platformSprite, Platform::SHADOW));
 	}
 
@@ -162,7 +160,7 @@ namespace WappieJump
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2);
+		platformSprite.setPosition(randomWidth, prevTop - _platformHeight * 1.2f);
 		platformSprite.setColor(sf::Color(0, 0, 0, 0));
 		platforms.push_back(platform(platformSprite, Platform::INVISIBLE));
 	}
