@@ -24,11 +24,14 @@ namespace WappieJump
 		_data->assets.LoadTexture("Game Title", GAME_TITLE_FILEPATH);
 		_data->assets.LoadTexture("Play Button", PLAY_BUTTON_FILEPATH);
 		_data->assets.LoadTexture("Play Button Down", PLAY_BUTTON_DOWN_FILEPATH);
+		_data->assets.LoadTexture("Settings Button", SETTINGS_BUTTON_FILEPATH);
 
 		_gameQuote.setFont(_data->assets.GetFont("Font"));
 		_background.setTexture(_data->assets.GetTexture("Main Menu Background"));
 		_title.setTexture(_data->assets.GetTexture("Game Title"));
 		_playButton.setTexture(_data->assets.GetTexture("Play Button"));
+
+		_settingsButton.setTexture(_data->assets.GetTexture("Settings Button"));
 
 		_gameQuote.setString(GAME_QUOTE_TEXT);
 		_gameQuote.setCharacterSize(30);
@@ -37,6 +40,9 @@ namespace WappieJump
 
 		_title.setPosition(AlignObjectCenterX(_title), 200);
 		_playButton.setPosition(AlignObjectCenterX(_playButton), AlignObjectCenterY(_playButton));
+
+		_settingsButton.setScale(0.2f, 0.2f);
+		_settingsButton.setPosition(SCREEN_WIDTH * 0.87, SCREEN_HEIGHT * 0.9);
 	}
 
 	void MainMenuState::HandleInput()
@@ -57,6 +63,14 @@ namespace WappieJump
 				// Switch To Main Menu
 				_data->machine.AddState(StateRef(new CharacterSelectionState(_data)), true);
 			}
+
+			if (_data->input.IsSpriteClicked(_settingsButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			{
+				_playButton.setTexture(_data->assets.GetTexture("Play Button Down"));
+
+				// Switch To Main Menu
+				_data->machine.AddState(StateRef(new SettingState(_data)), true);
+			}
 		}
 	}
 
@@ -72,6 +86,7 @@ namespace WappieJump
 		_data->window.draw(_title);
 		_data->window.draw(_playButton);
 		_data->window.draw(_gameQuote);
+		_data->window.draw(_settingsButton);
 
 		_data->window.display();
 	}

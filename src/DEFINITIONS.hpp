@@ -31,6 +31,7 @@
 #define CHARACTER_SELECTION_TITLE_FILEPATH      "Resources/res/title.png"
 #define PLAY_BUTTON_FILEPATH                    "Resources/res/play.png"
 #define PLAY_BUTTON_DOWN_FILEPATH               "Resources/res/play_down.png"
+#define SETTINGS_BUTTON_FILEPATH                "Resources/res/settingsButton.png"
 
 //Game Over Screen
 #define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/newGame.png"
@@ -62,7 +63,7 @@
 
 #define DIFFICULTY_TEXT                         "CHANGE DIFFICULTY LEVEL:"
 #define DIFFICULTY_EASY_TEXT                    "EASY"
-#define DIFFICULTY_MEDIUM_TEXT                  "normal"
+#define DIFFICULTY_MEDIUM_TEXT                  "NORMAL"
 #define DIFFICULTY_HARD_TEXT                    "HARD"
 
 #define MUTE_SOUND_BUTTON_FILEPATH              "Resources/res/soundButtonMute.png"

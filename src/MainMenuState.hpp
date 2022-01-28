@@ -8,7 +8,7 @@
 #include "Game.hpp"
 #include "MainMenuState.hpp"
 #include "CharacterSelectionState.hpp"
-
+#include "SettingState.hpp"
 #include "DEFINITIONS.hpp"
 
 
@@ -35,5 +35,6 @@ namespace WappieJump
 		sf::Sprite _title;
 		sf::Sprite _playButton;
 		sf::Sprite _playButtonDown;
+		sf::Sprite _settingsButton;
 	};
 }
