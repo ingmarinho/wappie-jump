@@ -14,6 +14,9 @@ namespace WappieJump
 	{
 	public:
 		Accelerometer(GameDataRef data);
+
+        void SetSpeed();
+        void Draw();
 		
 	private:
 		GameDataRef _data;
