@@ -1,10 +1,12 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 #include "State.hpp"
 #include "Game.hpp"
 #include "Score.hpp"
 #include "MainMenuState.hpp"
+#include "Alignment.hpp"
 
 namespace WappieJump
 {
@@ -14,8 +16,6 @@ namespace WappieJump
 		GameOverState(GameDataRef data);
 		~GameOverState();
 
-        int AlignObjectCenterX(sf::Sprite object);
-        int AlignObjectCenterY(sf::Sprite object);
 		void Init();
 
 		void HandleInput();
@@ -33,6 +33,8 @@ namespace WappieJump
 		sf::Text _scoreText;
 		sf::Text _gameOverText;
 		sf::Text _score;
+
+		Alignment *alignment;
 
 	};
 }

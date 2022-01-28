@@ -8,21 +8,13 @@ namespace WappieJump
 {
 	GameOverState::GameOverState(GameDataRef data) : _data(data)
 	{
+		alignment = new Alignment(_data);
 	}
 
 	GameOverState::~GameOverState()
 	{
+		delete alignment;
 	}
-
-    int GameOverState::AlignObjectCenterX(sf::Sprite object)
-    {
-        return SCREEN_WIDTH / 2 - object.getGlobalBounds().width / 2;
-    }
-
-    int GameOverState::AlignObjectCenterY(sf::Sprite object)
-    {
-        return SCREEN_HEIGHT / 2 - object.getGlobalBounds().height / 2;
-    }
 
 	void GameOverState::Init()
 	{	
@@ -80,10 +72,10 @@ namespace WappieJump
         _scoreSprite.setPosition(SCREEN_WIDTH * 0.05f, SCREEN_HEIGHT * 0.2);
 
         _playAgainButton.setScale(0.5f, 0.5f);
-        _playAgainButton.setPosition(AlignObjectCenterX(_playAgainButton), AlignObjectCenterY(_playAgainButton) + 200);
+        _playAgainButton.setPosition(alignment->AlignObjectCenterX(_playAgainButton), alignment->AlignObjectCenterY(_playAgainButton) + 200);
 
         _mainMenuButton.setScale(0.5f, 0.5f);
-        _mainMenuButton.setPosition(AlignObjectCenterX(_mainMenuButton), AlignObjectCenterY(_mainMenuButton) + 400);
+        _mainMenuButton.setPosition(alignment->AlignObjectCenterX(_mainMenuButton), alignment->AlignObjectCenterY(_mainMenuButton) + 400);
 
 	}
 
