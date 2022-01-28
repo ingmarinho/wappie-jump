@@ -35,14 +35,9 @@ namespace WappieJump
         sf::Text _medium;
         sf::Text _hard;
 
-        std::map<sf::Text*, std::array<> > _sounds;
-		_sounds[&_lowSound] = 25;
-		_sounds[&_mediumSound] = 45;
-		_sounds[&_highSound] = 75;
-     
-        std::map<sf::Text*, int> _difficulties
-        _difficulties[&_easy] = 100;
-        _difficulties[&_medium] = 50;
-        _difficulties[&_hard]   = 25;    
+		sf::Text *_previouslyClicked = nullptr;
+
+        std::map<sf::Text*, int> _sounds;
+        std::map<sf::Text*, int> _difficulties;
 	};
 }

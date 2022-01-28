@@ -8,6 +8,13 @@ namespace WappieJump
 {
     SettingState::SettingState(GameDataRef data) : _data(data)
     {
+        _sounds[&_lowSound] = 25;
+		_sounds[&_mediumSound] = 45;
+		_sounds[&_highSound] = 75;
+
+        _difficulties[&_easy] = 100;
+        _difficulties[&_medium] = 50;
+        _difficulties[&_hard]   = 25;
     }
 
     SettingState::~SettingState()
@@ -124,15 +131,13 @@ namespace WappieJump
             // maar ook de vorige geclicked text zwart maken
             // we kunnen dat doen door een extra variable toe te voegen
             
-            for (auto const& item : _sounds)
+            for (const auto &item : _sounds)
             {
-
-                if (_data->input.IsTextClicked(item.first, sf::Mouse::Left, _data->window))
+                if (_data->input.IsTextClicked(*item.first, sf::Mouse::Left, _data->window))
                 {
             	    item.first->setFillColor(sf::Color::Green);
-                  
-                    // vorigeGeclickedText zwart maken
-                    // vorigeGeclickedText = item.first
+                    if (_previouslyClicked != nullptr) _previouslyClicked->setFillColor(sf::Color::Black);
+                    _previouslyClicked = item.first;
                 }
             }
             // love you Ian
