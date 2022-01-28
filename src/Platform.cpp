@@ -45,8 +45,8 @@ namespace WappieJump
 		_consecutiveInvisiblePlatforms = 0;
 
 		int randomNumber = rand() % 1001 + 1;
-		int defaultPlatformProbability = 3000000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 15000) + 500;
-		int boosterPlatformProbability = defaultPlatformProbability + 3000000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 35000) + 10;
+		int defaultPlatformProbability = 300000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 1500) + 490;
+		int boosterPlatformProbability = defaultPlatformProbability + 300000 / (0.1f / DIFFICULTY_LEVEL * _deletedPlatforms + 3500) + 10;
 
 		if (randomNumber < defaultPlatformProbability)
 			return Platform::DEFAULT;
@@ -60,7 +60,7 @@ namespace WappieJump
 		if (_consecutiveInvisiblePlatforms < 3)
 		{
 			int randomNumber = rand() % 101 + 1;
-			int invisiblePlatformProbability = (90 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 5);
+			int invisiblePlatformProbability = (80 - log2(1 + _deletedPlatforms / DIFFICULTY_LEVEL) * 4);
 
 			if (randomNumber > invisiblePlatformProbability && randomNumber % 2 == 0)
 			{
