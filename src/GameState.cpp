@@ -66,7 +66,7 @@ namespace WappieJump
 	{
 		player->Update();
 
-		accelerometer->SetSpeed(player->GetPlayerVelocity().x,  player->GetPlayerVelocity().y + -_platformVelocityY);
+		accelerometer->SetSpeed(player->GetPlayerVelocity().x, player->GetPlayerVelocity().y - _platformVelocityY);
 		platform->SpawnPlatform();
 		platform->MoveOtherPlatforms();
 

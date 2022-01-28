@@ -24,6 +24,8 @@ namespace WappieJump
 		GameDataRef _data;
 		sf::Sprite _speedometer;
 		sf::RectangleShape _indicator;
+		float _indicatorY;
+		float _indicatorX;
         // sf::Text _speedText;
 	};
 }
