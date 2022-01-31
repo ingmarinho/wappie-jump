@@ -14,7 +14,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -30,24 +29,11 @@
 *.exe
 *.out
 *.app
-<<<<<<< Updated upstream
 .idea/dataSources.local.xml
 .idea/modules.xml
 .idea/vcs.xml
 .idea/wappie-jump.iml
 .idea/workspace.xml
-=======
-.idea/workspace.xml
-.idea/wappie-jump.iml
-.idea/vcs.xml
-.idea/modules.xml
-src/_cpp_flags
-src/_linker_flags
-src/_linker_libs
-src/_cpp_flags
-src/_linker_flags
-src/_linker_libs
->>>>>>> Stashed changes
 src/_linker_libs
 src/_linker_libs
 src/_cpp_flags
