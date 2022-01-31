@@ -77,6 +77,8 @@
 
 #define FONT_FILEPATH                           "Resources/fonts/normal.otf"
 
+#define HIT_FILEPATH                            "Resources/audio/Hit.wav"
+
 
 #define PLATFORM_MOVEMENT_SPEED         5.0f      // for moving platforms
 #define BREAKING_PLATFORM_FALL_SPEED    5.0f 

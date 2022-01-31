@@ -25,7 +25,10 @@ namespace WappieJump
 		_data->assets.LoadTexture("Score", SCORE_FILEPATH);
 		_data->assets.LoadTexture("Highscore", HIGH_SCORE_FILEPATH);
 
+		_data->assets.LoadSound("Hit", HIT_FILEPATH);
 
+		_hitSound.setBuffer(_data->assets.GetSound("Hit"));
+		
 		_background.setTexture(_data->assets.GetTexture("Game Over Background"));
 
 		_playAgainButton.setTexture(_data->assets.GetTexture("Play again Button"));
@@ -96,6 +99,7 @@ namespace WappieJump
 			if (_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, _data->window))
 			{
 				_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+				
 			}
 		}
 	}
@@ -103,6 +107,7 @@ namespace WappieJump
 	void GameOverState::Update()
 	{
 	}
+
 
 	void GameOverState::Draw()
 	{
