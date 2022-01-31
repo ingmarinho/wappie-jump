@@ -19,6 +19,7 @@ namespace WappieJump
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 
 		_data->assets.LoadTexture("Speedometer", SPEEDOMETER_FILEPATH);
+		_data->assets.LoadTexture("Vaccine Powerup", VACCINE_POWERUP_FILEPATH);
 
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
@@ -27,12 +28,12 @@ namespace WappieJump
 
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
 
+		accelerometer = new Accelerometer(_data);
 		collision = new Collision(_data);
 		platform = new Platform(_data);
 		player = new Player(_data);
 		score = new Score(_data);
-		score = new Score(_data);
-		accelerometer = new Accelerometer(_data);
+		powerup = new Powerup(_data);
 
 		_background.setTexture(_data->assets.GetTexture("Game Background"));
 	}
@@ -170,7 +171,6 @@ namespace WappieJump
 				}
 			}
 		}
-
 		// bottom window jumping
 		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
 

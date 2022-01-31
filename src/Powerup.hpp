@@ -18,5 +18,7 @@ namespace WappieJump
 
 	private:
 		GameDataRef _data;
+
+		sf::Sprite _powerup;
 	};
 }

@@ -25,7 +25,9 @@
 #define GAME_BACKGROUND_FILEPATH                "Resources/res/space.png"
 #define GAME_OVER_BACKGROUND_FILEPATH           "Resources/res/mark.png"
 
+
 #define CORONA_FILEPATH                         "Resources/res/corona.png"
+#define VACCINE_POWERUP_FILEPATH                "Resources/res/vaccine.png"
 
 #define GAME_TITLE_FILEPATH                     "Resources/res/title.png"
 #define CHARACTER_SELECTION_TITLE_FILEPATH      "Resources/res/title.png"
@@ -69,7 +71,6 @@
 #define MUTE_SOUND_BUTTON_FILEPATH              "Resources/res/soundButtonMute.png"
 #define SOUND_BUTTON_FILEPATH                   "Resources/res/soundButton.png"
 #define DIFFICULTY_BUTTON_FILEPATH              "Resources/res/vaccineFlipped.png"
-
 
 
 #define ARROW_LEFT_FILEPATH                     "Resources/res/Arrow_left_2.png"
