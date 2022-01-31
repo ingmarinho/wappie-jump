@@ -30,11 +30,13 @@ namespace WappieJump
 
 	void AssetManager::LoadSound(std::string name, std::string fileName)
 	{
-		sf::SoundBuffer sound;
+		sf::SoundBuffer soundBuffer;
+		sf::Sound sound; 
 
-		if (sound.loadFromFile(fileName))
+		if (soundBuffer.loadFromFile(fileName))
 		{
-			_soundBuffers[name] = sound;
+			sound.setBuffer(soundBuffer);
+			_sounds[name] = sound;
 		}
 	}
 
@@ -43,11 +45,11 @@ namespace WappieJump
 		return _fonts.at(name);
 	}
 
-	sf::SoundBuffer &AssetManager::GetSound(std::string name)
+	sf::Sound &AssetManager::GetSound(std::string name)
 	{
 		// sf::Sound sound;
 		// sound.setBuffer(_soundBuffers.at(name));
 	
-		return _soundBuffers.at(name);
+		return _sounds.at(name);
 	}
 }

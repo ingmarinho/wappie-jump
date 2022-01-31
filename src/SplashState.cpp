@@ -19,9 +19,11 @@ namespace WappieJump
 		_background.setTexture(_data->assets.GetTexture("Splash State Background"));
 		_background.setPosition((SCREEN_WIDTH / 2) - (_background.getGlobalBounds().width / 2), (SCREEN_HEIGHT / 2) - (_background.getGlobalBounds().height / 2));
 
-		_data->assets.LoadSound("Hit", HIT_FILEPATH);
-		// _data->assets.LoadSound("Hit", HIT_FILEPATH);
-		// _data->assets.LoadSound("Hit", HIT_FILEPATH);
+		_data->assets.LoadSound("Hit", HIT_SOUND_FILEPATH);
+		_data->assets.LoadSound("Jump", JUMP_SOUND_FILEPATH);
+		_data->assets.LoadSound("Fall", FALL_SOUND_FILEPATH );
+
+		_data->assets.GetSound("Fall").setVolume();
 
 	}
 

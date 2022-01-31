@@ -193,6 +193,7 @@ namespace WappieJump
 
     void SettingState::Update()
     {
+        
     }
 
     void SettingState::Draw()

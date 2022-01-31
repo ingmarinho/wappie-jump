@@ -19,11 +19,11 @@ namespace WappieJump
 		sf::Font &GetFont(std::string name);
 
 		void LoadSound(std::string name, std::string fileName);
-		sf::SoundBuffer &GetSound(std::string name);
+		sf::Sound &GetSound(std::string name);
 
 	private:
 		std::map<std::string, sf::Texture> _textures;
-		std::map<std::string, sf::SoundBuffer> _soundBuffers;
+		std::map<std::string, sf::Sound> _sounds;
 		std::map<std::string, sf::Font> _fonts;
 	};
 }
