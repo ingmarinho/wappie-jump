@@ -13,6 +13,7 @@
 #include "Score.hpp"
 #include "GameOverState.hpp"
 #include "Accelerometer.hpp"
+#include "Powerup.hpp"
 
 #include "DEFINITIONS.hpp"
 
@@ -35,11 +36,12 @@ namespace WappieJump
 
 		sf::Sprite _background;
 
+		Accelerometer *accelerometer;
 		Collision *collision;
 		Platform *platform;
 		Player *player;
 		Score *score;
-		Accelerometer *accelerometer;
+		Powerup *powerup;
 		
 		std::vector<Platform::platform> *_platforms;
 		sf::Sprite *_player;
