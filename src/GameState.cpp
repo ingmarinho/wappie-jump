@@ -28,6 +28,8 @@ namespace WappieJump
 
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
 
+		_Sound.setBuffer(_data->assets.GetSound("Hit"));
+
 		accelerometer = new Accelerometer(_data);
 		collision = new Collision(_data);
 		platform = new Platform(_data);
@@ -154,9 +156,10 @@ namespace WappieJump
 						velocityToReachHeightLimit = playerDistanceToHeightLimit > 0 ? std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit)) : 0.0f;
 						remainingDistance = potentialTravelDistanceBoost - playerDistanceToHeightLimit;
 						remainingVelocity = remainingDistance > 0 ? std::sqrt(2.0f * (GRAVITY * remainingDistance)) : 0.0f;
-
+						
 						_correctedJump = true;
 						_platformVelocityY = remainingVelocity;
+						_Sound.play();
 						player->SetJumpVelocity(-velocityToReachHeightLimit);
 						player->SetPlayerMovement(Player::JUMPING);
 						break;

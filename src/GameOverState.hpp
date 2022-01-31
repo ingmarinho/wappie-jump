@@ -8,6 +8,7 @@
 #include "MainMenuState.hpp"
 #include "Alignment.hpp"
 
+
 namespace WappieJump
 {
 	class GameOverState : public State

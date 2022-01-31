@@ -35,6 +35,7 @@ namespace WappieJump
 		GameDataRef _data;
 
 		sf::Sprite _background;
+		sf::Sound _Sound; 
 
 		Accelerometer *accelerometer;
 		Collision *collision;

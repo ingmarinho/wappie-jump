@@ -21,7 +21,6 @@ namespace WappieJump
 		GameDataRef _data;
 
 		sf::Clock _clock;
-
 		sf::Sprite _background;
 	};
 }
