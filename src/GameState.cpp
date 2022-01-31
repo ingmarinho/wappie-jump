@@ -107,7 +107,9 @@ namespace WappieJump
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
+
 					_jumpSound.play();
+
 					playerDistanceToHeightLimit = _player->getPosition().y - _data->window.getSize().y * 0.3f;
 
 					switch (platform.platformCategory)

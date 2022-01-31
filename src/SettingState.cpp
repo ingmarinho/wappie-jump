@@ -165,11 +165,13 @@ namespace WappieJump
             {
                 if (mutedTexture)
                 {
+                    setVolume(SettingState::MEDIUM);
                     _soundButton.setTexture(_data->assets.GetTexture("Sound Button"));
                     mutedTexture = false;
                 }
                 else
                 {
+                    setVolume(SettingState::MUTED);
                     _soundButton.setTexture(_data->assets.GetTexture("Mute Sound Button"));
                     mutedTexture = true;
                 }

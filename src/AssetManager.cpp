@@ -28,14 +28,20 @@ namespace WappieJump
 		}
 	}
 
+	// void AssetManager::addBuffer(sf::SoundBuffer soundBuffer)
+	// {
+	// 	_soundBuffers.push_back(soundBuffer);
+	// }
+
 	void AssetManager::LoadSound(std::string name, std::string fileName)
 	{
 		sf::SoundBuffer soundBuffer;
-		sf::Sound sound; 
+		sf::Sound sound;
 
 		if (soundBuffer.loadFromFile(fileName))
 		{
-			sound.setBuffer(soundBuffer);
+			_soundBuffers[name] = soundBuffer;
+			sound.setBuffer(_soundBuffers.at(name));
 			_sounds[name] = sound;
 		}
 	}
