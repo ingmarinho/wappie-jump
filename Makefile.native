@@ -12,7 +12,7 @@
 TARGET            := native
 
 # enable exeptions (disabled by default by bmptk)
-PROJECT_CPP_FLAGS += -fexceptions
+PROJECT_CPP_FLAGS += -fexceptions 
 
 # defer to the Makefile.shared
 include           $(RELATIVE)/Makefile.link
