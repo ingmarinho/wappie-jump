@@ -2,7 +2,7 @@
 
 namespace WappieJump
 {
-	GameState::GameState(GameDataRef data) : _data(data)
+	GameState::GameState(GameDataRef data) : _data(data), _jumpSound(_data->assets.GetSound("Jump"))
 	{
 	}
 	
@@ -27,8 +27,6 @@ namespace WappieJump
 		_data->assets.LoadTexture("Breaking Platform", BREAKING_PLATFORM_FILEPATH);
 
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
-
-		_jumpSound.setBuffer(_data->assets.GetSound("Jump"));
 
 		accelerometer = new Accelerometer(_data);
 		collision = new Collision(_data);
@@ -109,6 +107,7 @@ namespace WappieJump
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
+					_jumpSound.play();
 					playerDistanceToHeightLimit = _player->getPosition().y - _data->window.getSize().y * 0.3f;
 
 					switch (platform.platformCategory)
@@ -125,7 +124,6 @@ namespace WappieJump
 							velocityToReachHeightLimit = playerDistanceToHeightLimit > 0 ? std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit)) : 0.0f;
 							remainingDistance = potentialTravelDistance - playerDistanceToHeightLimit;
 							remainingVelocity = remainingDistance > 0.0f ? std::sqrt(2.0f * (GRAVITY * remainingDistance)) : 0.0f;
-							_jumpSound.play();
 							_correctedJump = true;
 							_platformVelocityY = remainingVelocity;
 							player->SetJumpVelocity(-velocityToReachHeightLimit);

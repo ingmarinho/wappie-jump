@@ -39,3 +39,4 @@ src/_linker_libs
 src/_cpp_flags
 Makefile.native
 *.native
+src/_linker_libs

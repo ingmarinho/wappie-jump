@@ -35,7 +35,7 @@ namespace WappieJump
 		sf::Text _gameOverText;
 		sf::Text _score;
 		
-		sf::Sound _hitSound; 
+		sf::Sound &_hitSound; 
 
 		Alignment *alignment;
 

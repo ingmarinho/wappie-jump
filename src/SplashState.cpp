@@ -23,8 +23,6 @@ namespace WappieJump
 		_data->assets.LoadSound("Jump", JUMP_SOUND_FILEPATH);
 		_data->assets.LoadSound("Fall", FALL_SOUND_FILEPATH );
 
-		_data->assets.GetSound("Fall").setVolume();
-
 	}
 
 	void SplashState::HandleInput()

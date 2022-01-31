@@ -6,7 +6,7 @@
 
 namespace WappieJump
 {
-	GameOverState::GameOverState(GameDataRef data) : _data(data)
+	GameOverState::GameOverState(GameDataRef data) : _data(data), _hitSound(_data->assets.GetSound("Hit"))
 	{
 		alignment = new Alignment(_data);
 	}
@@ -25,9 +25,6 @@ namespace WappieJump
 		_data->assets.LoadTexture("Main menu Button", MAIN_MENU_BUTTON_FILEPATH);
 		_data->assets.LoadTexture("Score", SCORE_FILEPATH);
 		_data->assets.LoadTexture("Highscore", HIGH_SCORE_FILEPATH);
-
-	
-		_hitSound.setBuffer(_data->assets.GetSound("Hit"));
 		
 		_background.setTexture(_data->assets.GetTexture("Game Over Background"));
 
