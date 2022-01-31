@@ -11,11 +11,27 @@ namespace WappieJump
 {
 	class SettingState : public State
 	{
+		enum volume
+		{
+			MUTED,
+			LOW,
+			MEDIUM,
+			HIGH
+		};
+		enum difficulty
+		{
+			EASY,
+			NORMAL,
+			HARD
+		};
+
+
 	public:
 		SettingState(GameDataRef data);
 		~SettingState();
 
 		void Init();
+		void setVolume(SettingState::volume volume);
 		void HandleInput();
 		void Update();
 		void Draw();
@@ -44,10 +60,15 @@ namespace WappieJump
 		sf::Text _hard;
 
 
-		sf::Text *_previouslyClicked1 = nullptr;		sf::Text *_previouslyClicked = nullptr;
+		std::map<std::string, sf::Sound> &_sounds;
 
-		std::map<sf::Text *, int> _sounds;
-		std::map<sf::Text *, int> _difficulties;
+		sf::Text *_previouslyClickedDifficulty = nullptr;		
+		sf::Text *_previouslyClickedVolume = nullptr;
+
+		std::map<sf::Text *, volume> _volumeOptions;
+		std::map<sf::Text *, difficulty> _difficultyOptions;
+
+		volume _currentVolume = MEDIUM;
 
 		bool mutedTexture = false;
 		

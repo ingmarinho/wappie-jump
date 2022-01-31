@@ -21,6 +21,8 @@ namespace WappieJump
 		void LoadSound(std::string name, std::string fileName);
 		sf::Sound &GetSound(std::string name);
 
+		std::map<std::string, sf::Sound> &GetSoundMap();
+
 	private:
 		std::map<std::string, sf::Texture> _textures;
 		std::map<std::string, sf::Sound> _sounds;

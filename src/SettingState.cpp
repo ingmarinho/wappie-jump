@@ -6,15 +6,15 @@
 
 namespace WappieJump
 {
-    SettingState::SettingState(GameDataRef data) : _data(data)
+    SettingState::SettingState(GameDataRef data) : _data(data), _sounds(_data->assets.GetSoundMap())
     {
-        _sounds[&_lowSound] = 25;
-        _sounds[&_mediumSound] = 45;
-        _sounds[&_highSound] = 75;
+        _volumeOptions[&_lowSound] = SettingState::LOW;
+        _volumeOptions[&_mediumSound] = SettingState::MEDIUM;
+        _volumeOptions[&_highSound] = SettingState::HIGH;
 
-        _difficulties[&_easy] = 100;
-        _difficulties[&_medium] = 25;
-        _difficulties[&_hard] = 4;
+        _difficultyOptions[&_easy] = SettingState::EASY;
+        _difficultyOptions[&_medium] = SettingState::NORMAL;
+        _difficultyOptions[&_hard] = SettingState::HARD;
     }
 
     SettingState::~SettingState()
@@ -37,7 +37,7 @@ namespace WappieJump
     {
 
         _data->assets.LoadFont("Font", FONT_FILEPATH);
-        _data->assets.LoadTexture("Setting Background", CHARACTER_SELECTION_BACKGROUND_FILEPATH );
+        _data->assets.LoadTexture("Setting Background", CHARACTER_SELECTION_BACKGROUND_FILEPATH);
         _data->assets.LoadTexture("Main menu Button", MAIN_MENU_BUTTON_FILEPATH);
         _data->assets.LoadTexture("Sound Button", SOUND_BUTTON_FILEPATH);
         _data->assets.LoadTexture("Mute Sound Button", MUTE_SOUND_BUTTON_FILEPATH);
@@ -114,6 +114,37 @@ namespace WappieJump
         _hard.setPosition(SCREEN_WIDTH * 0.63, SCREEN_HEIGHT * 0.6);
     }
 
+    void SettingState::setVolume(SettingState::volume volume)
+    {
+        switch (volume)
+        {
+        case SettingState::LOW:
+            for (auto &sound : _sounds)
+            {
+                sound.second.setVolume(20.0f);
+            }
+            break;
+        case SettingState::MEDIUM:
+            for (auto &sound : _sounds)
+            {
+                sound.second.setVolume(50.0f);
+            }
+            break;
+        case SettingState::HIGH:
+            for (auto &sound : _sounds)
+            {
+                sound.second.setVolume(80.0f);
+            }
+            break;
+        case SettingState::MUTED:
+            for (auto &sound : _sounds)
+            {
+                sound.second.setVolume(0.0f);
+            }
+            break;
+        }
+    }
+
     void SettingState::HandleInput()
     {
         sf::Event event;
@@ -150,41 +181,42 @@ namespace WappieJump
 
             if (!mutedTexture)
             {
-                for (const auto &item : _sounds)
+                for (const auto &item : _volumeOptions)
                 {
                     _data->soundVolume = item.second;
 
                     if (_data->input.IsTextClicked(*item.first, sf::Mouse::Left, _data->window))
                     {
-                        if (item.first != _previouslyClicked)
+                        if (item.first != _previouslyClickedVolume)
                         {
                             item.first->setFillColor(sf::Color::Red);
-                            if (_previouslyClicked != nullptr)
-                                _previouslyClicked->setFillColor(sf::Color::Green);
-                            _previouslyClicked = item.first;
+                            if (_previouslyClickedVolume != nullptr)
+                                _previouslyClickedVolume->setFillColor(sf::Color::Green);
+                            setVolume(item.second);
+                            _previouslyClickedVolume = item.first;
                         }
                     }
                 }
             }
-            else if( _previouslyClicked != nullptr)
+            else if (_previouslyClickedVolume != nullptr)
             {
-                _previouslyClicked->setFillColor(sf::Color::Green);
-                _previouslyClicked = nullptr;
+                _previouslyClickedVolume->setFillColor(sf::Color::Green);
+                _previouslyClickedVolume = nullptr;
             }
 
-            for (const auto &item : _difficulties)
+            for (const auto &item : _difficultyOptions)
             {
                 _data->difficultyLevel = item.second;
 
                 if (_data->input.IsTextClicked(*item.first, sf::Mouse::Left, _data->window))
                 {
-                    if (item.first != _previouslyClicked1)
+                    if (item.first != _previouslyClickedDifficulty)
                     {
                         item.first->setFillColor(sf::Color::Red);
 
-                        if (_previouslyClicked1 != nullptr)
-                            _previouslyClicked1->setFillColor(sf::Color::Green);
-                        _previouslyClicked1 = item.first;
+                        if (_previouslyClickedDifficulty != nullptr)
+                            _previouslyClickedDifficulty->setFillColor(sf::Color::Green);
+                        _previouslyClickedDifficulty = item.first;
                     }
                 }
             }
@@ -193,7 +225,8 @@ namespace WappieJump
 
     void SettingState::Update()
     {
-        
+
+        // switch ()
     }
 
     void SettingState::Draw()

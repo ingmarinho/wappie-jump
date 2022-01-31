@@ -47,9 +47,11 @@ namespace WappieJump
 
 	sf::Sound &AssetManager::GetSound(std::string name)
 	{
-		// sf::Sound sound;
-		// sound.setBuffer(_soundBuffers.at(name));
-	
 		return _sounds.at(name);
+	}
+
+	std::map<std::string, sf::Sound> &AssetManager::GetSoundMap()
+	{
+		return _sounds;
 	}
 }
