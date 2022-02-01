@@ -19,7 +19,7 @@ namespace WappieJump
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 
 		_data->assets.LoadTexture("Speedometer", SPEEDOMETER_FILEPATH);
-		_data->assets.LoadTexture("Vaccine Powerup", VACCINE_POWERUP_FILEPATH);
+		_data->assets.LoadTexture("Vaccine Powerdown", VACCINE_POWERUP_FILEPATH);
 
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
@@ -77,7 +77,7 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
 
-		if (_player->getPosition().x - _player->getGlobalBounds().width > _data->window.getSize().x) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
+		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
 		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);
 
 		if (_correctedJump && player->hasReachedMaxDistance())
