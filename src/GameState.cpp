@@ -21,6 +21,8 @@ namespace WappieJump
 		_data->assets.LoadTexture("Speedometer", SPEEDOMETER_FILEPATH);
 		_data->assets.LoadTexture("Vaccine Powerdown", VACCINE_POWERUP_FILEPATH);
 
+		_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON_FILEPATH); 
+
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Moving Platform", MOVING_PLATFORM_FILEPATH);
@@ -36,6 +38,9 @@ namespace WappieJump
 		powerup = new Powerup(_data);
 
 		_background.setTexture(_data->assets.GetTexture("Game Background"));
+		_pauseButton.setTexture(_data->assets.GetTexture("Pause Button"));
+		_pauseButton.setScale(0.05f, 0.05f);
+		_pauseButton.setPosition(SCREEN_WIDTH * 0.88f, SCREEN_HEIGHT * 0.02f);
 	}
 
 	void GameState::HandleInput()
@@ -48,7 +53,13 @@ namespace WappieJump
 			{
 				_data->window.close();
 			}
+			if (_data->input.IsSpriteClicked(_pauseButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			{
+                _data->machine.AddState(StateRef(new PauseState(_data)), false);
+				
+			}
 		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			player->SetPlayerAngle(Player::LEFT);
@@ -60,7 +71,8 @@ namespace WappieJump
 			player->MoveRight();
 		}
 		else player->Decelleration();
-		
+
+	
 	}
 
 	void GameState::Update()
@@ -186,6 +198,8 @@ namespace WappieJump
 
 		_data->window.draw(_background);
 
+		_data->window.draw(_pauseButton);
+
 		platform->DrawPlatforms();
 
 		player->Draw();
@@ -193,7 +207,7 @@ namespace WappieJump
 		score->Draw();
 
 		accelerometer->Draw();
-
+	
 		_data->window.display();
 	}
 }

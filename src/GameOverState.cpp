@@ -79,14 +79,14 @@ namespace WappieJump
 		_score.setString(std::to_string(score));
 		_score.setCharacterSize(50);
 		_score.setFillColor(sf::Color::White);
-		_score.setOrigin(sf::Vector2f(_score.getGlobalBounds().width / 2, _score.getGlobalBounds().height / 2));
-		_score.setPosition(SCREEN_WIDTH * 0.7f, SCREEN_HEIGHT * 0.315f);
+		
+		_score.setPosition(SCREEN_WIDTH * 0.65f, SCREEN_HEIGHT * 0.3f);
 
 		_highScore.setString(std::to_string(highScore));
 		_highScore.setCharacterSize(50);
 		_highScore.setFillColor(sf::Color::White);
-		_highScore.setOrigin(sf::Vector2f(_highScore.getGlobalBounds().width / 2, _highScore.getGlobalBounds().height / 2));
-		_highScore.setPosition(SCREEN_WIDTH * 0.7f, SCREEN_HEIGHT * 0.415f);
+		
+		_highScore.setPosition(SCREEN_WIDTH * 0.65f, SCREEN_HEIGHT * 0.4f);
 
 
         _playAgainButton.setScale(0.5f, 0.5f);

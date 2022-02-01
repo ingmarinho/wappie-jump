@@ -7,6 +7,7 @@
 
 #include "State.hpp"
 #include "Game.hpp"
+#include "PauseState.hpp"
 #include "Collision.hpp"
 #include "Platform.hpp"
 #include "Player.hpp"
@@ -35,6 +36,8 @@ namespace WappieJump
 		GameDataRef _data;
 
 		sf::Sprite _background;
+		sf::Sprite _pauseButton;
+	
 		sf::Sound &_jumpSound;
 
 		Accelerometer *accelerometer;

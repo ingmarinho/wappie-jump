@@ -40,7 +40,11 @@
 #define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/newGame.png"
 #define MAIN_MENU_BUTTON_FILEPATH               "Resources/res/return.png"
 
-//
+// Pause Screen
+#define PAUSE_BACKGROUND_FILEPATH               "Resources/res/space.png"
+#define RESUME_BUTTON_FILEPATH                  "Resources/res/play.png"
+#define HOME_BUTTON_FILEPATH                    "Resources/res/main_menu.png"
+#define PAUSE_BUTTON_FILEPATH                   "Resources/res/PauseButton.png"
 
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"
 #define BOOSTER_PLATFORM_FILEPATH               "Resources/res/platform_green.png"
