@@ -38,7 +38,7 @@ namespace WappieJump
 
         _data->assets.LoadFont("Font", FONT_FILEPATH);
         _data->assets.LoadTexture("Setting Background", CHARACTER_SELECTION_BACKGROUND_FILEPATH);
-        _data->assets.LoadTexture("Main menu Button", MAIN_MENU_BUTTON_FILEPATH);
+        _data->assets.LoadTexture("Main menu Button", SETTINGS_RETURN_BUTTON_FILEPATH);
         _data->assets.LoadTexture("Sound Button", SOUND_BUTTON_FILEPATH);
         _data->assets.LoadTexture("Mute Sound Button", MUTE_SOUND_BUTTON_FILEPATH);
         _data->assets.LoadTexture("Difficulty button", DIFFICULTY_BUTTON_FILEPATH);
