@@ -20,7 +20,6 @@ namespace WappieJump
 
 	void GameOverState::Init()
 	{	
-
 		ReadHighScoreFile();
 		WriteHighScoreFile();
 
@@ -91,7 +90,7 @@ namespace WappieJump
 		}
 		readFile.close( );
 	}
-	
+
 	void GameOverState::WriteHighScoreFile()
 	{
 		std::ofstream writeFile( "Resources/db/Highscore.txt" );

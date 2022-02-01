@@ -46,6 +46,7 @@ namespace WappieJump
 		category GeneratePlatformCategory();
 		category GenerateBounceablePlatformCategory();
 		float CalculateRandomWidth(float x);
+		bool isPlatformInvisible();
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void AddInvisiblePlatform(float randomWidth, float prevTop);
@@ -54,7 +55,6 @@ namespace WappieJump
 		void AddBoosterPlatform(float randomWidth, float prevTop);
 		void AddMovingPlatform(float randomWidth, float prevTop);
 		void AddDefaultPlatform(float randomWidth, float prevTop);
-		// void MovePlatformsX();
 		void MoveOtherPlatforms();
 		void MovePlatformsY(float velocity);
 		void DrawPlatforms();
@@ -63,6 +63,7 @@ namespace WappieJump
 		GameDataRef _data;
 		std::vector<platform> platforms;
 		
+		bool _invisiblePlatform = false;
 		float _platformWidth;
 		float _platformHeight;
 		long long int _deletedPlatforms = 0;

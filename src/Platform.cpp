@@ -53,6 +53,11 @@ namespace WappieJump
 		return Platform::MOVING;
 	}
 
+	bool Platform::isPlatformInvisible()
+	{
+		return _invisiblePlatform;
+	}
+
 	Platform::category Platform::GeneratePlatformCategory()
 	{
 		if (_consecutiveInvisiblePlatforms < 3)
@@ -106,6 +111,7 @@ namespace WappieJump
 			break;
 
 		case Platform::INVISIBLE:
+			_invisiblePlatform = true;
 			AddInvisiblePlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			break;
 		

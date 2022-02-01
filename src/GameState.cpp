@@ -89,6 +89,12 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
         
+		// opportunity to spawn enemies/powerups
+		if (platform->isPlatformInvisible())
+		{
+
+		}
+
         // if(collision->CheckMonsterBounceCollision(platform->GetmonsterRect(), *_player))
 		// {
 		// 	player->SetPlayerPosition(1000, 1000);
