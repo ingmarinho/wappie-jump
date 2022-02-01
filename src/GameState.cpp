@@ -92,6 +92,7 @@ namespace WappieJump
 		// opportunity to spawn enemies/powerups
 		if (platform->isPlatformInvisible())
 		{
+			_platforms->back().platformSprite.getGlobalBounds().top;
 			// spawn powerup/monster with chance
 		}
 
