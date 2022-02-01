@@ -33,11 +33,15 @@ namespace WappieJump
 		sf::Text _highScoreText;
 		sf::Text _scoreText;
 		sf::Text _gameOverText;
+		sf::Text _highScore; 
 		sf::Text _score;
 		
 		sf::Sound &_hitSound; 
 
 		Alignment *alignment;
+
+		long long int highScore = _data->highScore;
+		long long int score = _data->score;
 
 	};
 }

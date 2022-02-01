@@ -38,8 +38,7 @@
 //Game Over Screen
 #define PLAY_AGAIN_BUTTON_FILEPATH              "Resources/res/newGame.png"
 #define MAIN_MENU_BUTTON_FILEPATH               "Resources/res/return.png"
-#define HIGH_SCORE_FILEPATH                     "Resources/res/highscore.png"
-#define SCORE_FILEPATH                          "Resources/res/score.png"
+
 //
 
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"

@@ -17,6 +17,7 @@ namespace WappieJump
 		InputManager input;
 		bool isRunning = true;
 		long long int score = 0;
+		long long int highScore = 0; 
 		sf::Sprite characterSprite;
 		int difficultyLevel = 100; 
 		int soundVolume = 50; 

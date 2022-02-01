@@ -108,7 +108,7 @@ namespace WappieJump
 		case Platform::INVISIBLE:
 			AddInvisiblePlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			break;
-
+		
 		default:
 			break;
 		}
