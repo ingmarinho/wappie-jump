@@ -32,7 +32,7 @@ namespace WappieJump
 		sf::Sprite monsterSprite;
 		float _monsterWidth;
 		float _monsterHeight;
-		bool Exist = false;
+		bool exist = false;
 	};
 
 }

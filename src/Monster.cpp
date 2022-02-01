@@ -17,14 +17,14 @@ namespace WappieJump
 	
 	void Monster::SpawnMonster(float invisiblePlatY)
 	{
-		if (Exist)
+		if (exist)
 		{
 			return;
 		}
 		
-
-		int chance = rand() % 100;
-		if (chance <= 25)
+		int probability = ( _data->score - ( 100 * _data->difficultyLevel ) ) / ( 1/33 * _data->score + 400 )
+		int randNum = rand() % 100;
+		if (randNum <= probability)
 		{
 			float randomWidth = CalculateRandomWidth(_monsterWidth);
 			AddCoronaMonster(randomWidth, invisiblePlatY);
@@ -33,7 +33,7 @@ namespace WappieJump
 	
 	void Monster::AddCoronaMonster(float randomWidth, float invisiblePlatY)
 	{
-		Exist = true;
+		exist = true;
 		monsterSprite = sf::Sprite(_data->assets.GetTexture("Corona"));
 		
 		monsterSprite.setPosition(randomWidth, invisiblePlatY - _monsterHeight * 1.2f);
@@ -44,11 +44,10 @@ namespace WappieJump
 	
 	void Monster::MoveMonsterY(float velocity)
 	{
-		if(Exist)
-		{
+		if(exist){
 			if (corona.monsterSprite.getPosition().y > _data->window.getSize().y)
 			{
-				Exist = false;
+				exist = false;
 			}
 			else
 			{
@@ -59,10 +58,9 @@ namespace WappieJump
 	
 	void Monster::DrawMonster()
 	{
-		if(Exist)
+		if(exist)
 		{
 			_data->window.draw(corona.monsterSprite);
 		}
 	}
-	
 }
