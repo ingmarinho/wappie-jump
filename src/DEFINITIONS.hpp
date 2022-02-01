@@ -31,6 +31,7 @@
 
 #define GAME_TITLE_FILEPATH                     "Resources/res/title.png"
 #define CHARACTER_SELECTION_TITLE_FILEPATH      "Resources/res/title.png"
+#define HOME_SCREEN_BUTTON_FILEPATH             "Resources/res/settingsButton.png"
 #define PLAY_BUTTON_FILEPATH                    "Resources/res/play.png"
 #define PLAY_BUTTON_DOWN_FILEPATH               "Resources/res/play_down.png"
 #define SETTINGS_BUTTON_FILEPATH                "Resources/res/settingsButton.png"

@@ -32,6 +32,7 @@ namespace WappieJump
         _data->assets.LoadTexture("leftArrow", ARROW_LEFT_FILEPATH);
         _data->assets.LoadTexture("rightArrow", ARROW_RIGHT_FILEPATH);
         _data->assets.LoadTexture("selectButton", SELECT_BUTTON_FILEPATH);
+        _data->assets.LoadTexture("homeScreenButton", HOME_SCREEN_BUTTON_FILEPATH);
 
         _data->assets.LoadTexture("Character Selection Background", CHARACTER_SELECTION_BACKGROUND_FILEPATH);
         _data->assets.LoadTexture("Character Selection Title", CHARACTER_SELECTION_TITLE_FILEPATH);
@@ -54,6 +55,9 @@ namespace WappieJump
         _selectButton.setTexture(_data->assets.GetTexture("selectButton"));
         _selectButton.setScale(0.5f, 0.5f);
 
+        _homeButton.setTexture(_data->assets.GetTexture("homeScreenButton"));
+        _homeButton.setScale(0.2f, 0.2f);
+
         _char1.setPosition(AlignObjectCenterX(_char1), AlignObjectCenterY(_char1));
         _char2.setPosition(AlignObjectCenterX(_char2), AlignObjectCenterY(_char2));
         _char3.setPosition(AlignObjectCenterX(_char3), AlignObjectCenterY(_char3));
@@ -68,6 +72,7 @@ namespace WappieJump
         _leftArrow.setPosition(AlignObjectCenterX(_leftArrow) - 100, AlignObjectCenterY(_leftArrow));
         _rightArrow.setPosition(AlignObjectCenterX(_rightArrow) + 100, AlignObjectCenterY(_rightArrow));
         _selectButton.setPosition(AlignObjectCenterX(_selectButton), AlignObjectCenterY(_selectButton) + 150); // change position
+        _homeButton.setPosition(SCREEN_WIDTH * 0.87, SCREEN_HEIGHT * 0.9);
     }
 
     void CharacterSelectionState::BounceCharacter()
@@ -116,6 +121,11 @@ namespace WappieJump
                 _data->characterSprite = *_chars[_selected];
                 _data->machine.AddState(StateRef(new GameState(_data)), true);
             }
+            if (_data->input.IsSpriteClicked(_homeButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			{
+				// Switch To Main Menu
+				_data->machine.AddState(StateRef(new SettingState(_data)), true);
+			}
         }
     }
 
@@ -130,6 +140,7 @@ namespace WappieJump
 
         _data->window.draw(_background);
         _data->window.draw(_selectButton);
+        _data->window.draw(_homeButton);
         _data->window.draw(_leftArrow);
         _data->window.draw(_rightArrow);
         _data->window.draw(*_chars[_selected]);

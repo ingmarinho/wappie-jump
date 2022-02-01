@@ -6,7 +6,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "GameState.hpp"
-
+#include "MainMenuState.hpp"
 #include "DEFINITIONS.hpp"
 
 namespace WappieJump
@@ -43,6 +43,8 @@ namespace WappieJump
 		sf::Sprite _leftArrow;
 		sf::Sprite _rightArrow;
 		sf::Sprite _selectButton;
+		sf::Sprite _homeButton;
+
 		std::vector<sf::Sprite*> _chars = {&_char1, &_char2, &_char3, &_char4, &_char5, &_char6, &_char7, &_char8};
 
 		float _characterVelocityY = -PLAYER_VELOCITY_Y * 0.7f;

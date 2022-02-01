@@ -40,3 +40,4 @@ src/_cpp_flags
 Makefile.native
 *.native
 src/_linker_libs
+src/Resources/db/Highscore.txt
