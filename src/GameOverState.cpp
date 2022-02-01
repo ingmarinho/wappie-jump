@@ -20,28 +20,9 @@ namespace WappieJump
 
 	void GameOverState::Init()
 	{	
-		std::ifstream readFile; 
-		readFile.open("Resources/db/Highscore.txt");
-		if (readFile.is_open())
-		{
-			while(!readFile.eof())
-			{
-				readFile >> highScore;
-			}
-		}
-		readFile.close( );
 
-		std::ofstream writeFile( "Resources/db/Highscore.txt" );
-
-		if (writeFile.is_open() )
-		{
-			if (score > highScore)
-			{
-				highScore = score;
-			}
-			writeFile << highScore; 
-		}
-		writeFile.close( ); 
+		ReadHighScoreFile();
+		WriteHighScoreFile();
 
 		_data->assets.LoadFont("Font", FONT_FILEPATH);
 		_data->assets.LoadTexture("Game Over Background", GAME_OVER_BACKGROUND_FILEPATH);
@@ -95,6 +76,35 @@ namespace WappieJump
         _mainMenuButton.setScale(0.5f, 0.5f);
         _mainMenuButton.setPosition(alignment->AlignObjectCenterX(_mainMenuButton), alignment->AlignObjectCenterY(_mainMenuButton) + 400);
 
+	}
+
+	void GameOverState::ReadHighScoreFile()
+	{
+		std::ifstream readFile; 
+		readFile.open("Resources/db/Highscore.txt");
+		if (readFile.is_open())
+		{
+			while(!readFile.eof())
+			{
+				readFile >> highScore;
+			}
+		}
+		readFile.close( );
+	}
+	
+	void GameOverState::WriteHighScoreFile()
+	{
+		std::ofstream writeFile( "Resources/db/Highscore.txt" );
+
+		if (writeFile.is_open() )
+		{
+			if (score > highScore)
+			{
+				highScore = score;
+			}
+			writeFile << highScore; 
+		}
+		writeFile.close( ); 
 	}
 
 	void GameOverState::HandleInput()

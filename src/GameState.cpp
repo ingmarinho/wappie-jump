@@ -19,7 +19,7 @@ namespace WappieJump
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 
 		_data->assets.LoadTexture("Speedometer", SPEEDOMETER_FILEPATH);
-		_data->assets.LoadTexture("Vaccine Powerdown", VACCINE_POWERUP_FILEPATH);
+		_data->assets.LoadTexture("Vaccine Powerup", VACCINE_POWERUP_FILEPATH);
 
 		_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON_FILEPATH); 
 
@@ -89,10 +89,10 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
         
-        if(collision->CheckMonsterBounceCollision(platform->GetmonsterRect(), *_player))
-		{
-			player->SetPlayerPosition(1000, 1000);
-		}
+        // if(collision->CheckMonsterBounceCollision(platform->GetmonsterRect(), *_player))
+		// {
+		// 	player->SetPlayerPosition(1000, 1000);
+		// }
 
 		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
 		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);
@@ -203,11 +203,12 @@ namespace WappieJump
 
 		_data->window.draw(_background);
 
-		_data->window.draw(_pauseButton);
 
 		platform->DrawPlatforms();
 
 		player->Draw();
+		
+		_data->window.draw(_pauseButton);
 
 		score->Draw();
 

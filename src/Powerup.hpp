@@ -13,12 +13,16 @@ namespace WappieJump
 	{
 	public:
 		Powerup(GameDataRef data);
-
+		
+		float CalculateRandomWidth();
+		void SpawnPowerup();
         void Draw();
 
 	private:
 		GameDataRef _data;
 
 		sf::Sprite _powerup;
+		float _powerupWidth;
+		float _powerupHeight;
 	};
 }

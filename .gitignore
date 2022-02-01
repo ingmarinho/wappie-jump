@@ -41,3 +41,5 @@ Makefile.native
 *.native
 src/_linker_libs
 src/Resources/db/Highscore.txt
+src/_linker_libs
+*.txt

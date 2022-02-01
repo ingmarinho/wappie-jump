@@ -19,6 +19,9 @@ namespace WappieJump
 
 		void Init();
 
+		void ReadHighScoreFile();
+		void WriteHighScoreFile();
+
 		void HandleInput();
 		void Update();
 		void Draw();

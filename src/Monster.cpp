@@ -44,7 +44,8 @@ namespace WappieJump
 	
 	void Monster::MoveMonsterY(float velocity)
 	{
-		if(Exist){
+		if(Exist)
+		{
 			if (corona.monsterSprite.getPosition().y > _data->window.getSize().y)
 			{
 				Exist = false;
