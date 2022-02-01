@@ -6,7 +6,6 @@ namespace WappieJump
 	
 	Monster::Monster(GameDataRef data) : _data(data)
 	{
-
 	}
 	
 	float Monster::CalculateRandomWidth(float monsterWidth)
@@ -38,7 +37,8 @@ namespace WappieJump
 		monsterSprite = sf::Sprite(_data->assets.GetTexture("Corona"));
 		
 		monsterSprite.setPosition(randomWidth, invisiblePlatY - _monsterHeight * 1.2f);
-		corona = monster(monsterSprite);
+		monster corona;
+		corona.monsterSprite = monsterSprite;
 	}
 	
 	
