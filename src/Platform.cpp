@@ -23,20 +23,20 @@ namespace WappieJump
 
 	float Platform::CalculateRandomWidth(float platformWidth)
 	{
-		int maxWidth = _data->window.getSize().x * 0.99f - platformWidth;
-		return rand() % maxWidth + _data->window.getSize().x * 0.005f;
+		int maxWidth = SCREEN_WIDTH * 0.99f - platformWidth;
+		return rand() % maxWidth + SCREEN_HEIGHT * 0.005f;
 	}
 
 	void Platform::SpawnFirstPlatform()
 	{
 		sf::Sprite platformSprite(_data->assets.GetTexture("Platform"));
 
-		float randomWidth = CalculateRandomWidth(platformSprite.getGlobalBounds().width);
+        _platformWidth = platformSprite.getGlobalBounds().width;
+        _platformHeight = platformSprite.getGlobalBounds().height;
 
-		_platformWidth = platformSprite.getGlobalBounds().width;
-		_platformHeight = platformSprite.getGlobalBounds().height;
+        float randomWidth = CalculateRandomWidth(_platformWidth);
 
-		platformSprite.setPosition(randomWidth, _data->window.getSize().y - platformSprite.getGlobalBounds().height);
+        platformSprite.setPosition(randomWidth, SCREEN_HEIGHT - _platformHeight);
 		platforms.push_back(platform(platformSprite, DEFAULT));
 	}
 
@@ -184,7 +184,7 @@ namespace WappieJump
 					break;
 
 				case Platform::RIGHT:
-					if (platform.platformSprite.getPosition().x + _platformWidth >= _data->window.getSize().x)
+					if (platform.platformSprite.getPosition().x + _platformWidth >= SCREEN_WIDTH)
 					{
 						platform.platformDirection = Platform::LEFT;
 						break;
@@ -216,7 +216,7 @@ namespace WappieJump
 
 	void Platform::MovePlatformsY(float velocity)
 	{
-		if (platforms.at(0).platformSprite.getPosition().y > _data->window.getSize().y)
+		if (platforms.at(0).platformSprite.getPosition().y > SCREEN_HEIGHT)
 		{
 			platforms.erase(platforms.begin());
 			_deletedPlatforms++;
