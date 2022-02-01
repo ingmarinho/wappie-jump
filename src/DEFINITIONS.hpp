@@ -45,6 +45,7 @@
 #define RESUME_BUTTON_FILEPATH                  "Resources/res/play.png"
 #define HOME_BUTTON_FILEPATH                    "Resources/res/main_menu.png"
 #define PAUSE_BUTTON_FILEPATH                   "Resources/res/PauseButton.png"
+#define PAUSE_TITLE_TEXT                        "PAUSED"
 
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"
 #define BOOSTER_PLATFORM_FILEPATH               "Resources/res/platform_green.png"
@@ -75,7 +76,7 @@
 #define MUTE_SOUND_BUTTON_FILEPATH              "Resources/res/soundButtonMute.png"
 #define SOUND_BUTTON_FILEPATH                   "Resources/res/soundButton.png"
 #define DIFFICULTY_BUTTON_FILEPATH              "Resources/res/vaccineFlipped.png"
-#define SETTINGS_RETURN_BUTTON_FILEPATH              "Resources/res/return_settings.png"
+#define SETTINGS_RETURN_BUTTON_FILEPATH         "Resources/res/return_settings.png"
 
 
 #define ARROW_LEFT_FILEPATH                     "Resources/res/Arrow_left_2.png"

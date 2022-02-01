@@ -21,6 +21,7 @@ namespace WappieJump
 
 	void PauseState::Init()
 	{
+        _data->assets.LoadFont("Font", FONT_FILEPATH);
         _data->assets.LoadTexture("Pause Background", PAUSE_BACKGROUND_FILEPATH); 
         _data->assets.LoadTexture("Resume Button", RESUME_BUTTON_FILEPATH); 
         _data->assets.LoadTexture("Home Button", HOME_BUTTON_FILEPATH); 
@@ -29,12 +30,20 @@ namespace WappieJump
         _homeButton.setTexture(_data->assets.GetTexture("Home Button"));
         _resumeButton.setTexture(_data->assets.GetTexture("Resume Button"));
 
+        _pauseTitle.setFont(_data->assets.GetFont("Font"));
 
-        _resumeButton.setPosition(SCREEN_WIDTH * 0.87, SCREEN_HEIGHT * 0.9);
-        _resumeButton.setScale(0.2f, 0.2f);
+        _pauseTitle.setString(PAUSE_TITLE_TEXT);
+		_pauseTitle.setCharacterSize(100);
+		_pauseTitle.setFillColor(sf::Color::Green);
+		_pauseTitle.setPosition(sf::Vector2f(SCREEN_WIDTH / 2 - _pauseTitle.getGlobalBounds().width / 2, 100));
 
-        _homeButton.setPosition(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
-        _homeButton.setScale(0.2f, 0.2f);
+
+
+        _resumeButton.setPosition(SCREEN_WIDTH * 0.3, SCREEN_HEIGHT * 0.5);
+        _resumeButton.setScale(0.5f, 0.5f);
+
+        _homeButton.setPosition(SCREEN_WIDTH * 0.3, SCREEN_HEIGHT * 0.6);
+        _homeButton.setScale(0.5f, 0.5);
         
 	
 
@@ -58,7 +67,7 @@ namespace WappieJump
 				
 			}
 
-			if (_data->input.IsSpriteClicked(_homeButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			if (_data->input.IsSpriteClicked(_homeButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 			{
 			
 				_data->machine.RemoveState();
@@ -78,6 +87,9 @@ namespace WappieJump
 		_data->window.draw(_background);
 		_data->window.draw(_resumeButton);
 		_data->window.draw(_homeButton);
+
+        _data->window.draw(_pauseTitle);
+
 	
 
 		_data->window.display();

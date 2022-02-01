@@ -33,9 +33,9 @@ namespace WappieJump
 
 		
 		sf::Sprite _background;
-	
 		sf::Sprite _resumeButton;
 		sf::Sprite _homeButton;
-    
+
+        sf::Text _pauseTitle;
 	};
 }

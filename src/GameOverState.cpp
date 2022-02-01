@@ -111,7 +111,7 @@ namespace WappieJump
 			{
 				_data->machine.AddState(StateRef(new GameState(_data)), true);
 			}
-			if (_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, _data->window))
+			if (_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, _data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 			{
 				_hitSound.play();
 				_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
