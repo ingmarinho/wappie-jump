@@ -36,9 +36,11 @@ namespace WappieJump
 	private:
 		
 		GameDataRef _data;
-		monster* corona = nullptr;
+		monster corona;
+		sf::Sprite monsterSprite;
 		float _monsterWidth;
 		float _monsterHeight;
+		bool Exist = false;
 		
 	};
 	
