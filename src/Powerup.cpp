@@ -19,8 +19,10 @@ namespace WappieJump
     
     void Powerup::SpawnPowerup()
     {
-        float randomWidth = CalculateRandomWidth();
-        
+        // float randomWidth = CalculateRandomWidth();
+
+
+
     }
 
 

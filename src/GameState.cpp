@@ -89,6 +89,12 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
         
+		// opportunity to spawn enemies/powerups
+		if (platform->isPlatformInvisible())
+		{
+			// spawn powerup/monster with chance
+		}
+
         // if(collision->CheckMonsterBounceCollision(platform->GetmonsterRect(), *_player))
 		// {
 		// 	player->SetPlayerPosition(1000, 1000);
@@ -124,7 +130,6 @@ namespace WappieJump
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
-
 					_jumpSound.play();
 
 					playerDistanceToHeightLimit = _player->getPosition().y - _data->window.getSize().y * 0.3f;

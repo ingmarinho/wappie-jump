@@ -53,6 +53,11 @@ namespace WappieJump
 		return Platform::MOVING;
 	}
 
+	bool Platform::isPlatformInvisible()
+	{
+		return _invisiblePlatform;
+	}
+
 	Platform::category Platform::GeneratePlatformCategory()
 	{
 		if (_consecutiveInvisiblePlatforms < 3)
@@ -89,23 +94,28 @@ namespace WappieJump
 		switch (platformCategory)
 		{
 		case Platform::DEFAULT:
+			_invisiblePlatform = false;
 			AddDefaultPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			break;
 
 		case Platform::BOOSTER:
+			_invisiblePlatform = false;
 			AddBoosterPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			break;
 
 		case Platform::MOVING:
+			_invisiblePlatform = false;
 			AddMovingPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			break;
 
 		case Platform::BREAKING:
+			_invisiblePlatform = false;
 			AddShadowPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			AddBreakingPlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			break;
 
 		case Platform::INVISIBLE:
+			_invisiblePlatform = true;
 			AddInvisiblePlatform(randomWidth, previousPlatform.platformSprite.getGlobalBounds().top);
 			break;
 		
