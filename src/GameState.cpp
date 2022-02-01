@@ -19,7 +19,7 @@ namespace WappieJump
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 
 		_data->assets.LoadTexture("Speedometer", SPEEDOMETER_FILEPATH);
-		_data->assets.LoadTexture("Vaccine Powerup", VACCINE_POWERUP_FILEPATH);
+		_data->assets.LoadTexture("Vaccine Powerdown", VACCINE_POWERUP_FILEPATH);
 
 		_data->assets.LoadTexture("Platform", PLATFORM_FILEPATH);
 		_data->assets.LoadTexture("Booster Platform", BOOSTER_PLATFORM_FILEPATH);
