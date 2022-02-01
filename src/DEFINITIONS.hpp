@@ -42,7 +42,7 @@
 
 // Pause Screen
 #define PAUSE_BACKGROUND_FILEPATH               "Resources/res/space.png"
-#define RESUME_BUTTON_FILEPATH                  "Resources/res/play.png"
+#define RESUME_BUTTON_FILEPATH                  "Resources/res/resume.png"
 #define HOME_BUTTON_FILEPATH                    "Resources/res/main_menu.png"
 #define PAUSE_BUTTON_FILEPATH                   "Resources/res/PauseButton.png"
 #define PAUSE_TITLE_TEXT                        "PAUSED"
