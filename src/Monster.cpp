@@ -7,7 +7,6 @@ namespace WappieJump
 	Monster::Monster(GameDataRef data) : _data(data)
 	{
 		monsterSprite.setTexture(_data->assets.GetTexture("Corona"));
-		monsterSprite.setScale(0.72f, 0.72f);
 
 		_monsterWidth = monsterSprite.getGlobalBounds().width;
 		_monsterHeight = monsterSprite.getGlobalBounds().height;
@@ -75,7 +74,7 @@ namespace WappieJump
 	void Monster::MoveMonsterX()
 	{
 		if (!exist) return;
-		
+
 		switch (corona.monsterDirection)
 		{
 			case Monster::LEFT:
