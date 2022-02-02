@@ -37,9 +37,10 @@ namespace WappieJump
 
 		sf::Sprite _background;
 		sf::Sprite _pauseButton;
-	
-		sf::Sound &_jumpSound;
-		sf::Sound &_gameOverSound;
+
+        sf::Sound &_jumpSound;
+        sf::Sound &_gameOverSound;
+        sf::Sound &_boosterSound;
 
 		Accelerometer *accelerometer;
 		Collision *collision;

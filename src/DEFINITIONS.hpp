@@ -48,7 +48,7 @@
 #define PAUSE_TITLE_TEXT                        "PAUSED"
 
 #define PLATFORM_FILEPATH                       "Resources/res/platform.png"
-#define BOOSTER_PLATFORM_FILEPATH               "Resources/res/platform_green.png"
+#define BOOSTER_PLATFORM_FILEPATH               "Resources/res/vaccine.png"
 #define BREAKING_PLATFORM_FILEPATH              "Resources/res/platform_breaking.png"
 // #define BREAKING_BROKE_PLATFORM_FILEPATH        "Resources/res/platform_breaking_broke.png"
 #define MOVING_PLATFORM_FILEPATH                "Resources/res/platform_moving.png"
@@ -86,7 +86,7 @@
 
 #define HIT_SOUND_FILEPATH                      "Resources/audio/Hit.wav"
 #define JUMP_SOUND_FILEPATH                     "Resources/audio/Jump.wav"
-#define FALL_SOUND_FILEPATH                     "Resources/audio/Wing.wav"
+#define BOOSTER_SOUND_FILEPATH                  "Resources/audio/Vaccine.wav"
 #define GAME_OVER_SOUND_FILEPATH                "Resources/audio/Gameover.wav"
 #define BUTTON_PRESS_FILEPATH                   "Resources/audio/buttonPress.wav"
 

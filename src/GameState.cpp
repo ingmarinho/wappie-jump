@@ -2,9 +2,12 @@
 
 namespace WappieJump
 {
-	GameState::GameState(GameDataRef data) : _data(data), _jumpSound(_data->assets.GetSound("Jump")), _gameOverSound(_data->assets.GetSound("Game Over"))
-	{
-	}
+    GameState::GameState(GameDataRef data) : _data(data),
+    _jumpSound(_data->assets.GetSound("Jump")),
+    _gameOverSound(_data->assets.GetSound("Game Over")),
+    _boosterSound(_data->assets.GetSound("Vaccine"))
+    {
+    }
 	
 	GameState::~GameState()
 	{
@@ -131,13 +134,15 @@ namespace WappieJump
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
-					_jumpSound.play();
+
 
 					playerDistanceToHeightLimit = _player->getPosition().y - _data->window.getSize().y * 0.3f;
 
 					switch (platform.platformCategory)
 					{
 					case Platform::DEFAULT:
+                        _jumpSound.play();
+
 						if (potentialTravelDistance <= playerDistanceToHeightLimit)
 						{
 							player->SetJumpVelocity(-PLAYER_VELOCITY_Y);
@@ -156,6 +161,8 @@ namespace WappieJump
 						}
 						break;
 					case Platform::MOVING:
+                        _jumpSound.play();
+
 						if (potentialTravelDistance <= playerDistanceToHeightLimit)
 						{
 							player->SetJumpVelocity(-PLAYER_VELOCITY_Y);
@@ -176,6 +183,8 @@ namespace WappieJump
 						break;
 
 					case Platform::BOOSTER:
+                        _boosterSound.play();
+
 						velocityToReachHeightLimit = playerDistanceToHeightLimit > 0 ? std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit)) : 0.0f;
 						remainingDistance = potentialTravelDistanceBoost - playerDistanceToHeightLimit;
 						remainingVelocity = remainingDistance > 0 ? std::sqrt(2.0f * (GRAVITY * remainingDistance)) : 0.0f;
