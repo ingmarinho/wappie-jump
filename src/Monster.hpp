@@ -21,6 +21,8 @@ namespace WappieJump
 		Monster(GameDataRef data);
 
 		void AddCoronaMonster(float randomWidth, float invisiblePlatY);
+		bool Exists();
+		sf::Sprite GetMonsterSprite();
 		void DrawMonster();
 		float CalculateRandomWidth(float monsterWidth);
 		void MoveMonsterY(float velocity);

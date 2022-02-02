@@ -46,7 +46,6 @@ namespace WappieJump
 		category GeneratePlatformCategory();
 		category GenerateBounceablePlatformCategory();
 		float CalculateRandomWidth(float x);
-		bool isPlatformInvisible();
 		void SpawnPlatform();
 		void SpawnFirstPlatform();
 		void AddInvisiblePlatform(float randomWidth, float prevTop);

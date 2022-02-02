@@ -14,7 +14,7 @@
 #include "Score.hpp"
 #include "GameOverState.hpp"
 #include "Accelerometer.hpp"
-#include "Powerup.hpp"
+#include "Monster.hpp"
 
 #include "DEFINITIONS.hpp"
 
@@ -46,7 +46,7 @@ namespace WappieJump
 		Platform *platform;
 		Player *player;
 		Score *score;
-		Powerup *powerup;
+		Monster *monster;
 		
 		std::vector<Platform::platform> *_platforms;
 		sf::Sprite *_player;
@@ -61,6 +61,7 @@ namespace WappieJump
 		float _platformVelocityY = 0.0f;
 		bool _hasProgressed = false;
 		bool _correctedJump = false;
+		bool _deathfall = false;
 
 		sf::Clock clock;
 	};

@@ -15,6 +15,7 @@ namespace WappieJump
 		Collision(GameDataRef data);
 		bool CheckPlatformBounceCollision(sf::Sprite platform, sf::Sprite player);
 		bool CheckWindowBottomBounceCollision(sf::Sprite player);
+		bool CheckMonsterCollision(sf::Sprite monster, sf::Sprite player);
 	private:
 		GameDataRef _data;
 	};

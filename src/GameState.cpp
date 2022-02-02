@@ -19,7 +19,10 @@ namespace WappieJump
 		_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 
 		_data->assets.LoadTexture("Speedometer", SPEEDOMETER_FILEPATH);
-		_data->assets.LoadTexture("Vaccine Powerup", VACCINE_POWERUP_FILEPATH);
+		_data->assets.LoadTexture("Vaccine Platform", VACCINE_POWERUP_FILEPATH);
+
+		_data->assets.LoadTexture("Corona", CORONA_FILEPATH);
+
 
 		_data->assets.LoadTexture("Pause Button", PAUSE_BUTTON_FILEPATH); 
 
@@ -35,7 +38,7 @@ namespace WappieJump
 		platform = new Platform(_data);
 		player = new Player(_data);
 		score = new Score(_data);
-		powerup = new Powerup(_data);
+		monster = new Monster(_data);
 
 		_background.setTexture(_data->assets.GetTexture("Game Background"));
 		_pauseButton.setTexture(_data->assets.GetTexture("Pause Button"));
@@ -89,17 +92,9 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
         
-		// opportunity to spawn enemies/powerups
-		if (platform->isPlatformInvisible())
-		{
-			_platforms->back().platformSprite.getGlobalBounds().top;
-			// spawn powerup/monster with chance
-		}
-
-        // if(collision->CheckMonsterBounceCollision(platform->GetmonsterRect(), *_player))
-		// {
-		// 	player->SetPlayerPosition(1000, 1000);
-		// }
+		// opportunity to spawn enemies
+		if (_platforms->back().platformCategory == Platform::INVISIBLE) monster->SpawnMonster(_platforms->back().platformSprite.getGlobalBounds().top);
+		if (monster->Exists() && collision->CheckMonsterCollision(monster->GetMonsterSprite(), *_player)) _deathfall = true;
 
 		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
 		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);
@@ -121,15 +116,16 @@ namespace WappieJump
 		if (_platformVelocityY > 0)
 		{
 			platform->MovePlatformsY(_platformVelocityY);
+			monster->MoveMonsterY(_platformVelocityY);
 			_platformVelocityY -= GRAVITY;
 		}
-		else if (player->GetPlayerMovement() == Player::FALLING)
+		else if (!_deathfall && player->GetPlayerMovement() == Player::FALLING)
 		{
 			for (auto &platform : *_platforms)
 			{
-				if (platform.platformCategory == Platform::INVISIBLE 
-				|| 
-				platform.platformCategory == Platform::SHADOW 
+				if (platform.platformCategory == Platform::INVISIBLE
+				||
+				platform.platformCategory == Platform::SHADOW
 				||
 				platform.collided) continue;
 
@@ -217,8 +213,9 @@ namespace WappieJump
 
 		_data->window.draw(_background);
 
-
 		platform->DrawPlatforms();
+
+		monster->DrawMonster();
 
 		player->Draw();
 		

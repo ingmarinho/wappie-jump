@@ -9,10 +9,10 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := AssetManager.cpp Game.cpp GameOverState.cpp GameState.cpp InputManager.cpp MainMenuState.cpp SplashState.cpp StateMachine.cpp Platform.cpp Player.cpp Collision.cpp Score.cpp CharacterSelectionState.cpp SettingState.cpp Accelerometer.cpp Powerup.cpp Alignment.cpp PauseState.cpp
+SOURCES := AssetManager.cpp Game.cpp GameOverState.cpp GameState.cpp InputManager.cpp MainMenuState.cpp SplashState.cpp StateMachine.cpp Platform.cpp Player.cpp Collision.cpp Score.cpp CharacterSelectionState.cpp SettingState.cpp Accelerometer.cpp Alignment.cpp PauseState.cpp Monster.cpp
 
 # header files in this project
-HEADERS := AssetManager.hpp DEFINITIONS.hpp Game.hpp GameOverState.hpp GameState.hpp InputManager.hpp MainMenuState.hpp SplashState.hpp State.hpp StateMachine.cpp Platform.hpp Player.hpp Collision.hpp Score.hpp CharacterSelectionState.hpp SettingState.hpp Accelerometer.hpp Powerup.hpp Alignment.hpp PauseState.hpp
+HEADERS := AssetManager.hpp DEFINITIONS.hpp Game.hpp GameOverState.hpp GameState.hpp InputManager.hpp MainMenuState.hpp SplashState.hpp State.hpp StateMachine.cpp Platform.hpp Player.hpp Collision.hpp Score.hpp CharacterSelectionState.hpp SettingState.hpp Accelerometer.hpp Alignment.hpp PauseState.hpp Monster.hpp
 
 # other places to look for files for this project
 SEARCH  := 

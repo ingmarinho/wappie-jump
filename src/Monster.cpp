@@ -6,8 +6,25 @@ namespace WappieJump
 	
 	Monster::Monster(GameDataRef data) : _data(data)
 	{
+		monsterSprite.setTexture(_data->assets.GetTexture("Corona"));
+		monsterSprite.setScale(0.72f, 0.72f);
+
+		_monsterWidth = monsterSprite.getGlobalBounds().width;
+		_monsterHeight = monsterSprite.getGlobalBounds().height;
+
+		corona.monsterSprite = monsterSprite;
+	}
+
+	bool Monster::Exists()
+	{
+		return exist;
 	}
 	
+	sf::Sprite Monster::GetMonsterSprite()
+	{
+		return corona.monsterSprite;
+	}
+
 	float Monster::CalculateRandomWidth(float monsterWidth)
 	{
 		int maxWidth = _data->window.getSize().x * 0.99f - monsterWidth;
@@ -26,25 +43,24 @@ namespace WappieJump
 		int randNum = rand() % 100;
 		if (randNum <= probability)
 		{
-			float randomWidth = CalculateRandomWidth(_monsterWidth);
-			AddCoronaMonster(randomWidth, invisiblePlatY);
 		}
+		float randomWidth = CalculateRandomWidth(_monsterWidth);
+		AddCoronaMonster(randomWidth, invisiblePlatY);
 	}
 	
 	void Monster::AddCoronaMonster(float randomWidth, float invisiblePlatY)
 	{
 		exist = true;
-		monsterSprite = sf::Sprite(_data->assets.GetTexture("Corona"));
 		
-		monsterSprite.setPosition(randomWidth, invisiblePlatY - _monsterHeight * 1.2f);
-		monster corona;
-		corona.monsterSprite = monsterSprite;
+		corona.monsterSprite.setPosition(randomWidth, invisiblePlatY - 5.0f);
+
 	}
 	
 	
 	void Monster::MoveMonsterY(float velocity)
 	{
-		if(exist){
+		if(exist)
+		{
 			if (corona.monsterSprite.getPosition().y > _data->window.getSize().y)
 			{
 				exist = false;

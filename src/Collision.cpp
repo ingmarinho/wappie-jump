@@ -24,4 +24,13 @@ namespace WappieJump
     {
         return SCREEN_HEIGHT <= player.getPosition().y + player.getGlobalBounds().height;
     }
+
+    bool Collision::CheckMonsterCollision(sf::Sprite monster, sf::Sprite player)
+    {
+        sf::FloatRect monsterRect = monster.getGlobalBounds();
+        sf::FloatRect playerRect = player.getGlobalBounds();
+
+        return playerRect.intersects(monsterRect);
+    }
+
 }
