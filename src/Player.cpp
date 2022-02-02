@@ -95,6 +95,20 @@ namespace WappieJump
 		}
 	}
 
+	void Player::ChangePoisonValue()
+	{
+		if (_poisonFadeValue == 155) return;
+		
+		_poisonFadeValue += 2.5f;
+		_player.setColor(sf::Color(100 + _poisonFadeValue, 255, 100 + _poisonFadeValue, 255));
+	}
+	
+	void Player::SetPoisonValue()
+	{	
+		_player.setColor(sf::Color(100, 255, 100, 255));
+		_poisonFadeValue = 0;
+	}
+
 	void Player::Draw()
 	{
 		_data->window.draw(_player);

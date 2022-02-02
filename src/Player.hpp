@@ -43,6 +43,9 @@ namespace WappieJump
         void SetPlayerVelocityY(float velocity);
         void SetPlayerAngle(Angle newPlayerAngle);
         void SetPlayerMovement(Movement newPlayerMovement);
+        
+        void ChangePoisonValue();
+        void SetPoisonValue();
 
         void MoveRight();
         void MoveLeft();
@@ -58,6 +61,7 @@ namespace WappieJump
         float _jumpVelocity = -PLAYER_VELOCITY_Y;
         float _boosterJumpVelocity = -BOOSTER_VELOCITY_Y;
         bool _reachedMaxDistance = false;
+        float _poisonFadeValue = 155.0f;
 
         Movement _playerMovement = JUMPING;
         Angle _playerAngle = LEFT;

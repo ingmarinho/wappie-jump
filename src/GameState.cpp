@@ -91,6 +91,7 @@ namespace WappieJump
 		platform->SpawnPlatform();
 		platform->MoveOtherPlatforms();
 		monster->MoveMonsterX();
+		player->ChangePoisonValue();
 
 		_data->score = platform->GetDeletedPlatforms() * 10;
 		score->UpdateScore(_data->score);
@@ -199,6 +200,7 @@ namespace WappieJump
 						_platformVelocityY = remainingVelocity;
 						player->SetJumpVelocity(-velocityToReachHeightLimit);
 						player->SetPlayerMovement(Player::JUMPING);
+						player->SetPoisonValue();
 						break;
 					case Platform::BREAKING:
 						_breakingBedSound.play();
