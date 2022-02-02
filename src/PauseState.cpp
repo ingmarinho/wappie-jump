@@ -39,15 +39,11 @@ namespace WappieJump
 
 
 
-        _resumeButton.setPosition(SCREEN_WIDTH * 0.3, SCREEN_HEIGHT * 0.5);
         _resumeButton.setScale(0.5f, 0.5f);
+        _resumeButton.setPosition(AlignObjectCenterX(_resumeButton), AlignObjectCenterY(_resumeButton));
 
-        _homeButton.setPosition(SCREEN_WIDTH * 0.3, SCREEN_HEIGHT * 0.6);
-        _homeButton.setScale(0.5f, 0.5);
-        
-	
-
-	
+        _homeButton.setScale(0.5f, 0.5f);
+        _homeButton.setPosition(AlignObjectCenterX(_homeButton), AlignObjectCenterY(_homeButton) + 150);
 	}
 
 	void PauseState::HandleInput()
