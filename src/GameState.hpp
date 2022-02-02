@@ -41,6 +41,7 @@ namespace WappieJump
         sf::Sound &_jumpSound;
         sf::Sound &_gameOverSound;
         sf::Sound &_boosterSound;
+        sf::Sound &_monsterSound;
 
 		Accelerometer *accelerometer;
 		Collision *collision;

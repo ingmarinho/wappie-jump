@@ -5,7 +5,8 @@ namespace WappieJump
     GameState::GameState(GameDataRef data) : _data(data),
     _jumpSound(_data->assets.GetSound("Jump")),
     _gameOverSound(_data->assets.GetSound("Game Over")),
-    _boosterSound(_data->assets.GetSound("Vaccine"))
+    _boosterSound(_data->assets.GetSound("Vaccine")),
+    _monsterSound(_data->assets.GetSound("Monster Hit"))
     {
     }
 	
@@ -97,7 +98,10 @@ namespace WappieJump
         
 		// opportunity to spawn enemies
 		if (_platforms->back().platformCategory == Platform::INVISIBLE) monster->SpawnMonster(_platforms->back().platformSprite.getGlobalBounds().top);
-		if (monster->Exists() && collision->CheckMonsterCollision(monster->GetMonsterSprite(), *_player)) _deathfall = true;
+		if (monster->Exists() && collision->CheckMonsterCollision(monster->GetMonsterSprite(), *_player)){
+            _monsterSound.play();
+            _deathfall = true;
+        }
 
 		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
 		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);

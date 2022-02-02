@@ -87,6 +87,7 @@
 #define HIT_SOUND_FILEPATH                      "Resources/audio/Hit.wav"
 #define JUMP_SOUND_FILEPATH                     "Resources/audio/Jump.wav"
 #define BOOSTER_SOUND_FILEPATH                  "Resources/audio/Vaccine.wav"
+#define MONSTER_SOUND_FILEPATH                  "Resources/audio/MonsterHit.wav"
 #define GAME_OVER_SOUND_FILEPATH                "Resources/audio/Gameover.wav"
 #define BUTTON_PRESS_FILEPATH                   "Resources/audio/buttonPress.wav"
 

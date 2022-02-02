@@ -22,6 +22,7 @@ namespace WappieJump
 		_data->assets.LoadSound("Hit", HIT_SOUND_FILEPATH);
 		_data->assets.LoadSound("Jump", JUMP_SOUND_FILEPATH);
 		_data->assets.LoadSound("Vaccine", BOOSTER_SOUND_FILEPATH );
+        _data->assets.LoadSound("Monster Hit", MONSTER_SOUND_FILEPATH );
 		_data->assets.LoadSound("Game Over", GAME_OVER_SOUND_FILEPATH);
 		_data->assets.LoadSound("Button Press", BUTTON_PRESS_FILEPATH);
 	}
