@@ -96,11 +96,13 @@ namespace WappieJump
 		_platforms = platform->GetPlatformsVector();
 		_player = player->GetPlayerSprite();
         
-		// opportunity to spawn enemies
+		// spawn enemy
 		if (_platforms->back().platformCategory == Platform::INVISIBLE) monster->SpawnMonster(_platforms->back().platformSprite.getGlobalBounds().top);
-		if (monster->Exists() && collision->CheckMonsterCollision(monster->GetMonsterSprite(), *_player)){
+		if (monster->Exists() && collision->CheckMonsterCollision(monster->GetMonsterSprite(), *_player))
+		{
             _monsterSound.play();
             player->SetPlayerMovement(Player::DEATHFALL);
+			_correctedJump = false;
         }
 
 		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);

@@ -68,6 +68,8 @@ namespace WappieJump
 
 	void Player::SetPlayerMovement(Movement newPlayerMovement)
 	{
+		if (_playerMovement == DEATHFALL) return;
+
 		switch (newPlayerMovement)
 		{
 			case JUMPING:
@@ -163,7 +165,7 @@ namespace WappieJump
 
 			break;
 		case DEATHFALL:
-			if (_velocity.y > 0.0f) _velocity.y = 0.0f;
+			if (_velocity.y < 5.0f) _velocity.y = 5.0f;
 
 			_velocity.y += GRAVITY;
 
