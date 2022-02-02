@@ -89,6 +89,7 @@ namespace WappieJump
 		accelerometer->SetSpeed(player->GetPlayerVelocity().x, player->GetPlayerVelocity().y - _platformVelocityY);
 		platform->SpawnPlatform();
 		platform->MoveOtherPlatforms();
+		monster->MoveMonsterX();
 
 		_data->score = platform->GetDeletedPlatforms() * 10;
 		score->UpdateScore(_data->score);

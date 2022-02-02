@@ -43,9 +43,9 @@ namespace WappieJump
 		int randNum = rand() % 100;
 		if (randNum <= probability)
 		{
+			float randomWidth = CalculateRandomWidth(_monsterWidth);
+			AddCoronaMonster(randomWidth, invisiblePlatY);
 		}
-		float randomWidth = CalculateRandomWidth(_monsterWidth);
-		AddCoronaMonster(randomWidth, invisiblePlatY);
 	}
 	
 	void Monster::AddCoronaMonster(float randomWidth, float invisiblePlatY)
@@ -74,6 +74,8 @@ namespace WappieJump
 	
 	void Monster::MoveMonsterX()
 	{
+		if (!exist) return;
+		
 		switch (corona.monsterDirection)
 		{
 			case Monster::LEFT:
@@ -86,7 +88,7 @@ namespace WappieJump
 				break;
 			
 			case Monster::RIGHT:
-				if (corona.monsterSprite.getPosition().x + _platformWidth >= SCREEN_WIDTH)
+				if (corona.monsterSprite.getPosition().x + _monsterWidth >= SCREEN_WIDTH)
 				{
 					corona.monsterDirection = Monster::LEFT;
 					break;
