@@ -85,6 +85,10 @@ namespace WappieJump
 			case FALLING:
 				_playerMovement = FALLING;
 				break;
+
+			case DEATHFALL:
+				_playerMovement = DEATHFALL;
+				break;
 		}
 	}
 
@@ -153,6 +157,14 @@ namespace WappieJump
 
 		case FALLING:
 			_reachedMaxDistance = false;
+			_velocity.y += GRAVITY;
+
+			_player.move(0, _velocity.y);
+
+			break;
+		case DEATHFALL:
+			if (_velocity.y > 0.0f) _velocity.y = 0.0f;
+
 			_velocity.y += GRAVITY;
 
 			_player.move(0, _velocity.y);

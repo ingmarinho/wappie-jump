@@ -24,7 +24,8 @@ namespace WappieJump
             JUMPING,
             RISING,
             FLOATING,
-            FALLING
+            FALLING,
+            DEATHFALL
         };
 
     public:

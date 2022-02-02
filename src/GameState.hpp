@@ -63,7 +63,6 @@ namespace WappieJump
 		float _platformVelocityY = 0.0f;
 		bool _hasProgressed = false;
 		bool _correctedJump = false;
-		bool _deathfall = false;
 
 		sf::Clock clock;
 	};

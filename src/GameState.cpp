@@ -100,7 +100,7 @@ namespace WappieJump
 		if (_platforms->back().platformCategory == Platform::INVISIBLE) monster->SpawnMonster(_platforms->back().platformSprite.getGlobalBounds().top);
 		if (monster->Exists() && collision->CheckMonsterCollision(monster->GetMonsterSprite(), *_player)){
             _monsterSound.play();
-            _deathfall = true;
+            player->SetPlayerMovement(Player::DEATHFALL);
         }
 
 		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
@@ -126,7 +126,7 @@ namespace WappieJump
 			monster->MoveMonsterY(_platformVelocityY);
 			_platformVelocityY -= GRAVITY;
 		}
-		else if (!_deathfall && player->GetPlayerMovement() == Player::FALLING)
+		else if (player->GetPlayerMovement() == Player::FALLING)
 		{
 			for (auto &platform : *_platforms)
 			{
@@ -138,8 +138,6 @@ namespace WappieJump
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
-
-
 					playerDistanceToHeightLimit = _player->getPosition().y - _data->window.getSize().y * 0.3f;
 
 					switch (platform.platformCategory)
@@ -210,7 +208,7 @@ namespace WappieJump
 			}
 		}
 		// bottom window jumping
-		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
+		if (!_hasProgressed && player->GetPlayerMovement() != Player::DEATHFALL && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
 
 		// check out of screen death
 		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) 
