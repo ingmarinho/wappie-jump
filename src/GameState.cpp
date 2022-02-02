@@ -6,7 +6,8 @@ namespace WappieJump
     _jumpSound(_data->assets.GetSound("Jump")),
     _gameOverSound(_data->assets.GetSound("Game Over")),
     _boosterSound(_data->assets.GetSound("Vaccine")),
-    _monsterSound(_data->assets.GetSound("Monster Hit"))
+    _monsterSound(_data->assets.GetSound("Monster Hit")),
+    _breakingBedSound(_data->assets.GetSound("Breaking Bed"))
     {
     }
 	
@@ -200,6 +201,7 @@ namespace WappieJump
 						player->SetPlayerMovement(Player::JUMPING);
 						break;
 					case Platform::BREAKING:
+						_breakingBedSound.play();
 						platform.collided = true;
 						break;
 

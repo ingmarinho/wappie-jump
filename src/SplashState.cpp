@@ -25,6 +25,7 @@ namespace WappieJump
         _data->assets.LoadSound("Monster Hit", MONSTER_SOUND_FILEPATH );
 		_data->assets.LoadSound("Game Over", GAME_OVER_SOUND_FILEPATH);
 		_data->assets.LoadSound("Button Press", BUTTON_PRESS_FILEPATH);
+		_data->assets.LoadSound("Breaking Bed", BREAKING_BED_FILEPATH);
 	}
 
 	void SplashState::HandleInput()

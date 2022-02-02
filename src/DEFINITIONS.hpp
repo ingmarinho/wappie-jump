@@ -90,6 +90,7 @@
 #define MONSTER_SOUND_FILEPATH                  "Resources/audio/MonsterHit.wav"
 #define GAME_OVER_SOUND_FILEPATH                "Resources/audio/Gameover.wav"
 #define BUTTON_PRESS_FILEPATH                   "Resources/audio/buttonPress.wav"
+#define BREAKING_BED_FILEPATH                   "Resources/audio/BreakingBed.wav"
 
 #define PLATFORM_MOVEMENT_SPEED         5.0f      // for moving platforms
 #define BREAKING_PLATFORM_FALL_SPEED    5.0f 
