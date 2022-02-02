@@ -73,7 +73,7 @@ namespace WappieJump
         _playAgainButton.setPosition(alignment->AlignObjectCenterX(_playAgainButton), alignment->AlignObjectCenterY(_playAgainButton) + 200);
 
         _mainMenuButton.setScale(0.5f, 0.5f);
-        _mainMenuButton.setPosition(alignment->AlignObjectCenterX(_mainMenuButton), alignment->AlignObjectCenterY(_mainMenuButton) + 400);
+        _mainMenuButton.setPosition(alignment->AlignObjectCenterX(_mainMenuButton), alignment->AlignObjectCenterY(_mainMenuButton) + 350);
 
 	}
 
