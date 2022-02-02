@@ -44,8 +44,9 @@ namespace WappieJump
         void SetPlayerAngle(Angle newPlayerAngle);
         void SetPlayerMovement(Movement newPlayerMovement);
         
-        void ChangePoisonValue();
-        void SetPoisonValue();
+        void ChangePoisonColor();
+        void SetPoisonColor();
+        void SetPlayerDeathColor();
 
         void MoveRight();
         void MoveLeft();

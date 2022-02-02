@@ -91,7 +91,7 @@ namespace WappieJump
 		platform->SpawnPlatform();
 		platform->MoveOtherPlatforms();
 		monster->MoveMonsterX();
-		player->ChangePoisonValue();
+		player->ChangePoisonColor();
 
 		_data->score = platform->GetDeletedPlatforms() * 10;
 		score->UpdateScore(_data->score);
@@ -105,7 +105,7 @@ namespace WappieJump
 		{
             _monsterSound.play();
             player->SetPlayerMovement(Player::DEATHFALL);
-			_correctedJump = false;
+			player->SetPlayerDeathColor();
         }
 
 		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
@@ -200,7 +200,7 @@ namespace WappieJump
 						_platformVelocityY = remainingVelocity;
 						player->SetJumpVelocity(-velocityToReachHeightLimit);
 						player->SetPlayerMovement(Player::JUMPING);
-						player->SetPoisonValue();
+						player->SetPoisonColor();
 						break;
 					case Platform::BREAKING:
 						_breakingBedSound.play();

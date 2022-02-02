@@ -95,7 +95,7 @@ namespace WappieJump
 		}
 	}
 
-	void Player::ChangePoisonValue()
+	void Player::ChangePoisonColor()
 	{
 		if (_poisonFadeValue == 155) return;
 		
@@ -103,10 +103,15 @@ namespace WappieJump
 		_player.setColor(sf::Color(100 + _poisonFadeValue, 255, 100 + _poisonFadeValue, 255));
 	}
 	
-	void Player::SetPoisonValue()
+	void Player::SetPoisonColor()
 	{	
 		_player.setColor(sf::Color(100, 255, 100, 255));
 		_poisonFadeValue = 0;
+	}
+
+	void Player::SetPlayerDeathColor()
+	{	
+		_player.setColor(sf::Color(255, 100, 100, 255));
 	}
 
 	void Player::Draw()
@@ -180,7 +185,7 @@ namespace WappieJump
 
 			break;
 		case DEATHFALL:
-			if (_velocity.y < 5.0f) _velocity.y = 5.0f;
+			if (_velocity.y < -10.0f) _velocity.y = -10.0f;
 
 			_velocity.y += GRAVITY;
 
