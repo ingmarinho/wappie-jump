@@ -59,7 +59,7 @@ namespace WappieJump
         float _boosterJumpVelocity = -BOOSTER_VELOCITY_Y;
         bool _reachedMaxDistance = false;
 
-        Movement _playerMovement = FALLING;
+        Movement _playerMovement = JUMPING;
         Angle _playerAngle = LEFT;
 
         sf::Sprite _player;

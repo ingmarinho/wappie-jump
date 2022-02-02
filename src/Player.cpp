@@ -5,6 +5,7 @@ namespace WappieJump
 	Player::Player(GameDataRef data) : _data(data)
 	{
 		_player = _data->characterSprite;
+		_player.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 100.0f);
 	}
 
 	bool Player::hasReachedMaxDistance()
