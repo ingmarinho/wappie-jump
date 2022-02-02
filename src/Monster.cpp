@@ -72,6 +72,34 @@ namespace WappieJump
 		}
 	}
 	
+	void Monster::MoveMonsterX()
+	{
+		switch (corona.monsterDirection)
+		{
+			case Monster::LEFT:
+				if (corona.monsterSprite.getPosition().x <= 0.0f)
+				{
+					corona.monsterDirection = Monster::RIGHT;
+					break;
+				}
+				else corona.monsterSprite.move(-PLATFORM_MOVEMENT_SPEED, 0.0f);
+				break;
+			
+			case Monster::RIGHT:
+				if (corona.monsterSprite.getPosition().x + _platformWidth >= SCREEN_WIDTH)
+				{
+					corona.monsterDirection = Monster::LEFT;
+					break;
+				}
+				else corona.monsterSprite.move(PLATFORM_MOVEMENT_SPEED, 0.0f);
+				break;
+			
+			default:
+				break;
+		}
+
+	}
+	
 	void Monster::DrawMonster()
 	{
 		if(exist)

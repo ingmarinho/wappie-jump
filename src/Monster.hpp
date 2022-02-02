@@ -7,14 +7,22 @@
 
 namespace WappieJump
 {
-
+	
 	class Monster
 	{
+		enum direction
+		{
+			RIGHT,
+			LEFT,
+			NONE
+		};
+		
 		struct monster
 		{
 			sf::Sprite monsterSprite;
 			bool collided = false;
 			int fadeValue = 255;
+			direction monsterDirection = LEFT;
 		};
 
 	public:
@@ -27,6 +35,7 @@ namespace WappieJump
 		float CalculateRandomWidth(float monsterWidth);
 		void MoveMonsterY(float velocity);
 		void SpawnMonster(float invisiblePlatY);
+		void MoveMonsterX();
 
 	private:
 		GameDataRef _data;
