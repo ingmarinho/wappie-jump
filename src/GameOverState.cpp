@@ -7,7 +7,7 @@
 
 namespace WappieJump
 {
-	GameOverState::GameOverState(GameDataRef data) : _data(data), _hitSound(_data->assets.GetSound("Hit"))
+	GameOverState::GameOverState(GameDataRef data) : _data(data), _buttonPressSound(_data->assets.GetSound("Button Press"))
 	{
 		alignment = new Alignment(_data);
 	}
@@ -118,11 +118,12 @@ namespace WappieJump
 			}
 			if (_data->input.IsSpriteClicked(_playAgainButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
+				_buttonPressSound.play();
 				_data->machine.AddState(StateRef(new GameState(_data)), true);
 			}
 			if (_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, _data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 			{
-				_hitSound.play();
+				_buttonPressSound.play();
 				_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
 			}
 		}

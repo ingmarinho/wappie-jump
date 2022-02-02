@@ -85,9 +85,10 @@
 #define FONT_FILEPATH                           "Resources/fonts/normal.otf"
 
 #define HIT_SOUND_FILEPATH                      "Resources/audio/Hit.wav"
-#define JUMP_SOUND_FILEPATH                     "Resources/audio/Point.wav"
+#define JUMP_SOUND_FILEPATH                     "Resources/audio/Jump.wav"
 #define FALL_SOUND_FILEPATH                     "Resources/audio/Wing.wav"
-
+#define GAME_OVER_SOUND_FILEPATH                "Resources/audio/Gameover.wav"
+#define BUTTON_PRESS_FILEPATH                   "Resources/audio/buttonPress.wav"
 
 #define PLATFORM_MOVEMENT_SPEED         5.0f      // for moving platforms
 #define BREAKING_PLATFORM_FALL_SPEED    5.0f 

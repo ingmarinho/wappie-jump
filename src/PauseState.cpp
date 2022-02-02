@@ -5,7 +5,7 @@
 
 namespace WappieJump
 {
-	PauseState::PauseState(GameDataRef data) : _data(data)
+	PauseState::PauseState(GameDataRef data) : _data(data), _buttonPressSound(_data->assets.GetSound("Button Press"))
 	{
 	}
 
@@ -63,13 +63,14 @@ namespace WappieJump
 
 			if (_data->input.IsSpriteClicked(_resumeButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
+				_buttonPressSound.play();
                 _data->machine.RemoveState();
 				
 			}
 
 			if (_data->input.IsSpriteClicked(_homeButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::H))
 			{
-			
+				_buttonPressSound.play();
 				_data->machine.RemoveState();
                 _data->machine.AddState(StateRef (new MainMenuState(_data)), true);
 			}

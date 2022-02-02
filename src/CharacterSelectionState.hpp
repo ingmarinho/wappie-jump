@@ -45,6 +45,8 @@ namespace WappieJump
 		sf::Sprite _selectButton;
 		sf::Sprite _homeButton;
 
+		sf::Sound &_buttonPressSound; 
+
 		std::vector<sf::Sprite*> _chars = {&_char1, &_char2, &_char3, &_char4, &_char5, &_char6, &_char7, &_char8};
 
 		float _characterVelocityY = -PLAYER_VELOCITY_Y * 0.7f;

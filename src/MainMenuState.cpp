@@ -3,7 +3,7 @@
 
 namespace WappieJump
 {
-	MainMenuState::MainMenuState(GameDataRef data) : _data(data)
+	MainMenuState::MainMenuState(GameDataRef data) : _data(data), _buttonPressSound(_data->assets.GetSound("Button Press"))
 	{
 	}
 
@@ -61,6 +61,7 @@ namespace WappieJump
 				_playButton.setTexture(_data->assets.GetTexture("Play Button Down"));
 
 				// Switch To Main Menu
+				_buttonPressSound.play();
 				_data->machine.AddState(StateRef(new CharacterSelectionState(_data)), true);
 			}
 

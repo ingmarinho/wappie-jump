@@ -2,7 +2,7 @@
 
 namespace WappieJump
 {
-	GameState::GameState(GameDataRef data) : _data(data), _jumpSound(_data->assets.GetSound("Jump"))
+	GameState::GameState(GameDataRef data) : _data(data), _jumpSound(_data->assets.GetSound("Jump")), _gameOverSound(_data->assets.GetSound("Game Over"))
 	{
 	}
 	
@@ -200,7 +200,11 @@ namespace WappieJump
 		if (!_hasProgressed && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
 
 		// check out of screen death
-		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) _data->machine.AddState(StateRef(new GameOverState(_data)), true);
+		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) 
+		{
+			_gameOverSound.play();
+			_data->machine.AddState(StateRef(new GameOverState(_data)), true);
+		}
 	}
 
 	void GameState::Draw()

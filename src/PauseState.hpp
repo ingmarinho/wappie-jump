@@ -37,5 +37,6 @@ namespace WappieJump
 		sf::Sprite _homeButton;
 
         sf::Text _pauseTitle;
+		sf::Sound _buttonPressSound;
 	};
 }

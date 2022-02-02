@@ -6,7 +6,7 @@
 
 namespace WappieJump
 {
-    SettingState::SettingState(GameDataRef data) : _data(data), _sounds(_data->assets.GetSoundMap())
+    SettingState::SettingState(GameDataRef data) : _data(data), _buttonPressSound(_data->assets.GetSound("Button Press")), _sounds(_data->assets.GetSoundMap())
     {
         _volumeOptions[&_lowSound] = SettingState::LOW;
         _volumeOptions[&_mediumSound] = SettingState::MEDIUM;
@@ -158,6 +158,7 @@ namespace WappieJump
 
             if (_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
             {
+                _buttonPressSound.play();
                 _data->machine.AddState(StateRef(new MainMenuState(_data)), true);
             }
 

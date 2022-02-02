@@ -36,5 +36,7 @@ namespace WappieJump
 		sf::Sprite _playButton;
 		sf::Sprite _playButtonDown;
 		sf::Sprite _settingsButton;
+
+		sf::Sound &_buttonPressSound; 
 	};
 }

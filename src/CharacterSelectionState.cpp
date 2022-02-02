@@ -2,7 +2,7 @@
 
 namespace WappieJump
 {
-    CharacterSelectionState::CharacterSelectionState(GameDataRef data) : _data(data)
+    CharacterSelectionState::CharacterSelectionState(GameDataRef data) : _data(data), _buttonPressSound(_data->assets.GetSound("Button Press"))
     {
     }
 
@@ -119,11 +119,13 @@ namespace WappieJump
             if (_data->input.IsSpriteClicked(_selectButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))  
             {
                 _data->characterSprite = *_chars[_selected];
+                _buttonPressSound.play();
                 _data->machine.AddState(StateRef(new GameState(_data)), true);
             }
             if (_data->input.IsSpriteClicked(_homeButton, sf::Mouse::Left, _data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
 				// Switch To Main Menu
+                _buttonPressSound.play();
 				_data->machine.AddState(StateRef(new SettingState(_data)), true);
 			}
         }

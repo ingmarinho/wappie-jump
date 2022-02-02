@@ -59,6 +59,7 @@ namespace WappieJump
 		sf::Text _medium;
 		sf::Text _hard;
 
+		sf::Sound _buttonPressSound; 
 
 		std::map<std::string, sf::Sound> &_sounds;
 

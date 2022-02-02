@@ -22,5 +22,7 @@ namespace WappieJump
 
 		sf::Clock _clock;
 		sf::Sprite _background;
+		
+		
 	};
 }
