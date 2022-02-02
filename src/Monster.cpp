@@ -22,7 +22,7 @@ namespace WappieJump
 			return;
 		}
 		
-		int probability = ( _data->score - ( 100 * _data->difficultyLevel ) ) / ( 1/33 * _data->score + 400 )
+		int probability = ( _data->score - ( 100 * _data->difficultyLevel ) ) / ( 1/33 * _data->score + 400 );
 		int randNum = rand() % 100;
 		if (randNum <= probability)
 		{

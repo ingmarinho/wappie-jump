@@ -21,8 +21,6 @@ namespace WappieJump
     {
         // float randomWidth = CalculateRandomWidth();
 
-
-
     }
 
 

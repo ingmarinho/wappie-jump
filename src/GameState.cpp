@@ -127,7 +127,11 @@ namespace WappieJump
 		{
 			for (auto &platform : *_platforms)
 			{
-				if (platform.platformCategory == Platform::INVISIBLE || platform.platformCategory == Platform::SHADOW) continue;
+				if (platform.platformCategory == Platform::INVISIBLE 
+				|| 
+				platform.platformCategory == Platform::SHADOW 
+				||
+				platform.collided) continue;
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
