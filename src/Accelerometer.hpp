@@ -1,3 +1,5 @@
+/// @file
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -8,17 +10,26 @@
 
 #include "DEFINITIONS.hpp"
 
+/// @file
+
 namespace WappieJump
 {
+	/// Accelerometer
+	///
+	/// The Accelerometer is a little tool that visualizes the players speed (Y Velocity).
 	class Accelerometer
 	{
 	public:
+		/// Construct by providing GameDataRef
 		Accelerometer(GameDataRef data);
-
-        int AlignObjectCenterX(sf::Sprite object);
+		/// Returns the X position to center an object on the X-axis
+        int AlignObjectCenterX(sf::Sprite object); 
+		 /// Returns the Y position to center an object on the Y-axis
         int AlignObjectCenterY(sf::Sprite object);
-        void SetSpeed(float x, float y);
-        void Draw();
+		/// Sets the position for the accelerometers indicator with an absolute value
+        void SetSpeed(float x, float y); 
+		/// Draws the sprites
+        void Draw(); 
 		
 	private:
 		GameDataRef _data;
@@ -26,6 +37,6 @@ namespace WappieJump
 		sf::RectangleShape _indicator;
 		float _indicatorY;
 		float _indicatorX;
-        // sf::Text _speedText;
+        
 	};
 }

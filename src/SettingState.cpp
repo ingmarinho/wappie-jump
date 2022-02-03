@@ -8,6 +8,8 @@ namespace WappieJump
 {
     SettingState::SettingState(GameDataRef data) : _data(data), _buttonPressSound(_data->assets.GetSound("Button Press")), _sounds(_data->assets.GetSoundMap())
     {
+        alignment = new Alignment(_data);
+
         _volumeOptions[&_lowSound] = SettingState::LOW;
         _volumeOptions[&_mediumSound] = SettingState::MEDIUM;
         _volumeOptions[&_highSound] = SettingState::HIGH;
@@ -20,18 +22,6 @@ namespace WappieJump
     SettingState::~SettingState()
     {
     }
-
-    int SettingState::AlignObjectCenterX(sf::Sprite object)
-    {
-        return SCREEN_WIDTH / 2 - object.getGlobalBounds().width / 2;
-    }
-
-    int SettingState::AlignObjectCenterY(sf::Sprite object)
-    {
-        return SCREEN_HEIGHT / 2 - object.getGlobalBounds().height / 2;
-    }
-
-    // dat gaat niet werken denk ik, we kunnen beter sound volume en difficulty level bij game data toevoegen
 
     void SettingState::Init()
     {
@@ -61,7 +51,7 @@ namespace WappieJump
         _hard.setFont(_data->assets.GetFont("Font"));
 
         _mainMenuButton.setScale(0.5f, 0.5f);
-        _mainMenuButton.setPosition(AlignObjectCenterX(_mainMenuButton), AlignObjectCenterY(_mainMenuButton) + 400);
+        _mainMenuButton.setPosition(alignment->AlignObjectCenterX(_mainMenuButton), alignment->AlignObjectCenterY(_mainMenuButton) + 400);
 
         _soundButton.setScale(0.5f, 0.5f);
         _soundButton.setPosition(SCREEN_WIDTH * 0.01, SCREEN_HEIGHT * 0.4);
@@ -72,25 +62,21 @@ namespace WappieJump
         _title.setString(SETTINGS_TEXT);
         _title.setCharacterSize(100);
         _title.setFillColor(sf::Color::Green);
-        // _title.setOrigin(sf::Vector2f(_title.getGlobalBounds().width / 2, _soundSettings.getGlobalBounds().height / 2));
         _title.setPosition(SCREEN_WIDTH * 0.2, SCREEN_HEIGHT * 0.1);
 
         _lowSound.setString(LOW_SOUND_TEXT);
         _lowSound.setCharacterSize(40);
         _lowSound.setFillColor(sf::Color::Green);
-        // _lowSound.setOrigin(sf::Vector2f(_lowSound.getGlobalBounds().width / 2, _lowSound.getGlobalBounds().height / 2));
         _lowSound.setPosition(SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.4);
 
         _mediumSound.setString(MEDIUM_SOUND_TEXT);
         _mediumSound.setCharacterSize(40);
         _mediumSound.setFillColor(sf::Color::Green);
-        // _mediumSound.setOrigin(sf::Vector2f(_mediumSound.getGlobalBounds().width / 2, _mediumSound.getGlobalBounds().height / 2));
         _mediumSound.setPosition(SCREEN_WIDTH * 0.4, SCREEN_HEIGHT * 0.4);
 
         _highSound.setString(HARD_SOUND_TEXT);
         _highSound.setCharacterSize(40);
         _highSound.setFillColor(sf::Color::Green);
-        // _highSound.setOrigin(sf::Vector2f(_highSound.getGlobalBounds().width / 2, _highSound.getGlobalBounds().height / 2));
         _highSound.setPosition(SCREEN_WIDTH * 0.63, SCREEN_HEIGHT * 0.4);
 
         /////////////////////////////////////////////////////////
@@ -98,19 +84,16 @@ namespace WappieJump
         _easy.setString(DIFFICULTY_EASY_TEXT);
         _easy.setCharacterSize(40);
         _easy.setFillColor(sf::Color::Green);
-        // _easy.setOrigin(sf::Vector2f(_highSound.getGlobalBounds().width / 2, _highSound.getGlobalBounds().height / 2));
         _easy.setPosition(SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.6);
 
         _medium.setString(DIFFICULTY_MEDIUM_TEXT);
         _medium.setCharacterSize(40);
         _medium.setFillColor(sf::Color::Green);
-        // _medium.setOrigin(sf::Vector2f(_highSound.getGlobalBounds().width / 2, _highSound.getGlobalBounds().height / 2));
         _medium.setPosition(SCREEN_WIDTH * 0.4, SCREEN_HEIGHT * 0.6);
 
         _hard.setString(DIFFICULTY_HARD_TEXT);
         _hard.setCharacterSize(40);
         _hard.setFillColor(sf::Color::Green);
-        // _hard.setOrigin(sf::Vector2f(_highSound.getGlobalBounds().width / 2, _highSound.getGlobalBounds().height / 2));
         _hard.setPosition(SCREEN_WIDTH * 0.63, SCREEN_HEIGHT * 0.6);
     }
 
@@ -178,10 +161,6 @@ namespace WappieJump
                 }
             }
 
-            // NB: we moeten niet allen de geclicked text groen maken
-            // maar ook de vorige geclicked text zwart maken
-            // we kunnen dat doen door een extra variable toe te voegen
-
             if (!mutedTexture)
             {
                 for (const auto &item : _volumeOptions)
@@ -228,8 +207,6 @@ namespace WappieJump
 
     void SettingState::Update()
     {
-
-        // switch ()
     }
 
     void SettingState::Draw()

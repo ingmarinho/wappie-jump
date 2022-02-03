@@ -9,21 +9,37 @@
 #include "MainMenuState.hpp"
 #include "DEFINITIONS.hpp"
 
+///@file
+
 namespace WappieJump
 {
+	/// Character Selection State
+	///
+	/// The character selection state is a point in the game 
+	/// where the player can choose between eight different characters to play with.
+	
 	class CharacterSelectionState: public State
 	{
 	public:
+		/// Construct by providing GameDataRef
 		CharacterSelectionState(GameDataRef data);
 
-		void BounceCharacter();
-		int AlignObjectCenterX(sf::Sprite object);
-        int AlignObjectCenterY(sf::Sprite object);
+    	/// Function that sets the position 
+		/// for all the character sprites and makes them go up down
+		void BounceCharacter(); 			
+		/// Returns the X position to center an object on the X-axis
+		int AlignObjectCenterX(sf::Sprite object);		
+		/// Returns the Y position to center an object on the Y-axis
+        int AlignObjectCenterY(sf::Sprite object);		
+		
+		/// Loads all screen object images and sets their positions 
 		void Init();
-
-		void HandleInput();
-		void Update();
-		void Draw();
+		///	Manages hardware input 									
+		void HandleInput();	
+		/// Updates the sprite when user scrolls through characters							
+		void Update();	
+		/// Draws the screen objects								
+		void Draw();									
 
 
 	private:		

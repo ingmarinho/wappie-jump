@@ -5,8 +5,15 @@
 
 #include "State.hpp"
 
+/// @file
+
+
 namespace WappieJump
 {
+	/// State Machine
+	///
+	/// Contains functionality for switching between states and cleaning them up afterwards
+	///
 	typedef std::unique_ptr<State> StateRef;
 
 	class StateMachine
@@ -14,12 +21,14 @@ namespace WappieJump
 	public:
 		StateMachine() { }
 		~StateMachine() { }
-
+		
+		/// Function to declare a new state and switch to that state
 		void AddState(StateRef newState, bool isReplacing = true);
+		/// Function to remove previously visited states
 		void RemoveState();
-		// Run at start of each loop in Game.cpp
+		/// Run at start of each loop in Game.cpp
 		void ProcessStateChanges();
-
+		/// Returns the current state
 		StateRef &GetActiveState();
 
 	private:

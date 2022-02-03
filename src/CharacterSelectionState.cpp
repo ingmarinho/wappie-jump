@@ -32,7 +32,7 @@ namespace WappieJump
         _data->assets.LoadTexture("leftArrow", ARROW_LEFT_FILEPATH);
         _data->assets.LoadTexture("rightArrow", ARROW_RIGHT_FILEPATH);
         _data->assets.LoadTexture("selectButton", SELECT_BUTTON_FILEPATH);
-        _data->assets.LoadTexture("homeScreenButton", HOME_SCREEN_BUTTON_FILEPATH);
+        _data->assets.LoadTexture("homeScreenButton", SETTINGS_BUTTON_FILEPATH);
 
         _data->assets.LoadTexture("Character Selection Background", CHARACTER_SELECTION_BACKGROUND_FILEPATH);
         _data->assets.LoadTexture("Character Selection Title", CHARACTER_SELECTION_TITLE_FILEPATH);
@@ -135,6 +135,7 @@ namespace WappieJump
     {
         BounceCharacter();
     }
+
 
     void CharacterSelectionState::Draw()
     {

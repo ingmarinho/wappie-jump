@@ -18,21 +18,36 @@
 
 #include "DEFINITIONS.hpp"
 
+/// @file
 
 namespace WappieJump
 {
+	/// Game State
+	///
+	/// This is the state where the game runs
+	/// all user input is handled in this state.
+	/// it also handles all game logic including spawning platformns,
+	/// checking collisions and spawning monsters
 	class GameState : public State
 	{
 	public:
+
+		/// Construct by providing GameDataRef
 		GameState(GameDataRef data);
 		~GameState();
+		
+		/// Loads all screen objects and sets their positions 
 		void Init();
-
+		/// Handles user input and makes actions
 		void HandleInput();
+		/// Update the game state,
+		/// calls the update function of other objects
 		void Update();
+		/// Draws the screen objects
 		void Draw();
 
 	private:
+	
 		GameDataRef _data;
 
 		sf::Sprite _background;

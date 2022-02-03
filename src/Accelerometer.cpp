@@ -7,7 +7,7 @@ namespace WappieJump
         return SCREEN_WIDTH / 2 - object.getGlobalBounds().width / 2;
     }
 
-    int Accelerometer::AlignObjectCenterY(sf::Sprite object)
+    int Accelerometer::AlignObjectCenterY(sf::Sprite object) 
     {
         return SCREEN_HEIGHT / 2 - object.getGlobalBounds().height / 2;
     }
@@ -26,12 +26,13 @@ namespace WappieJump
 	}
 
 
-
-    void Accelerometer::SetSpeed(float x, float y)
+    
+    void Accelerometer::SetSpeed(float x, float y) 
     {
         _indicator.setPosition(_indicatorX, _indicatorY - (std::abs(static_cast<int>(x)) + std::abs(static_cast<int>(y))) * 2.8f);
     }
 
+    
     void Accelerometer::Draw()
     {
         _data->window.draw(_speedometer);

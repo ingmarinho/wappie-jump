@@ -9,28 +9,37 @@
 #include "PauseState.hpp"
 #include "CharacterSelectionState.hpp"
 #include "SettingState.hpp"
+#include "GameState.hpp"
+#include "MainMenuState.hpp"
+#include "Alignment.hpp"
+
 #include "DEFINITIONS.hpp"
 
-
+///@file 
 
 namespace WappieJump
 {
+	/// Pause State
+	///	
+	/// When the pause button is pressed in the game state you can access the
+	/// pause menu where you can either resume the game or go back to the main menu.
 	class PauseState : public State
 	{
 	public:
+		/// Construct by providing GameDataRef
 		PauseState(GameDataRef data);
-
-        int AlignObjectCenterX(sf::Sprite object);
-        int AlignObjectCenterY(sf::Sprite object);
-		void Init();
-
+		/// Loads all screen objects and sets their positions
+		void Init();									 
+		///	Manages hardware input 
 		void HandleInput();
 		void Update();
-		void Draw();
+		/// Draws the screen objects
+		void Draw();									
 
 	private:
 		GameDataRef _data;
 
+		Alignment *alignment;
 		
 		sf::Sprite _background;
 		sf::Sprite _resumeButton;

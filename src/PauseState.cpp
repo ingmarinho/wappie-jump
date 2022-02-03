@@ -1,23 +1,11 @@
 #include "PauseState.hpp"
-#include "DEFINITIONS.hpp"
-#include "GameState.hpp"
-#include "MainMenuState.hpp"
 
 namespace WappieJump
 {
 	PauseState::PauseState(GameDataRef data) : _data(data), _buttonPressSound(_data->assets.GetSound("Button Press"))
 	{
+		alignment = new Alignment(_data);
 	}
-
-    int PauseState::AlignObjectCenterX(sf::Sprite object)
-    {
-        return SCREEN_WIDTH / 2 - object.getGlobalBounds().width / 2;
-    }
-
-    int PauseState::AlignObjectCenterY(sf::Sprite object)
-    {
-        return SCREEN_HEIGHT / 2 - object.getGlobalBounds().height / 2;
-    }
 
 	void PauseState::Init()
 	{
@@ -40,10 +28,10 @@ namespace WappieJump
 
 
         _resumeButton.setScale(0.5f, 0.5f);
-        _resumeButton.setPosition(AlignObjectCenterX(_resumeButton), AlignObjectCenterY(_resumeButton));
+        _resumeButton.setPosition(alignment->AlignObjectCenterX(_resumeButton), alignment->AlignObjectCenterY(_resumeButton));
 
         _homeButton.setScale(0.5f, 0.5f);
-        _homeButton.setPosition(AlignObjectCenterX(_homeButton), AlignObjectCenterY(_homeButton) + 150);
+        _homeButton.setPosition(alignment->AlignObjectCenterX(_homeButton), alignment->AlignObjectCenterY(_homeButton) + 150);
 	}
 
 	void PauseState::HandleInput()

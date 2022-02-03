@@ -1,16 +1,23 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <map>
 #include "State.hpp"
 #include "Game.hpp"
 #include "Score.hpp"
 #include "MainMenuState.hpp"
-#include <map>
+#include "Alignment.hpp"
+///@file 
 
 namespace WappieJump
 {
+	/// Setting State
+	/// 
+	/// Contains the settings menu which is accessible by a single sprite object in multiple states.
+	/// This menu allows you to set the sound volume and difficulty of the game. 
 	class SettingState : public State
 	{
+		/// Game volume options
 		enum volume
 		{
 			MUTED,
@@ -18,6 +25,7 @@ namespace WappieJump
 			MEDIUM,
 			HIGH
 		};
+		/// Game difficulty options
 		enum difficulty
 		{
 			EASY,
@@ -27,24 +35,26 @@ namespace WappieJump
 
 
 	public:
+		/// Construct by providing GameDataRef
 		SettingState(GameDataRef data);
+	
 		~SettingState();
-
-		void Init();
+		/// Loads all screen object and sets their positions 
+		void Init();	
+		/// Sets the the correct volume for all sound objects							
 		void setVolume(SettingState::volume volume);
 		void HandleInput();
 		void Update();
-		void Draw();
-		void SetSoundVolume(int x);
-		void SetDifficultyLevel(int x);
-
-		int AlignObjectCenterX(sf::Sprite object);
-		int AlignObjectCenterY(sf::Sprite object);
+		/// Draws the screen objects
+		void Draw();									
 
 	private:
 		GameDataRef _data;
+
+		Alignment *alignment;
+
 		sf::Sprite _background;
-		sf::Sprite _mainMenuButton;
+		sf::Sprite _mainMenuButton; 
 		sf::Sprite _soundButton;
 		sf::Sprite _soundButtonMute;
 		sf::Sprite _difficultyButton;

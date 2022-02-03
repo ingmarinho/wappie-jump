@@ -3,7 +3,7 @@
 
 namespace WappieJump
 {
-	void AssetManager::LoadTexture(std::string name, std::string fileName)
+	void AssetManager::LoadTexture(std::string name, std::string fileName) 
 	{
 		sf::Texture tex;
 
