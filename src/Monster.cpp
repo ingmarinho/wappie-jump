@@ -26,8 +26,8 @@ namespace WappieJump
 
 	float Monster::CalculateRandomWidth(float monsterWidth)
 	{
-		int maxWidth = _data->window.getSize().x * 0.99f - monsterWidth;
-		return rand() % maxWidth + _data->window.getSize().x * 0.005f;
+		int maxWidth = SCREEN_WIDTH * 0.99f - monsterWidth;
+		return rand() % maxWidth + SCREEN_WIDTH * 0.005f;
 	}
 	
 	
@@ -60,7 +60,7 @@ namespace WappieJump
 	{
 		if(exist)
 		{
-			if (corona.monsterSprite.getPosition().y > _data->window.getSize().y)
+			if (corona.monsterSprite.getPosition().y > SCREEN_HEIGHT)
 			{
 				exist = false;
 			}

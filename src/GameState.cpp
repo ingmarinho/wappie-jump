@@ -108,8 +108,9 @@ namespace WappieJump
 			player->SetPlayerDeathColor();
         }
 
+        // teleport character from right to left if it touches right boundary of the screen, and vice versa
 		if (_player->getPosition().x - _player->getGlobalBounds().width > SCREEN_WIDTH) player->SetPlayerPosition(-_player->getGlobalBounds().width, _player->getPosition().y);
-		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(_data->window.getSize().x, _player->getPosition().y);
+		else if (_player->getPosition().x + _player->getGlobalBounds().width < 0) player->SetPlayerPosition(SCREEN_WIDTH, _player->getPosition().y);
 
 		if (_correctedJump && player->hasReachedMaxDistance())
 		{
@@ -143,7 +144,7 @@ namespace WappieJump
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
-					playerDistanceToHeightLimit = _player->getPosition().y - _data->window.getSize().y * 0.3f;
+					playerDistanceToHeightLimit = _player->getPosition().y - SCREEN_HEIGHT * 0.3f;
 
 					switch (platform.platformCategory)
 					{
@@ -155,7 +156,6 @@ namespace WappieJump
 							player->SetJumpVelocity(-PLAYER_VELOCITY_Y);
 							player->SetPlayerMovement(Player::JUMPING);
 						}
-						// else if (remainingVelocity > 8)
 						else
 						{
 							velocityToReachHeightLimit = playerDistanceToHeightLimit > 0 ? std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit)) : 0.0f;
@@ -175,7 +175,6 @@ namespace WappieJump
 							player->SetJumpVelocity(-PLAYER_VELOCITY_Y);
 							player->SetPlayerMovement(Player::JUMPING);
 						}
-						// else if (remainingVelocity > 8)
 						else
 						{
 							velocityToReachHeightLimit = playerDistanceToHeightLimit > 0 ? std::sqrt(2.0f * (GRAVITY * playerDistanceToHeightLimit)) : 0.0f;
@@ -218,7 +217,7 @@ namespace WappieJump
 		if (!_hasProgressed && player->GetPlayerMovement() != Player::DEATHFALL && collision->CheckWindowBottomBounceCollision(*_player)) player->SetPlayerMovement(Player::JUMPING);
 
 		// check out of screen death
-		if (_player->getPosition().y - _player->getGlobalBounds().height > _data->window.getSize().y) 
+		if (_player->getPosition().y > SCREEN_HEIGHT)
 		{
 			_gameOverSound.play();
 			_data->machine.AddState(StateRef(new GameOverState(_data)), true);
