@@ -161,7 +161,7 @@ namespace WappieJump
 			break;
 
 		case RISING:
-			if (_velocity.y + GRAVITY > 0) _velocity.y += -(_velocity.y + GRAVITY);
+			if (_velocity.y + GRAVITY > 0) _velocity.y -= GRAVITY;
 			else _velocity.y += GRAVITY;
 
 			_player.move(0, _velocity.y);

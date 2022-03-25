@@ -144,7 +144,7 @@ namespace WappieJump
 
 				if (collision->CheckPlatformBounceCollision(platform.platformSprite, *_player))
 				{
-					playerDistanceToHeightLimit = _player->getPosition().y - SCREEN_HEIGHT * 0.3f;
+					playerDistanceToHeightLimit = _player->getPosition().y - SCREEN_HEIGHT * 0.4f;
 
 					switch (platform.platformCategory)
 					{
